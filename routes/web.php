@@ -18,9 +18,9 @@
 Route::get ('/home','homez@index');
 
 
-//create SPBJ
+//create SPBJ PK
 
-Route::get ('/mspbj','Cspbj@index');
+Route::get ('/mspbjpk','Cspbj@index');
 Route::get ('/cspbj','Cspbj@create');
 Route::post ('/cspbj','Cspbj@store');
 Route::get ('/mspbjsearch','Cspbj@search');

@@ -61,8 +61,8 @@ public function store(Request $request)
   $master_rab -> judul = $request->judul;
   $master_rab -> nilai = $request->nilai;
   $master_rab -> vendor = $request->vendor;
-  $master_rab->save();
-  return Redirect::to('mspbj');
+  $master_rab -> save();
+  return Redirect::to('mspbjpk');
 
 }
 

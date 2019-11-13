@@ -84,8 +84,6 @@ public function store(Request $request)
   $master_rab -> judul = $request->judul;
   $master_rab -> kode_lokasi = $request->kode_lokasi;
   $master_rab -> triwulan = $request->triwulan;
-  $master_rab -> surveyor_1 = $request->surveyor_1;
-  $master_rab -> surveyor_2 = $request->surveyor_2;
   $master_rab -> rab_nama = $request->rab_nama;
   $master_rab -> flag_rab = $request->flag_rab;
   $master_rab -> khs = $request->khs;

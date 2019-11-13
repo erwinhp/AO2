@@ -71,7 +71,7 @@ for ($i=1; $i < $count ; $i++) {
 }
 }
 // dd($show);
-return view('welcome')->with('prk',$show);
+return view('MA')->with('prk',$show);
 }
 
 }

@@ -1842,8 +1842,8 @@ INI TRANSPORT INI TRANSPORT INI TRANSPORT INI TRANSPORT INI TransportINI
 TRANSPORT-->
 
 <?php
-$numb3=0;
-foreach ($jasa as $key => $value) { ?>
+
+ ?>
 <tr>
 <td width=30 valign=top style='width:22.6pt;border:solid windowtext 1.0pt;
 border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
@@ -1854,19 +1854,19 @@ text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo $
 none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
 padding:0cm 5.4pt 0cm 5.4pt'>
 <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $value->uraian_nama; ?></span></p>
+text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $transport[0]->uraian; ?></span></p>
 </td>
 <td width=34 valign=top style='width:25.15pt;border-top:none;border-left:
 none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
 padding:0cm 5.4pt 0cm 5.4pt'>
 <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $value->satuan; ?></span></p>
+text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $transport[0]->satuan; ?></span></p>
 </td>
 <td width=26 valign=top style='width:19.3pt;border-top:none;border-left:none;
 border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
 padding:0cm 5.4pt 0cm 5.4pt'>
 <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $value->jumlah; ?></span></p>
+text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $transport['berat']; ?></span></p>
 </td>
 <td width=23 valign=top style='width:17.55pt;border-top:none;border-left:
 none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -1878,26 +1878,26 @@ text-align:center;line-height:normal'><span style='font-size:8.0pt'>&nbsp;</span
 none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
 padding:0cm 5.4pt 0cm 5.4pt'>
 <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $value->jumlah; ?></span></p>
+text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $transport['berat']; ?></span></p>
 </td>
 <td width=55 valign=top style='width:41.35pt;border-top:none;border-left:
 none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
 padding:0cm 5.4pt 0cm 5.4pt'>
 <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $value->matkhs_harga; ?></span></p>
+text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $transport['harga']; ?></span></p>
 </td>
 <td width=33 valign=top style='width:25.05pt;border-top:none;border-left:
 none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
 padding:0cm 5.4pt 0cm 5.4pt'>
 <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
 text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php
-if($value->material_PLN == "PLN")
-{
-  echo $value->jumlah;
-}
-else {
-  echo "";
-}
+// if($value->material_PLN == "PLN")
+// {
+//   echo $value->jumlah;
+// }
+// else {
+//   echo "";
+// }
 ?></span></p>
 </td>
 <td width=32 valign=top style='width:24.3pt;border-top:none;border-left:none;
@@ -1905,13 +1905,7 @@ border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
 padding:0cm 5.4pt 0cm 5.4pt'>
 <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
 text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php
-if($value->material_PLN == "NON PLN")
-{
-  echo $value->jumlah;
-}
-else {
-  echo "";
-}
+echo $transport['berat'];
  ?></span></p>
 </td>
 <td width=65 valign=top style='width:48.65pt;border-top:none;border-left:
@@ -1931,7 +1925,7 @@ none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
 padding:0cm 5.4pt 0cm 5.4pt'>
 <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
 text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php
-echo $value->total_biaya;
+echo $transport[0]->total_biaya;
 ?></span></p>
 </td>
 <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
@@ -1939,7 +1933,7 @@ none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
 padding:0cm 5.4pt 0cm 5.4pt'>
 <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
 text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php
-echo $value->total_biaya;
+echo $transport[0]->total_biaya;
 ?></span></p>
 </td>
 <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
@@ -1947,17 +1941,12 @@ none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
 padding:0cm 5.4pt 0cm 5.4pt'>
 <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
 text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php
-if ($value->material_PLN=="PLN") {
-echo "PLN";
-}
-else {
-echo $value->total_biaya;
-$jumlah3=$jumlah3+$value->total_biaya;
-}
+echo $transport[0]->total_biaya;
+$jumlah4=$transport[0]->total_biaya;
  ?></span></p>
 </td>
 </tr>
-<?php } ?>
+
 
 
 
@@ -1999,19 +1988,19 @@ $jumlah3=$jumlah3+$value->total_biaya;
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo $jumlah3; ?></span></p>
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo $jumlah3+$jumlah4; ?></span></p>
   </td>
   <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo $jumlah3; ?></span></p>
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo $jumlah3+$jumlah4; ?></span></p>
   </td>
   <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo $jumlah3; ?></span></p>
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo $jumlah3+$jumlah4; ?></span></p>
   </td>
  </tr>
 
@@ -2093,19 +2082,19 @@ JUMLAH 123 JUMLAH 123 JUMLAH 123 JUMLAH 123 JUMLAH 123 JUMLAH 123 JUMLAH 123 -->
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo($jumlah3); ?></span></p>
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo($jumlah3+$jumlah4); ?></span></p>
   </td>
   <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo($jumlah1+$jumlah2+$jumlah3); ?></span></p>
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo($jumlah1+$jumlah2+$jumlah3+$jumlah4); ?></span></p>
   </td>
   <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo($jumlah1+$jumlah2+$jumlah3); ?></span></p>
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo($jumlah1+$jumlah2+$jumlah3+$jumlah4); ?></span></p>
   </td>
  </tr>
 
@@ -2187,19 +2176,19 @@ PPN PPN PPN PPN 10%PPN PPN PPN PPN 10%PPN PPN PPN PPN 10% -->
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo (($jumlah3)*10/100); ?></span></p>
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo (($jumlah3+$jumlah4)*10/100); ?></span></p>
   </td>
   <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo (($jumlah1+$jumlah2+$jumlah3)*10/100); ?></span></p>
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo (($jumlah1+$jumlah2+$jumlah3+$jumlah4)*10/100); ?></span></p>
   </td>
   <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-  text-align:center;line-height:normal'><span style='font-size:8.0pt'> <?php echo (($jumlah1+$jumlah2+$jumlah3)*10/100); ?></span></p>
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'> <?php echo (($jumlah1+$jumlah2+$jumlah3+$jumlah4)*10/100); ?></span></p>
   </td>
  </tr>
 
@@ -2284,19 +2273,19 @@ PPN PPN PPN PPN 10%PPN PPN PPN PPN 10%PPN PPN PPN PPN 10% -->
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo (($jumlah3)+(($jumlah3)*10/100)); ?></span></p>
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo (($jumlah3+$jumlah4)+(($jumlah3+$jumlah4)*10/100)); ?></span></p>
   </td>
   <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo (($jumlah1+$jumlah2+$jumlah3)+(($jumlah1+$jumlah2+$jumlah3)*10/100)); ?></span></p>
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo (($jumlah1+$jumlah2+$jumlah3+$jumlah4)+(($jumlah1+$jumlah2+$jumlah3+$jumlah4)*10/100)); ?></span></p>
   </td>
   <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo (($jumlah1+$jumlah2+$jumlah3)+(($jumlah1+$jumlah2+$jumlah3)*10/100)); ?></span></p>
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo (($jumlah1+$jumlah2+$jumlah3+$jumlah4)+(($jumlah1+$jumlah2+$jumlah3+$jumlah4)*10/100)); ?></span></p>
   </td>
  </tr>
 </table>

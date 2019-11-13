@@ -12,7 +12,7 @@ class detilindex extends Controller
   if(isset($_GET['no_prk'])) {
     $no_prk=$_GET['no_prk'];
   }
-return view('userindex')->with('prk',$no_prk);
+return view('MAdetil')->with('prk',$no_prk);
 }
 
 

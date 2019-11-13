@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{URL::to('/')}}/vendor/font-awesome/css/font-awesome.min.css">
     <!-- Fontastic Custom icon font-->
     <link rel="stylesheet" href="{{URL::to('/')}}/css/fontastic.css">
+
     <!-- Google fonts - Poppins -->
     <!-- <link rel="stylesheet" href="{{URL::to('/')}}/https://fonts.googleapis.com/css?family=Poppins:300,400,700"> -->
     <!-- theme stylesheet-->
@@ -30,7 +31,7 @@
     <link rel="stylesheet" href="{{URL::to('/')}}/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="{{URL::to('/')}}/img/favicon.ico">
-
+    <!-- <link rel="stylesheet" href="{{URL::to('/')}}/css/tabs.css"> -->
 
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
@@ -94,7 +95,7 @@
             <!-- <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
             <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li> -->
 
-            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>RAB SPBJ/PK</a>
+            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Buat RAB SPBJ/PK</a>
               <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                 <li><a href="#exampledropdownDropdown111" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>RAB SPBJ</a>
                   <ul id="exampledropdownDropdown111" class="collapse list-unstyled ">
@@ -110,7 +111,7 @@
               </ul>
             </li>
 
-            <li><a href="#exampledropdownDropdown1" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>RAB NON KHS</a>
+            <li><a href="#exampledropdownDropdown1" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Buat RAB NON KHS</a>
               <ul id="exampledropdownDropdown1" class="collapse list-unstyled ">
                 <li><a href="/excelrabnonkhs">Upload Excel</a></li>
                 <li><a href="/mrabnonkhs">Entri RAB</a></li>
@@ -119,8 +120,13 @@
 
             <li><a href="#exampledropdownDropdown2" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Pengadaan</a>
               <ul id="exampledropdownDropdown2" class="collapse list-unstyled ">
-                <li><a href="mspbj">Entri SPBJ</a></li>
-                <li><a href="#">Monitro Proses Pengadaan</a></li>
+                <li><a href="#exampledropdownDropdown21" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>SPBJ Baru</a>
+                  <ul id="exampledropdownDropdown21" class="collapse list-unstyled ">
+                    <li><a href="mspbj">Buat SPBJ</a></li>
+                    <li><a href="mspbjpk">Buat SPBJ PK</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Monitor Proses Pengadaan</a></li>
                 <li><a href="#">Salinan SPBJ/Kontrak</a></li>
               </ul>
             </li>

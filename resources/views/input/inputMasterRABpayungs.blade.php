@@ -147,7 +147,7 @@ $no_rab=$getmaxmadude.$getformat;
         </div>
 
 
-        <div class="line"></div>
+        <!-- <div class="line"></div>
         <div class="form-group row">
           <label class="col-sm-3 form-control-label">Surveyor 1</label>
           <div class="col-sm-9">
@@ -173,7 +173,7 @@ $no_rab=$getmaxmadude.$getformat;
               @endforeach
             </select>
           </div>
-        </div>
+        </div> -->
 
 <!-- <input type="hidden" id="custId" name="custId" value="3487"> -->
 

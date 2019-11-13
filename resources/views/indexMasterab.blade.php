@@ -30,7 +30,7 @@
           </div>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
           <div class="form-group">
-            <a href="/cmrab"  class="btn btn-primary"> Buat RAB</a>
+            <a href="/cmrab"  class="btn btn-primary" > Buat RAB</a>
           </div>
         </form>
       </div>
