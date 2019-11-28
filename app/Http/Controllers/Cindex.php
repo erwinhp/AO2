@@ -22,6 +22,7 @@ class Cindex extends Controller
       // $prkq=DB::select('select * from prk where no_prk=:prk',['prk' => $prk]);
 //$dude= (Auth::user()->name);
 $show=[];
+$lihats=[];
   $prkq=DB::select('select * from prk');
   foreach ($prkq as $key => $prks) {
     foreach ($prks as $key => $value) {
@@ -31,9 +32,10 @@ $show=[];
       (SELECT i.nama_prk from prk i WHERE i.no_prk=o.no_prk) as namaprk,
       (sum(o.total_kontrak)/(SELECT i.pagu from prk i WHERE i.no_prk=o.no_prk))*100 as persenkontrak,
       sum(o.total_bayar) as totalbayar,
-      (sum(o.total_bayar)/(SELECT i.pagu from prk i WHERE i.no_prk=o.no_prk))*100 as persenbayar
+      (sum(o.total_bayar))/(sum(o.total_kontrak))*100 as persenbayar
       FROM kontrak o WHERE no_prk=:prk GROUP BY no_prk',['prk' => $prks->no_prk]);
     }
+    // array_push($lihats,$pekerjaans);
     foreach ($pekerjaans as $key => $krj) {
       $krj->pagu=number_format($krj->pagu);
       $krj->totalbayar=number_format($krj->totalbayar);
@@ -47,30 +49,24 @@ $show=[];
       {
         $krj->persenbayar=0;
       }
-
-      if($krj->persenbayar > 100)
-      {
-        $krj->persenbayar=0;
-      }
-
-      if($krj->persenkontrak > 100)
-      {
-        $krj->persenkontrak=0;
-      }
       array_push($show, $krj);
     }
   }
-$count=count($show);
-for ($i=1; $i < $count ; $i++) {
-  for ($j=$count-1; $j >=$i ; $j--) {
-    if($show[$j-1]->persenkontrak > $show[$j]->persenkontrak) {
-        $tmp = $show[$j-1]->persenkontrak;
-        $show[$j-1]->persenkontrak = $show[$j]->persenkontrak;
-        $show[$j]->persenkontrak = $tmp;
-  }
-}
-}
+// DD($show);
+// $count=count($show);
+// for ($i=1; $i < $count ; $i++) {
+//   for ($j=$count-1; $j >=$i ; $j--) {
+//     if($show[$j-1]->persenkontrak > $show[$j]->persenkontrak) {
+//         $tmp = $show[$j-1]->persenkontrak;
+//         $show[$j-1]->persenkontrak = $show[$j]->persenkontrak;
+//         $show[$j]->persenkontrak = $tmp;
+//   }
+// }
+// }
 // dd($show);
+$persenkontraks = array_column($show, 'persenkontrak');
+array_multisort($persenkontraks, SORT_ASC, $show);
+
 return view('MA')->with('prk',$show);
 }
 
