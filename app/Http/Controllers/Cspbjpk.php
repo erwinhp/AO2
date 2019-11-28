@@ -7,7 +7,7 @@ use DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 
-class Cspbj extends Controller
+class Cspbjpk extends Controller
 {
   public function index()
 {

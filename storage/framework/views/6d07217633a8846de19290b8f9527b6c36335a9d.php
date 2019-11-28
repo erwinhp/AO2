@@ -27,7 +27,7 @@
             <label for="inlineFormInput" class="sr-only">Nomor RAB</label>
             <input id="sss" type="text" placeholder="Nomor RAB" class="mr-3 form-control">
           </div>
-
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
           <div class="form-group">
             <a href="/cmrabnon"  class="btn btn-primary" >Buat RAB</a>
           </div>

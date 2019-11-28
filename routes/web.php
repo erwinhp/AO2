@@ -17,13 +17,14 @@
 //
 Route::get ('/home','homez@index');
 
-
+//create spbj
+Route::get ('/mspbj','SPBJ\Cspbjm@index');
 //create SPBJ PK
 
-Route::get ('/mspbjpk','Cspbj@index');
-Route::get ('/cspbj','Cspbj@create');
-Route::post ('/cspbj','Cspbj@store');
-Route::get ('/mspbjsearch','Cspbj@search');
+Route::get ('/mspbjpk','Cspbjpk@index');
+Route::get ('/cspbj','Cspbjpk@create');
+Route::post ('/cspbj','Cspbpkj@store');
+Route::get ('/mspbjsearch','Cspbjpk@search');
 
 
 //RABNYA RABNY RABNYA RABNYA RBANY A;SLDFJALKSJDF Cmrabpayung
