@@ -33,40 +33,47 @@ public function index()
           $transport=DB::select('select i.satuan,i.uraian,i.nama_uraian, i.total_biaya,
           (SELECT j.harga_matkhs from mat_khs j WHERE j.kode_matkhs=i.uraian)as matkhs_harga
           from rab_khs_detil i where i.no_rab=:a AND i.uraian="Transport" ',['a'=>$rab]);
-          $idtr="";
-          foreach ($transport as $key => $value) {
-            $idtr=$value->nama_uraian;
+          // dd($transport);
+          if($transport != [])
+          {
+            $idtr="";
+            foreach ($transport as $key => $value) {
+              $idtr=$value->nama_uraian;
+
+              $berats=DB::select('
+              select
+                   (SELECT if(j.tonase > j.metrix,j.tonase,j.metrix)
+                   from mat_khs j WHERE j.kode_matkhs=i.uraian AND COALESCE(j.satuan_matkhs, "") <> "jasa")*i.jumlah as berat
+                   from rab_khs_detil i
+                   where COALESCE(i.no_rab, "")=:a
+                   AND COALESCE(i.material_PLN, "") = "PLN"
+                   AND COALESCE(i.uraian, "") <> "Transport" ',['a'=>$rab]);
+
+                   $berat=0;
+                   foreach ($berats as $key => $value) {
+                     $berat=$berat+$value->berat;
+                   }
+                   array_push($transport,$berat);
+
+
+                   $hargas=DB::table('transport')->where('id',$idtr)->get();
+                   $harga=0;
+                   foreach ($hargas as $key => $value) {
+                      $harga=($value->harga);
+                    }
+
+                    array_push($transport,$harga);
+                    $transport['berat']=$transport[1];
+                    unset($transport[1]);
+                    $transport['harga']=$transport[2];
+                    unset($transport[2]);
+                    // dd($transport[0]);
+
+            }
           }
 
 
-                              $berats=DB::select('
-                              select
-                                   (SELECT if(j.tonase > j.metrix,j.tonase,j.metrix)
-                                   from mat_khs j WHERE j.kode_matkhs=i.uraian AND COALESCE(j.satuan_matkhs, "") <> "jasa")*i.jumlah as berat
-                                   from rab_khs_detil i
-                                   where COALESCE(i.no_rab, "")=:a
-                                   AND COALESCE(i.material_PLN, "") = "PLN"
-                                   AND COALESCE(i.uraian, "") <> "Transport" ',['a'=>$rab]);
 
-                                   $berat=0;
-                                   foreach ($berats as $key => $value) {
-                                     $berat=$berat+$value->berat;
-                                   }
-                                   array_push($transport,$berat);
-
-
-                                   $hargas=DB::table('transport')->where('id',$idtr)->get();
-                                   $harga=0;
-                                   foreach ($hargas as $key => $value) {
-                                      $harga=($value->harga);
-                                    }
-                                    // dd($transport);
-                                    array_push($transport,$harga);
-                                    $transport['berat']=$transport[1];
-                                    unset($transport[1]);
-                                    $transport['harga']=$transport[2];
-                                    unset($transport[2]);
-                                    // dd($transport[0]);
 
 
 

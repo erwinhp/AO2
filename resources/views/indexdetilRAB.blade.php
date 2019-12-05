@@ -896,7 +896,7 @@ delete modal -->
 
 </script>
 <?php
-if(isset($transport[0]->uraian)){
+
 
  ob_start();
 ?>
@@ -979,24 +979,41 @@ ul
 <body lang=EN-US>
 
 <div class=WordSection1 id="export-content">
-
-<p class=MsoNormal><b><span style='font-size:8.0pt;line-height:107%'>RENCANA
-ANGGARAN BIAYA : </span></b></p>
-
-<p class=MsoNormal><span style='font-size:8.0pt;line-height:107%'>PROGRAM&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;:&nbsp;<?php echo($atributs->program) ?></span></p>
-
-<p class=MsoNormal><span style='font-size:8.0pt;line-height:107%'>FUNGSI                   &nbsp; : <?php echo($atributs->fungsi) ?></span></p>
-
-<p class=MsoNormal><span style='font-size:8.0pt;line-height:107%'>PEKERJAAN             : <?php echo($atributs->judul) ?></span></p>
-
-<p class=MsoNormal><span style='font-size:8.0pt;line-height:107%'>ATAS NAMA            : <?php  echo($atributs->rab_nama) ?></span></p>
-
-<p class=MsoNormal><span style='font-size:8.0pt;line-height:107%'>LOKASI                      : <?php echo($atributs->lokasi) ?></span></p>
-
+  <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=649
+  style='width:486.55pt;border-collapse:collapse;border:none'>
+<tr><p class=MsoNormal><b><span style='font-size:8.0pt;line-height:107%'>RENCANA
+ANGGARAN BIAYA : </span></b></p></tr>
+<tr>
+  <td>
+<p class=MsoNormal><span style='font-size:8.0pt;line-height:107%'>PROGRAM : <?php echo($atributs->program) ?></span></p>
+</td>
+</tr>
+<tr>
+  <td>
+<p class=MsoNormal><span style='font-size:8.0pt;line-height:107%'>FUNGSI : <?php echo($atributs->fungsi) ?></span></p>
+</td>
+</tr>
+<tr>
+  <td>
+<p class=MsoNormal><span style='font-size:8.0pt;line-height:107%'>PEKERJAAN : <?php echo($atributs->judul) ?></span></p>
+</td>
+</tr>
+<tr>
+  <td>
+<p class=MsoNormal><span style='font-size:8.0pt;line-height:107%'>ATAS NAMA : <?php  echo($atributs->rab_nama) ?></span></p>
+</td>
+</tr>
+<tr>
+  <td>
+<p class=MsoNormal><span style='font-size:8.0pt;line-height:107%'>LOKASI : <?php echo($atributs->lokasi) ?></span></p>
+</td>
+</tr>
+<tr>
+  <td>
 <p class=MsoNormal><span style='font-size:8.0pt;line-height:107%'>&nbsp;</span></p>
+</td>
+</tr>
 
-<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=649
-style='width:486.55pt;border-collapse:collapse;border:none'>
 <tr>
  <td width=30 rowspan=3 valign=top style='width:22.6pt;border:solid windowtext 1.0pt;
  padding:0cm 5.4pt 0cm 5.4pt'>
@@ -1845,167 +1862,173 @@ INI TRANSPORT INI TRANSPORT INI TRANSPORT INI TRANSPORT INI TransportINI
 TRANSPORT-->
 
 <?php
+$jumlah4=0;
+if(isset($transport[0]->uraian)){
+  ?>
+  <tr>
+  <td width=30 valign=top style='width:22.6pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo $numb3=$numb3+1; ?></span></p>
+  </td>
+  <td width=81 valign=top style='width:60.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $transport[0]->uraian; ?></span></p>
+  </td>
+  <td width=34 valign=top style='width:25.15pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $transport[0]->satuan; ?></span></p>
+  </td>
+  <td width=26 valign=top style='width:19.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $transport['berat']; ?></span></p>
+  </td>
+  <td width=23 valign=top style='width:17.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'>&nbsp;</span></p>
+  </td>
+  <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $transport['berat']; ?></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $transport['harga']; ?></span></p>
+  </td>
+  <td width=33 valign=top style='width:25.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php
+  // if($value->material_PLN == "PLN")
+  // {
+  //   echo $value->jumlah;
+  // }
+  // else {
+  //   echo "";
+  // }
+  ?></span></p>
+  </td>
+  <td width=32 valign=top style='width:24.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php
+  echo $transport['berat'];
+  ?></span></p>
+  </td>
+  <td width=65 valign=top style='width:48.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'>&nbsp;</span></p>
+  </td>
+  <td width=65 valign=top style='width:48.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'></span></p>
+  </td>
+  <td width=38 valign=top style='width:28.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php
+  echo $transport[0]->total_biaya;
+  ?></span></p>
+  </td>
+  <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php
+  echo $transport[0]->total_biaya;
+  ?></span></p>
+  </td>
+  <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php
+  echo $transport[0]->total_biaya;
+  $jumlah4=$transport[0]->total_biaya;
+  ?></span></p>
+  </td>
+  </tr>
+<?php ?>
 
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+   <td width=30 valign=top style='width:22.6pt;border:solid windowtext 1.0pt;
+   border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+   text-align:center;line-height:normal'><span style='font-size:8.0pt'>&nbsp;</span></p>
+   </td>
+   <td width=81 valign=top style='width:60.45pt;border-top:none;border-left:
+   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+   padding:0cm 5.4pt 0cm 5.4pt'>
+   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+   text-align:center;line-height:normal'><b><span style='font-size:8.0pt'>JUMLAH
+   III</span></b></p>
+   </td>
+   <td width=324 colspan=8 valign=top style='width:243.1pt;border-top:none;
+   border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+   padding:0cm 5.4pt 0cm 5.4pt'>
+   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+   text-align:center;line-height:normal'><span style='font-size:8.0pt'>&nbsp;</span></p>
+   </td>
+   <td width=65 valign=top style='width:48.65pt;border-top:none;border-left:
+   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+   padding:0cm 5.4pt 0cm 5.4pt'>
+   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+   text-align:center;line-height:normal'><span style='font-size:8.0pt'>&nbsp;</span></p>
+   </td>
+   <td width=38 valign=top style='width:28.25pt;border-top:none;border-left:
+   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+   padding:0cm 5.4pt 0cm 5.4pt'>
+   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+   text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo $jumlah3+$jumlah4; ?></span></p>
+   </td>
+   <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
+   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+   padding:0cm 5.4pt 0cm 5.4pt'>
+   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+   text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo $jumlah3+$jumlah4; ?></span></p>
+   </td>
+   <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
+   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+   padding:0cm 5.4pt 0cm 5.4pt'>
+   <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+   text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo $jumlah3+$jumlah4; ?></span></p>
+   </td>
+  </tr>
+<?php
+}
 ?>
-<tr>
-<td width=30 valign=top style='width:22.6pt;border:solid windowtext 1.0pt;
-border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
-<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo $numb3=$numb3+1; ?></span></p>
-</td>
-<td width=81 valign=top style='width:60.45pt;border-top:none;border-left:
-none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-padding:0cm 5.4pt 0cm 5.4pt'>
-<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $transport[0]->uraian; ?></span></p>
-</td>
-<td width=34 valign=top style='width:25.15pt;border-top:none;border-left:
-none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-padding:0cm 5.4pt 0cm 5.4pt'>
-<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $transport[0]->satuan; ?></span></p>
-</td>
-<td width=26 valign=top style='width:19.3pt;border-top:none;border-left:none;
-border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-padding:0cm 5.4pt 0cm 5.4pt'>
-<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $transport['berat']; ?></span></p>
-</td>
-<td width=23 valign=top style='width:17.55pt;border-top:none;border-left:
-none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-padding:0cm 5.4pt 0cm 5.4pt'>
-<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'>&nbsp;</span></p>
-</td>
-<td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
-none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-padding:0cm 5.4pt 0cm 5.4pt'>
-<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $transport['berat']; ?></span></p>
-</td>
-<td width=55 valign=top style='width:41.35pt;border-top:none;border-left:
-none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-padding:0cm 5.4pt 0cm 5.4pt'>
-<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo  $transport['harga']; ?></span></p>
-</td>
-<td width=33 valign=top style='width:25.05pt;border-top:none;border-left:
-none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-padding:0cm 5.4pt 0cm 5.4pt'>
-<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php
-// if($value->material_PLN == "PLN")
-// {
-//   echo $value->jumlah;
-// }
-// else {
-//   echo "";
-// }
-?></span></p>
-</td>
-<td width=32 valign=top style='width:24.3pt;border-top:none;border-left:none;
-border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-padding:0cm 5.4pt 0cm 5.4pt'>
-<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php
-echo $transport['berat'];
-?></span></p>
-</td>
-<td width=65 valign=top style='width:48.65pt;border-top:none;border-left:
-none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-padding:0cm 5.4pt 0cm 5.4pt'>
-<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'>&nbsp;</span></p>
-</td>
-<td width=65 valign=top style='width:48.65pt;border-top:none;border-left:
-none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-padding:0cm 5.4pt 0cm 5.4pt'>
-<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'></span></p>
-</td>
-<td width=38 valign=top style='width:28.25pt;border-top:none;border-left:
-none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-padding:0cm 5.4pt 0cm 5.4pt'>
-<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php
-echo $transport[0]->total_biaya;
-?></span></p>
-</td>
-<td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
-none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-padding:0cm 5.4pt 0cm 5.4pt'>
-<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php
-echo $transport[0]->total_biaya;
-?></span></p>
-</td>
-<td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
-none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-padding:0cm 5.4pt 0cm 5.4pt'>
-<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php
-echo $transport[0]->total_biaya;
-$jumlah4=$transport[0]->total_biaya;
-?></span></p>
-</td>
-</tr>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<tr>
- <td width=30 valign=top style='width:22.6pt;border:solid windowtext 1.0pt;
- border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
- <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
- text-align:center;line-height:normal'><span style='font-size:8.0pt'>&nbsp;</span></p>
- </td>
- <td width=81 valign=top style='width:60.45pt;border-top:none;border-left:
- none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
- padding:0cm 5.4pt 0cm 5.4pt'>
- <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
- text-align:center;line-height:normal'><b><span style='font-size:8.0pt'>JUMLAH
- III</span></b></p>
- </td>
- <td width=324 colspan=8 valign=top style='width:243.1pt;border-top:none;
- border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
- padding:0cm 5.4pt 0cm 5.4pt'>
- <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
- text-align:center;line-height:normal'><span style='font-size:8.0pt'>&nbsp;</span></p>
- </td>
- <td width=65 valign=top style='width:48.65pt;border-top:none;border-left:
- none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
- padding:0cm 5.4pt 0cm 5.4pt'>
- <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
- text-align:center;line-height:normal'><span style='font-size:8.0pt'>&nbsp;</span></p>
- </td>
- <td width=38 valign=top style='width:28.25pt;border-top:none;border-left:
- none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
- padding:0cm 5.4pt 0cm 5.4pt'>
- <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
- text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo $jumlah3+$jumlah4; ?></span></p>
- </td>
- <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
- none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
- padding:0cm 5.4pt 0cm 5.4pt'>
- <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
- text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo $jumlah3+$jumlah4; ?></span></p>
- </td>
- <td width=56 valign=top style='width:41.75pt;border-top:none;border-left:
- none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
- padding:0cm 5.4pt 0cm 5.4pt'>
- <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
- text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo $jumlah3+$jumlah4; ?></span></p>
- </td>
-</tr>
 
 <!-- JUMLAH 123 JUMLAH 123 JUMLAH 123 JUMLAH 123 JUMLAH 123 JUMLAH 123 JUMLAH 123
 JUMLAH 123 JUMLAH 123 JUMLAH 123 JUMLAH 123 JUMLAH 123 JUMLAH 123 JUMLAH 123
@@ -2291,6 +2314,49 @@ TOTAL TOTAL TOTAL TOTAL TOTAL TOTAL TOTAL TOTAL TOTLAS
  text-align:center;line-height:normal'><span style='font-size:8.0pt'><?php echo (($jumlah1+$jumlah2+$jumlah3+$jumlah4)+(($jumlah1+$jumlah2+$jumlah3+$jumlah4)*10/100)); ?></span></p>
  </td>
 </tr>
+
+<tr>
+</tr>
+<tr>
+  <td></td>
+    <td></td>
+      <td></td>
+        <td></td>
+          <td></td>
+            <td></td>
+          <td></td>
+        <td></td>
+    <td></td>
+  <td>Bos Mengetahui</td>
+    <td></td>
+      <td></td>
+        <td></td>
+    <td>Membuat</td>
+</tr>
+<tr>
+</tr>
+<tr>
+</tr>
+<tr>
+</tr>
+<tr>
+</tr>
+<tr>
+  <td></td>
+    <td></td>
+      <td></td>
+        <td></td>
+          <td></td>
+            <td></td>
+          <td></td>
+        <td></td>
+    <td></td>
+  <td>Nama Bos</td>
+    <td></td>
+      <td></td>
+        <td></td>
+    <td>Nama Pembuat</td>
+</tr>
 </table>
 
 <p class=MsoNormal style='text-align:justify'><span style='font-size:8.0pt;
@@ -2305,7 +2371,7 @@ line-height:107%'>&nbsp;</span></p>
 <?php
 $html = ob_get_clean();
 echo($html);
-}
+
 ?>
 <script>
 // jQuery(document).ready(function($) {
@@ -2336,7 +2402,7 @@ echo($html);
  $(document).on('click', '#cetakexcel', function() {
  $("#export-content").table2excel({
    name: "WorksheetName",
-   filename: "SomeFile", //do not include extension
+   filename: "RAB", //do not include extension
    fileext: ".xls" // file extension
  });
 });
