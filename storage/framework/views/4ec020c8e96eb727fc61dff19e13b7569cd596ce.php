@@ -1,3 +1,7 @@
+<?php $__env->startSection('header'); ?>
+Monitor Anggaran
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
 <?php
 //dd($prk);
@@ -7,24 +11,14 @@
 // }
 ?>
 
-<!-- Inline Form-->
 
 <!-- table madude-->
-<section class="table table-bordered">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-close">
-            <div class="dropdown">
-            </div>
-          </div>
-          <div class="card-header d-flex align-items-center">
-            <h3 class="h4">Table Deksripsi</h3>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-striped">
+
+<div class="container-fluid">
+        <div class="panel-wrapper">
+          <div class="panel">
+              <div class="responsive-nav">
+                <table class="table">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -63,10 +57,6 @@
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\etc\PEMBELAJARAN\project\AO2\resources\views/MA.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.indexNVM', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\etc\PEMBELAJARAN\project\AO2\resources\views/MA.blade.php ENDPATH**/ ?>

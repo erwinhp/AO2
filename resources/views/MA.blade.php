@@ -1,4 +1,8 @@
-@extends('layouts.index')
+@extends('layouts.indexNVM')
+@section('header')
+Monitor Anggaran
+@endsection
+
 @section('content')
 <?php
 //dd($prk);
@@ -8,24 +12,14 @@
 // }
 ?>
 
-<!-- Inline Form-->
 
 <!-- table madude-->
-<section class="table table-bordered">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-close">
-            <div class="dropdown">
-            </div>
-          </div>
-          <div class="card-header d-flex align-items-center">
-            <h3 class="h4">Table Deksripsi</h3>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-striped">
+
+<div class="container-fluid">
+        <div class="panel-wrapper">
+          <div class="panel">
+              <div class="responsive-nav">
+                <table class="table">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -63,9 +57,5 @@
           </div>
         </div>
       </div>
-
-    </div>
-  </div>
-</section>
 
 @stop

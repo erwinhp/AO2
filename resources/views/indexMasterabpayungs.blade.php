@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.indexNVM')
 @section('content')
 <meta name="_token" content="{{ csrf_token() }}">
 
@@ -23,46 +23,29 @@ else {
 
 
 
-<section class="table table-bordered">
+<div class="container-fluid">
+        <div class="panel-wrapper">
+          <div class="panel">
+<div class="table-bar">
+  <div class="form-inline">
+    <div class="form-group">
+      <label class="form-control-label">CARI RAB</label>
+      <div class="form-group form-control-search">
+          <input class="form-control" type="text" placeholder="Cari RAB" id="sss">
+      </div>
+    </div>
 
-  <div class="col-lg-6">
-    <div class="card">
-      <div class="card-close">
-      </div>
-      <div class="card-header d-flex align-items-center">
-        <h3 class="h4">Form RAB</h3>
-      </div>
-      <div class="card-body">
-        <form class="form-inline">
-          <div class="form-group">
-            <label for="inlineFormInput" class="sr-only">Nomor RAB</label>
-            <input id="sss" type="text" placeholder="CARI RAB" class="mr-3 form-control">
-          </div>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-          <div class="form-group">
-            <a href="/cmasterabpayungs?no_kontrak=<?php echo $no_kontrak ?>"  class="btn btn-primary" >Buat RAB</a>
-          </div>
-        </form>
+    <div class="pull-sm-right">
+      <div class="form-group">
+          <a href="/cmasterabpayungs"  class="btn btn-primary" > Buat RAB</a>
       </div>
     </div>
   </div>
-  <!-- <div class="form-group">
-  <input type="text" class="form-controller" id="sss" name="search"></input>
-  </div> -->
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-close">
-            <div class="dropdown">
-            </div>
-          </div>
-          <div class="card-header d-flex align-items-center">
-            <h3 class="h4">Table RAB</h3>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-striped">
+</div>
+
+<!-- THIS IS THE TABLE -->
+  <div class="responsive-nav">
+              <table class="table">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -81,9 +64,6 @@ else {
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
 <script>
 $(document).ready(function(){
 $("#sss").keyup(function(e) {

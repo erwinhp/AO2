@@ -25,12 +25,7 @@
 
         <div class="card text-center">
           <div class="card-header">
-            <!-- <div class="wrapper">
-              <ul class="tabs">
-                  <li><a href="javascript:void(0); return false;" class="tab active">TAB 1</a></li>
-                  <li><a href="javascript:void(0); return false;" class="tab ">TAB 1</a></li>
-              </ul>
-            </div> -->
+
             <ul class="nav nav-tabs card-header-tabs">
               <li class="nav-item">
                 <button class="nav-link active" id="general" value="<?php echo $prk; ?>">General</button>

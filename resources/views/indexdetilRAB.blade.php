@@ -1,4 +1,10 @@
-@extends('layouts.index')
+@extends('layouts.indexNVM')
+
+@section('header')
+Detil RAB KHS
+@endsection
+
+
 @section('content')
 
 <meta name="_token" content="{{ csrf_token() }}">
@@ -253,7 +259,7 @@ $atributs=$value;
 
 
 
-<div class="modal fade" id="addModal" aria-hidden="true">
+<div class="modal" id="addModal" aria-hidden="true">
 <div class="modal-dialog">
 <div class="modal-content">
    <div class="modal-header">
@@ -308,6 +314,7 @@ $atributs=$value;
                    <input type="total_jasa" class="form-control" id="total_biaya" name="total_biaya" placeholder="Enter total_biaya" value="" required="" disabled>
                </div>
            </div>
+         </div>
 
 
            <div class="modal-footer">
@@ -320,10 +327,6 @@ $atributs=$value;
            </div>
        </form>
    </div>
-   <div class="modal-footer">
-
-   </div>
-</div>
 </div>
 </div>
 
@@ -437,464 +440,7 @@ delete modal -->
 
 
 
-<script>
-  $(document).ready( function () {
-    fetch_data();
-    fetch_datatrasnport();
 
-
-});
-
-
-     $('.DDselect').select2({
-       placeholder: 'Select an item',
-       ajax: {
-         url: '/searchmaterialjasa',
-         dataType: 'json',
-         delay: 250,
-         processResults: function (data) {
-           return {
-             results:  $.map(data, function (item) {
-                   return {
-                       text: item.uraian_matkhs,
-                       id: item.kode_matkhs,
-                   }
-               })
-
-           };
-         },
-         cache: true
-       }
-     });
-
-
-     $('.DDselect1').select2({
-       placeholder: 'Select an item',
-       ajax: {
-         url: '/searchmaterialjasa',
-         dataType: 'json',
-         delay: 250,
-         processResults: function (data) {
-           return {
-             results:  $.map(data, function (item) {
-                   return {
-                       text: item.uraian_matkhs,
-                       id: item.kode_matkhs,
-                   }
-               })
-
-           };
-         },
-         cache: true
-       }
-     });
-
-
-     //get harga of total
-     $('.DDselect').on("select2:select", function(e) {
-       var idmat = document.getElementById("uraian").value;
-       var hrg = document.getElementById("jumlah").value;
-       $.ajax({
-           type: 'GET',
-           url: '/rgetmat',
-           data:{'idmat': idmat},
-           success:function(data)
-           {
-
-             var a=data[0];
-             $("#harga_satuan").attr("placeholder", a.harga_matkhs);
-             $('#harga_satuan').val(a.harga_matkhs);
-
-             $("#satuan").attr("placeholder", a.satuan_matkhs);
-             $('#satuan').val(a.satuan_matkhs);
-
-             $("#total_biaya").attr("placeholder", a.harga_matkhs*hrg);
-             $('#total_biaya').val(a.harga_matkhs*hrg);
-
-             if(a.PLN==1)
-             {
-               $("#material_PLN").attr("placeholder", "PLN");
-               $('#material_PLN').val("PLN");
-             }
-             else {
-               $("#material_PLN").attr("placeholder", "NON PLN");
-               $('#material_PLN').val("NON PLN");
-             }
-          },
-       });
-     });
-
-
-
-
-     $('.DDselect1').on("select2:select", function(e) {
-       var idmat = document.getElementById("uraian1").value;
-       var hrg = document.getElementById("jumlah1").value;
-       $.ajax({
-           type: 'GET',
-           url: '/rgetmat',
-           data:{'idmat': idmat},
-           success:function(data)
-           {
-             var a=data[0];
-
-             $("#harga_satuan1").attr("placeholder", a.harga_matkhs);
-             $('#harga_satuan1').val(a.harga_matkhs);
-
-             $("#satuan1").attr("placeholder", a.satuan_matkhs);
-             $('#satuan1').val(a.satuan_matkhs);
-
-             $("#total_biaya1").attr("placeholder", a.harga_matkhs*hrg);
-             $('#total_biaya1').val(a.harga_matkhs*hrg);
-
-
-             if(a.PLN==1)
-             {
-               $("#material_PLN1").attr("placeholder", "PLN");
-               $('#material_PLN1').val("PLN");
-             }
-             else {
-               $("#material_PLN1").attr("placeholder", "NON PLN");
-               $('#material_PLN1').val("NON PLN");
-             }
-
-          },
-       });
-     });
-
-     $("#jumlah").keyup(function(e) {
-     $value=$(this).val();
-     var idmat = document.getElementById("harga_satuan").value;
-     $("#total_biaya").attr("placeholder", $value*idmat);
-     $('#total_biaya').val($value*idmat);
-     });
-
-     $("#jumlah1").keyup(function(e) {
-     $value1=$(this).val();
-     var idmat1 = document.getElementById("harga_satuan1").value;
-     $("#total_biaya1").attr("placeholder", $value1*idmat1);
-     $('#total_biaya1').val($value1*idmat1);
-     });
-
-
-     function fetch_datatrasnport()
-     {
-      $.ajax({
-      type: "GET",
-      data:{'rab':$('#no_rabtr').val()},
-       url:"Rdetilfetchtransport",
-       dataType:"json",
-       success:function(data)
-       {
-        html='';
-        for(var count=0; count < data.length; count++)
-        {
-
-        html +='<tr>';
-        html +='<td class="column_name" data-column_name="uraian" data-id="'+data[count].id_detilrab+'">'+data[count].uraians+'</td>';
-        html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_detilrab+'">'+data[count].total_biaya+'</td>';
-        html += '<td><button class="edit-modaltr btn btn-info" data-id="'+data[count].id_detilrab+'"><span class="glyphicon glyphicon-trash">Edit</span></button>&nbsp;';
-        html += '<button class="delete-modal btn btn-danger" data-id="'+data[count].id_detilrab+'"><span class="glyphicon glyphicon-trash">Delete</span></button></td></tr>';
-        }
-        // console.log(html);
-        $('#transport').html(html);
-       }
-      });
-     }
-
-
-    function fetch_data()
-    {
-     $.ajax({
-     type: "GET",
-     data:{'rab':$('#no_rab').val()},
-      url:"Rdetilfetch",
-      dataType:"json",
-      success:function(data)
-      {
-        // contenteditable can be puted inside td
-       // console.log(data);
-       html='';
-       for(var count=0; count < data.length; count++)
-       {
-       html +='<tr>';
-       html +='<td class="column_name" data-column_name="uraian" data-id="'+data[count].id_detilrab+'">'+data[count].uraian+'</td>';
-       html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_detilrab+'">'+data[count].jumlah+'</td>';
-       html += '<td  class="column_name" data-column_name="satuan" data-id="'+data[count].id_detilrab+'">'+data[count].satuan+'</td>';
-       html += '<td  class="column_name" data-column_name="satuan" data-id="'+data[count].id_detilrab+'">'+data[count].harga_satuan+'</td>';
-       html += '<td  class="column_name" data-column_name="satuan" data-id="'+data[count].id_detilrab+'">'+data[count].total_biaya+'</td>';
-       html += '<td  class="column_name" data-column_name="satuan" data-id="'+data[count].id_detilrab+'">'+data[count].material_PLN+'</td>';
-       html += '<td><button class="edit-modal btn btn-info" data-id="'+data[count].id_detilrab+'"><span class="glyphicon glyphicon-trash">Edit</span></button>&nbsp;';
-       html += '<button class="delete-modal btn btn-danger" data-id="'+data[count].id_detilrab+'"><span class="glyphicon glyphicon-trash">Delete</span></button></td></tr>';
-       }
-       // console.log(html);
-       $('#matjasa').html(html);
-      }
-     });
-    }
-
-    // add a new post
-    $(document).on('click', '.add-modal', function() {
-                // Empty input fields
-                // document.getElementById("no_rab").value;
-                $('#DDselect').val(null).trigger('change');
-                $('#uraian').val('');
-                $('#jumlah').val('');
-                $('#satuan').val('');
-                $('#harga_satuan').val('');
-                $('#material_PLN').val('');
-                $('#material_PFK').val('');
-                $('#total_biaya').val('');
-                $('.modal-title').text('Add');
-                $('#addModal').modal('show');
-            });
-
-
-            //INI ADD TRANSPORTASI
-            $('.modal-footer').on('click', '#addtr', function() {
-                    $.ajax({
-                        type: 'POST',
-                        url: '/Rdetil',
-                        data: {
-                          '_token': $('input[name=_token]').val(),
-                          'no_rab': $('#no_rabtr').val(),
-                          'jumlah': $('#jumlahtr').val(),
-                          'satuan': $('#satuantr').val(),
-                          'uraian' : $('#uraiantr').val(),
-                          'harga_satuan': $('#harga_satuantr').val(),
-                          'nama_uraian': $('#nama_uraiantr').val(),
-                          'total_biaya': $('#total_biayatr').val(),
-                          'kontrak': $('#kontrak').val(),
-                          'no_spbj': $('#no_spbj').val(),
-                        },
-                        success:function(data)
-                        {
-                       },
-                    });
-                    // fetch_datatrasnport();
-                    fetch_datatrasnport();
-                });
-
-
-                 //open transport modal
-                $(document).on('click', '.add-modaltr', function() {
-                            // Empty input fields
-                            // document.getElementById("no_rab").value;
-                            $('#DDselect').val(null).trigger('change');
-                            $('#uraian').val('');
-                            $('#jumlah').val('');
-                            $('#satuan').val('');
-                            $('#harga_satuan').val('');
-                            $('#material_PLN').val('');
-                            $('#material_PFK').val('');
-                            $('#total_biaya').val('');
-                            $('.modal-title').text('Add');
-                            $('#transportaddModal').modal('show');
-                        });
-                        //get transportasi ddropdown
-                        $('.DDselecttrans').select2({
-                          placeholder: 'Select an item',
-                          ajax: {
-                            url: '/searchmaterialjasatr',
-                            dataType: 'json',
-                            delay: 250,
-                            processResults: function (data) {
-                              return {
-                                results:  $.map(data, function (item) {
-                                      return {
-                                          text: item.uraian,
-                                          id: item.id,
-                                      }
-                                  })
-
-                              };
-                            },
-                            cache: true
-                          }
-                        });
-                        //auto insert harga dan dd
-                        $('.DDselecttrans').on("select2:select", function(e) {
-                          var id = document.getElementById("nama_uraiantr").value;
-                          var no_rab = document.getElementById("no_rabtr").value;
-                          $.ajax({
-                              type: 'GET',
-                              url: '/rgetmattr',
-                              data:{'id': id,'no_rab':no_rab},
-                              success:function(data)
-                              {
-                                // console.log(data);
-                               $("#total_biayatr").attr("placeholder", data[0]);
-                               $('#total_biayatr').val(data[0]);
-                               $('#jumlahtr').val(data[1]);
-                               $("#jumlahtr").attr("placeholder", data[1]);
-                               $('#harga_satuantr').val(data[2]);
-                               $("#harga_satuantr").attr("placeholder", data[2]);
-
-                              },
-                          });
-                        });
-
-
-               $('.DDselecttrans1').select2({
-                 placeholder: 'Select an item',
-                 ajax: {
-                   url: '/searchmaterialjasatr',
-                   dataType: 'json',
-                   delay: 250,
-                   processResults: function (data) {
-                     return {
-                       results:  $.map(data, function (item) {
-                             return {
-                                 text: item.uraian,
-                                 id: item.id,
-                             }
-                         })
-
-                     };
-                   },
-                   cache: true
-                 }
-               });
-               //auto insert harga dan dd
-      $('.DDselecttrans1').on("select2:select", function(e) {
-        var id = document.getElementById("nama_uraiantr1").value;
-        var no_rab = document.getElementById("no_rabtr1").value;
-        $.ajax({
-            type: 'GET',
-            url: '/rgetmattr',
-            data:{'id': id,'no_rab':no_rab},
-            success:function(data)
-            {
-              $("#total_biayatr1").attr("placeholder", data[0]);
-              $('#total_biayatr1').val(data[0]);
-              $('#jumlahtr1').val(data[1]);
-              $("#jumlahtr1").attr("placeholder", data[1]);
-              $('#harga_satuantr1').val(data[2]);
-              $("#harga_satuantr1").attr("placeholder", data[2]);
-            },
-        });
-      });
-
-
-               //INI ADD BIASA MATERIAL ATAU JASA
-                $('.modal-footer').on('click', '.add', function() {
-                        $.ajax({
-                            type: 'POST',
-                            url: '/Rdetil',
-                            data: {
-                                '_token': $('input[name=_token]').val(),
-                                'no_rab': $('#no_rab').val(),
-                                'uraian': $('#uraian').val(),
-                                'jumlah': $('#jumlah').val(),
-                                'satuan': $('#satuan').val(),
-                                'harga_satuan': $('#harga_satuan').val(),
-                                'material_PLN': $('#material_PLN').val(),
-                                'material_PFK': $('#material_PFK').val(),
-                                'total_biaya': $('#total_biaya').val(),
-                                'kontrak': $('#kontrak').val(),
-                                'no_spbj': $('#no_spbj').val(),
-                            },
-                            success:function(data)
-                            {
-                           },
-                        });
-                        fetch_data();
-                        fetch_datatrasnport();
-                    });
-
-
-                    //INI EDIT TRANSPORT
-                                     $(document).on('click', '.edit-modaltr', function() {
-                                          $('#DDselecttrans1').val('');
-                                         $('.modal-title').text('Edit');
-                                         $('#id_edittr1').val($(this).data('id'));
-                                         id = $('#id_edittr1').val();
-                                         $('#transporteditModal').modal('show');
-                                     });
-
-                    //INI EDIT TRANSPORT
-                                     $('.modal-footer').on('click', '#edittr1', function() {
-                                             $.ajax({
-                                                 type: 'PUT',
-                                                 url: '/Rdetil/'+id,
-                                                 data: {
-                                                     '_token': $('input[name=_token]').val(),
-                                                     'id_detilrab': $("#id_edittr1").val(),
-                                                     'no_rab': $('#no_rabtr1').val(),
-                                                     'uraian': $('#uraiantr1').val(),
-                                                     'nama_uraian': $('#nama_uraiantr1').val(),
-                                                     'total_biaya': $('#total_biayatr1').val(),
-                                                     'satuan': $('#satuantr1').val(),
-                                                 },
-                                                 success:function(data)
-                                                 {
-                                                   fetch_datatrasnport();
-                                                },
-                                             });
-                                         });
-
-
-
-
-//INI EDIT BIASA MATERIAL DAN JASA
-                $(document).on('click', '.edit-modal', function() {
-                     $('#DDselect1').val('');
-                    $('.modal-title').text('Edit');
-                    $('#id_edit').val($(this).data('id'));
-                    id = $('#id_edit').val();
-                    $('#editModal').modal('show');
-                });
-
-//INI EDIT BIASA MATERIAL DAN JASA
-                $('.modal-footer').on('click', '.edit', function() {
-                        $.ajax({
-                            type: 'PUT',
-                            url: '/Rdetil/'+id,
-                            data: {
-                                '_token': $('input[name=_token]').val(),
-                                'id_detilrab': $("#id_edit").val(),
-                                'no_rab': $('#no_rab1').val(),
-                                'uraian': $('#uraian1').val(),
-                                'jumlah': $('#jumlah1').val(),
-                                'satuan': $('#satuan1').val(),
-                                'harga_satuan': $('#harga_satuan1').val(),
-                                'material_PLN': $('#material_PLN1').val(),
-                                'material_PFK': $('#material_PFK1').val(),
-                                'total_biaya': $('#total_biaya1').val(),
-                            },
-                            success:function(data)
-                            {
-                              fetch_data();
-                              fetch_datatrasnport();
-                           },
-                        });
-                    });
-
-//DELETE ITEM DELETE ITEM DELETE ITEM
-                    $(document).on('click', '.delete-modal', function() {
-                        $('#id_delete').val($(this).data('id'));
-                        $('#deleteModal').modal('show');
-                        id = $('#id_delete').val();
-                       });
-
-                       $('.modal-footer').on('click', '.delete', function() {
-                           $.ajax({
-                               type: 'DELETE',
-                               url: '/Rdetil/' + id,
-                               data: {
-                                   '_token': $('input[name=_token]').val(),
-                               },
-                               success: function(data) {
-                                   toastr.success('Successfully deleted Post!', 'Success Alert', {timeOut: 5000});
-                                   $('.item' + data['id']).remove();
-                               }
-                           });
-
-                             fetch_data();
-                             fetch_datatrasnport();
-                       });
-
-</script>
 <?php
 
 
@@ -2370,9 +1916,470 @@ line-height:107%'>&nbsp;</span></p>
 
 <?php
 $html = ob_get_clean();
-echo($html);
+
 
 ?>
+
+
+
+<script>
+  $(document).ready( function () {
+    fetch_data();
+    fetch_datatrasnport();
+
+
+});
+
+
+     $('.DDselect').select2({
+       placeholder: 'Select an item',
+       ajax: {
+         url: '/searchmaterialjasa',
+         dataType: 'json',
+         delay: 250,
+         processResults: function (data) {
+           return {
+             results:  $.map(data, function (item) {
+                   return {
+                       text: item.uraian_matkhs,
+                       id: item.kode_matkhs,
+                   }
+               })
+
+           };
+         },
+         cache: true
+       }
+     });
+
+
+     $('.DDselect1').select2({
+       placeholder: 'Select an item',
+       ajax: {
+         url: '/searchmaterialjasa',
+         dataType: 'json',
+         delay: 250,
+         processResults: function (data) {
+           return {
+             results:  $.map(data, function (item) {
+                   return {
+                       text: item.uraian_matkhs,
+                       id: item.kode_matkhs,
+                   }
+               })
+
+           };
+         },
+         cache: true
+       }
+     });
+
+
+     //get harga of total
+     $('.DDselect').on("select2:select", function(e) {
+       var idmat = document.getElementById("uraian").value;
+       var hrg = document.getElementById("jumlah").value;
+       $.ajax({
+           type: 'GET',
+           url: '/rgetmat',
+           data:{'idmat': idmat},
+           success:function(data)
+           {
+
+             var a=data[0];
+             $("#harga_satuan").attr("placeholder", a.harga_matkhs);
+             $('#harga_satuan').val(a.harga_matkhs);
+
+             $("#satuan").attr("placeholder", a.satuan_matkhs);
+             $('#satuan').val(a.satuan_matkhs);
+
+             $("#total_biaya").attr("placeholder", a.harga_matkhs*hrg);
+             $('#total_biaya').val(a.harga_matkhs*hrg);
+
+             if(a.PLN==1)
+             {
+               $("#material_PLN").attr("placeholder", "PLN");
+               $('#material_PLN').val("PLN");
+             }
+             else {
+               $("#material_PLN").attr("placeholder", "NON PLN");
+               $('#material_PLN').val("NON PLN");
+             }
+          },
+       });
+     });
+
+
+
+
+     $('.DDselect1').on("select2:select", function(e) {
+       var idmat = document.getElementById("uraian1").value;
+       var hrg = document.getElementById("jumlah1").value;
+       $.ajax({
+           type: 'GET',
+           url: '/rgetmat',
+           data:{'idmat': idmat},
+           success:function(data)
+           {
+             var a=data[0];
+
+             $("#harga_satuan1").attr("placeholder", a.harga_matkhs);
+             $('#harga_satuan1').val(a.harga_matkhs);
+
+             $("#satuan1").attr("placeholder", a.satuan_matkhs);
+             $('#satuan1').val(a.satuan_matkhs);
+
+             $("#total_biaya1").attr("placeholder", a.harga_matkhs*hrg);
+             $('#total_biaya1').val(a.harga_matkhs*hrg);
+
+
+             if(a.PLN==1)
+             {
+               $("#material_PLN1").attr("placeholder", "PLN");
+               $('#material_PLN1').val("PLN");
+             }
+             else {
+               $("#material_PLN1").attr("placeholder", "NON PLN");
+               $('#material_PLN1').val("NON PLN");
+             }
+
+          },
+       });
+     });
+
+     $("#jumlah").keyup(function(e) {
+     $value=$(this).val();
+     var idmat = document.getElementById("harga_satuan").value;
+     $("#total_biaya").attr("placeholder", $value*idmat);
+     $('#total_biaya').val($value*idmat);
+     });
+
+     $("#jumlah1").keyup(function(e) {
+     $value1=$(this).val();
+     var idmat1 = document.getElementById("harga_satuan1").value;
+     $("#total_biaya1").attr("placeholder", $value1*idmat1);
+     $('#total_biaya1').val($value1*idmat1);
+     });
+
+
+     function fetch_datatrasnport()
+     {
+      $.ajax({
+      type: "GET",
+      data:{'rab':$('#no_rabtr').val()},
+       url:"Rdetilfetchtransport",
+       dataType:"json",
+       success:function(data)
+       {
+        html='';
+        for(var count=0; count < data.length; count++)
+        {
+
+        html +='<tr>';
+        html +='<td class="column_name" data-column_name="uraian" data-id="'+data[count].id_detilrab+'">'+data[count].uraians+'</td>';
+        html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_detilrab+'">'+data[count].total_biaya+'</td>';
+        html += '<td><button class="edit-modaltr btn btn-info" data-id="'+data[count].id_detilrab+'"><span class="glyphicon glyphicon-trash">Edit</span></button>&nbsp;';
+        html += '<button class="delete-modal btn btn-danger" data-id="'+data[count].id_detilrab+'"><span class="glyphicon glyphicon-trash">Delete</span></button></td></tr>';
+        }
+        // console.log(html);
+        $('#transport').html(html);
+       }
+      });
+     }
+
+
+    function fetch_data()
+    {
+     $.ajax({
+     type: "GET",
+     data:{'rab':$('#no_rab').val()},
+      url:"Rdetilfetch",
+      dataType:"json",
+      success:function(data)
+      {
+        // contenteditable can be puted inside td
+       // console.log(data);
+       html='';
+       for(var count=0; count < data.length; count++)
+       {
+       html +='<tr>';
+       html +='<td class="column_name" data-column_name="uraian" data-id="'+data[count].id_detilrab+'">'+data[count].uraian+'</td>';
+       html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_detilrab+'">'+data[count].jumlah+'</td>';
+       html += '<td  class="column_name" data-column_name="satuan" data-id="'+data[count].id_detilrab+'">'+data[count].satuan+'</td>';
+       html += '<td  class="column_name" data-column_name="satuan" data-id="'+data[count].id_detilrab+'">'+data[count].harga_satuan+'</td>';
+       html += '<td  class="column_name" data-column_name="satuan" data-id="'+data[count].id_detilrab+'">'+data[count].total_biaya+'</td>';
+       html += '<td  class="column_name" data-column_name="satuan" data-id="'+data[count].id_detilrab+'">'+data[count].material_PLN+'</td>';
+       html += '<td><button class="edit-modal btn btn-info" data-id="'+data[count].id_detilrab+'"><span class="glyphicon glyphicon-trash">Edit</span></button>&nbsp;';
+       html += '<button class="delete-modal btn btn-danger" data-id="'+data[count].id_detilrab+'"><span class="glyphicon glyphicon-trash">Delete</span></button></td></tr>';
+       }
+       // console.log(html);
+       $('#matjasa').html(html);
+      }
+     });
+    }
+
+    // add a new post
+    $(document).on('click', '.add-modal', function() {
+                // Empty input fields
+                // document.getElementById("no_rab").value;
+                $('#DDselect').val(null).trigger('change');
+                $('#uraian').val('');
+                $('#jumlah').val('');
+                $('#satuan').val('');
+                $('#harga_satuan').val('');
+                $('#material_PLN').val('');
+                $('#material_PFK').val('');
+                $('#total_biaya').val('');
+                $('.modal-title').text('Add');
+                $('#addModal').appendTo("body").modal('show');
+            });
+
+
+            //INI ADD TRANSPORTASI
+            $('.modal-footer').on('click', '#addtr', function() {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Rdetil',
+                        data: {
+                          '_token': $('input[name=_token]').val(),
+                          'no_rab': $('#no_rabtr').val(),
+                          'jumlah': $('#jumlahtr').val(),
+                          'satuan': $('#satuantr').val(),
+                          'uraian' : $('#uraiantr').val(),
+                          'harga_satuan': $('#harga_satuantr').val(),
+                          'nama_uraian': $('#nama_uraiantr').val(),
+                          'total_biaya': $('#total_biayatr').val(),
+                          'kontrak': $('#kontrak').val(),
+                          'no_spbj': $('#no_spbj').val(),
+                        },
+                        success:function(data)
+                        {
+                       },
+                    });
+                    // fetch_datatrasnport();
+                    fetch_datatrasnport();
+                });
+
+
+                 //open transport modal
+                $(document).on('click', '.add-modaltr', function() {
+                            // Empty input fields
+                            // document.getElementById("no_rab").value;
+                            $('#DDselect').val(null).trigger('change');
+                            $('#uraian').val('');
+                            $('#jumlah').val('');
+                            $('#satuan').val('');
+                            $('#harga_satuan').val('');
+                            $('#material_PLN').val('');
+                            $('#material_PFK').val('');
+                            $('#total_biaya').val('');
+                            $('.modal-title').text('Add');
+                            $('#transportaddModal').modal('show');
+                        });
+                        //get transportasi ddropdown
+                        $('.DDselecttrans').select2({
+                          placeholder: 'Select an item',
+                          ajax: {
+                            url: '/searchmaterialjasatr',
+                            dataType: 'json',
+                            delay: 250,
+                            processResults: function (data) {
+                              return {
+                                results:  $.map(data, function (item) {
+                                      return {
+                                          text: item.uraian,
+                                          id: item.id,
+                                      }
+                                  })
+
+                              };
+                            },
+                            cache: true
+                          }
+                        });
+                        //auto insert harga dan dd
+                        $('.DDselecttrans').on("select2:select", function(e) {
+                          var id = document.getElementById("nama_uraiantr").value;
+                          var no_rab = document.getElementById("no_rabtr").value;
+                          $.ajax({
+                              type: 'GET',
+                              url: '/rgetmattr',
+                              data:{'id': id,'no_rab':no_rab},
+                              success:function(data)
+                              {
+                                // console.log(data);
+                               $("#total_biayatr").attr("placeholder", data[0]);
+                               $('#total_biayatr').val(data[0]);
+                               $('#jumlahtr').val(data[1]);
+                               $("#jumlahtr").attr("placeholder", data[1]);
+                               $('#harga_satuantr').val(data[2]);
+                               $("#harga_satuantr").attr("placeholder", data[2]);
+
+                              },
+                          });
+                        });
+
+
+               $('.DDselecttrans1').select2({
+                 placeholder: 'Select an item',
+                 ajax: {
+                   url: '/searchmaterialjasatr',
+                   dataType: 'json',
+                   delay: 250,
+                   processResults: function (data) {
+                     return {
+                       results:  $.map(data, function (item) {
+                             return {
+                                 text: item.uraian,
+                                 id: item.id,
+                             }
+                         })
+
+                     };
+                   },
+                   cache: true
+                 }
+               });
+               //auto insert harga dan dd
+      $('.DDselecttrans1').on("select2:select", function(e) {
+        var id = document.getElementById("nama_uraiantr1").value;
+        var no_rab = document.getElementById("no_rabtr1").value;
+        $.ajax({
+            type: 'GET',
+            url: '/rgetmattr',
+            data:{'id': id,'no_rab':no_rab},
+            success:function(data)
+            {
+              $("#total_biayatr1").attr("placeholder", data[0]);
+              $('#total_biayatr1').val(data[0]);
+              $('#jumlahtr1').val(data[1]);
+              $("#jumlahtr1").attr("placeholder", data[1]);
+              $('#harga_satuantr1').val(data[2]);
+              $("#harga_satuantr1").attr("placeholder", data[2]);
+            },
+        });
+      });
+
+
+               //INI ADD BIASA MATERIAL ATAU JASA
+                $('.modal-footer').on('click', '.add', function() {
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Rdetil',
+                            data: {
+                                '_token': $('input[name=_token]').val(),
+                                'no_rab': $('#no_rab').val(),
+                                'uraian': $('#uraian').val(),
+                                'jumlah': $('#jumlah').val(),
+                                'satuan': $('#satuan').val(),
+                                'harga_satuan': $('#harga_satuan').val(),
+                                'material_PLN': $('#material_PLN').val(),
+                                'material_PFK': $('#material_PFK').val(),
+                                'total_biaya': $('#total_biaya').val(),
+                                'kontrak': $('#kontrak').val(),
+                                'no_spbj': $('#no_spbj').val(),
+                            },
+                            success:function(data)
+                            {
+                           },
+                        });
+                        fetch_data();
+                        fetch_datatrasnport();
+                    });
+
+
+                    //INI EDIT TRANSPORT
+                                     $(document).on('click', '.edit-modaltr', function() {
+                                          $('#DDselecttrans1').val('');
+                                         $('.modal-title').text('Edit');
+                                         $('#id_edittr1').val($(this).data('id'));
+                                         id = $('#id_edittr1').val();
+                                         $('#transporteditModal').modal('show');
+                                     });
+
+                    //INI EDIT TRANSPORT
+                                     $('.modal-footer').on('click', '#edittr1', function() {
+                                             $.ajax({
+                                                 type: 'PUT',
+                                                 url: '/Rdetil/'+id,
+                                                 data: {
+                                                     '_token': $('input[name=_token]').val(),
+                                                     'id_detilrab': $("#id_edittr1").val(),
+                                                     'no_rab': $('#no_rabtr1').val(),
+                                                     'uraian': $('#uraiantr1').val(),
+                                                     'nama_uraian': $('#nama_uraiantr1').val(),
+                                                     'total_biaya': $('#total_biayatr1').val(),
+                                                     'satuan': $('#satuantr1').val(),
+                                                 },
+                                                 success:function(data)
+                                                 {
+                                                   fetch_datatrasnport();
+                                                },
+                                             });
+                                         });
+
+
+
+
+//INI EDIT BIASA MATERIAL DAN JASA
+                $(document).on('click', '.edit-modal', function() {
+                     $('#DDselect1').val('');
+                    $('.modal-title').text('Edit');
+                    $('#id_edit').val($(this).data('id'));
+                    id = $('#id_edit').val();
+                    $('#editModal').modal('show');
+                });
+
+//INI EDIT BIASA MATERIAL DAN JASA
+                $('.modal-footer').on('click', '.edit', function() {
+                        $.ajax({
+                            type: 'PUT',
+                            url: '/Rdetil/'+id,
+                            data: {
+                                '_token': $('input[name=_token]').val(),
+                                'id_detilrab': $("#id_edit").val(),
+                                'no_rab': $('#no_rab1').val(),
+                                'uraian': $('#uraian1').val(),
+                                'jumlah': $('#jumlah1').val(),
+                                'satuan': $('#satuan1').val(),
+                                'harga_satuan': $('#harga_satuan1').val(),
+                                'material_PLN': $('#material_PLN1').val(),
+                                'material_PFK': $('#material_PFK1').val(),
+                                'total_biaya': $('#total_biaya1').val(),
+                            },
+                            success:function(data)
+                            {
+                              fetch_data();
+                              fetch_datatrasnport();
+                           },
+                        });
+                    });
+
+//DELETE ITEM DELETE ITEM DELETE ITEM
+                    $(document).on('click', '.delete-modal', function() {
+                        $('#id_delete').val($(this).data('id'));
+                        $('#deleteModal').modal('show');
+                        id = $('#id_delete').val();
+                       });
+
+                       $('.modal-footer').on('click', '.delete', function() {
+                           $.ajax({
+                               type: 'DELETE',
+                               url: '/Rdetil/' + id,
+                               data: {
+                                   '_token': $('input[name=_token]').val(),
+                               },
+                               success: function(data) {
+                                   toastr.success('Successfully deleted Post!', 'Success Alert', {timeOut: 5000});
+                                   $('.item' + data['id']).remove();
+                               }
+                           });
+
+                             fetch_data();
+                             fetch_datatrasnport();
+                       });
+
+</script>
 <script>
 // jQuery(document).ready(function($) {
 //     $(".btn-primary").click(function(event) {
@@ -2413,7 +2420,6 @@ echo($html);
  location.reload();
  $("#export-content").wordExport();
  });
-
 </script>
 
 @stop

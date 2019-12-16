@@ -56,7 +56,7 @@ public function create()
   $fungsi=DB::select('select id_fungsi, nama_fungsi from fungsi',[]);
   $surveyor=DB::select('select kode_surveyor, nama_surveyor from surveyor',[]);
   $lokasi=DB::select('select kode_lokasi, nama_lokasi from lokasi',[]);
-  $norab=DB::select('select no_rab FROM master_rab WHERE tgl_rab=( SELECT max(tgl_rab) FROM master_rab )',[]);
+  $norab=DB::select('select no_rab from master_rab where tgl_rab IN (SELECT max(tgl_rab) FROM master_rab) ',[]);
 return view('input.inputMasterRABpayungs')
 ->with('prk',$prk)
 ->with('fungsi',$fungsi)

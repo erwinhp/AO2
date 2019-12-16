@@ -1,30 +1,23 @@
+<?php $__env->startSection('header'); ?>
+Input RAB Master Non KHS
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <form class="form-horizontal" role="form" method="post" action="/cmrabnon">
   <?php echo csrf_field(); ?>
 <?php
-$getvals='';
+$vals=[];
+$getstr="";
 foreach ($no_rab as $key => $gets) {
 foreach ($gets as $key => $getval) {
-$getvals=$getval;
+$getint=substr($getval, 0, -17);
+$getstr=substr($getval,-17);
+array_push($vals,$getint);
 }
 }
-
-$getint=substr($getvals, 0, -17);
-$getint=$getint+1;
-$getstr=substr($getvals,-17);
-$no_rab=$getint.$getstr;
+$fixint=max($vals)+1;
+$no_rab=$fixint.$getstr;
 ?>
-<section class="forms">
 
-<div class="col-lg-12">
-  <div class="card">
-    <div class="card-close">
-
-    </div>
-    <div class="card-header d-flex align-items-center">
-      <h3 class="h4">Input Master RAB</h3>
-    </div>
-    <div class="card-body">
       <form class="form-horizontal">
 
 
@@ -186,13 +179,8 @@ $no_rab=$getint.$getstr;
           </div>
         </div>
       </form>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</section>
+
 </form>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\etc\PEMBELAJARAN\project\AO2\resources\views/input/inputMasterRABnonkhs.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.indexNVM', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\etc\PEMBELAJARAN\project\AO2\resources\views/input/inputMasterRABnonkhs.blade.php ENDPATH**/ ?>

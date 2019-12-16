@@ -1,3 +1,6 @@
+<?php $__env->startSection('header'); ?>
+Buat Master RAB SPBJ
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <meta name="_token" content="<?php echo e(csrf_token()); ?>">
 
@@ -12,8 +15,8 @@
 
 
 
-<section class="table table-bordered">
 
+<!--
   <div class="col-lg-6">
     <div class="card">
       <div class="card-close">
@@ -34,24 +37,34 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- <div class="form-group">
   <input type="text" class="form-controller" id="sss" name="search"></input>
   </div> -->
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-close">
-            <div class="dropdown">
-            </div>
-          </div>
-          <div class="card-header d-flex align-items-center">
-            <h3 class="h4">Table RAB</h3>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-striped">
+<!-- THIS IS THE SEARCH BAR AND ADD BUTTON -->
+<div class="container-fluid">
+        <div class="panel-wrapper">
+          <div class="panel">
+<div class="table-bar">
+  <div class="form-inline">
+    <div class="form-group">
+      <label class="form-control-label">CARI RAB</label>
+      <div class="form-group form-control-search">
+          <input class="form-control" type="text" placeholder="Cari RAB" id="sss">
+      </div>
+    </div>
+
+    <div class="pull-sm-right">
+      <div class="form-group">
+          <a href="/cmrab"  class="btn btn-primary" > Buat RAB</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THIS IS THE TABLE -->
+  <div class="responsive-nav">
+              <table class="table">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -59,20 +72,23 @@
                     <th>judul</th>
                     <th>program</th>
                     <th>Total Nilai</th>
-
                   </tr>
                 </thead>
                 <tbody>
                 </tbody>
               </table>
             </div>
-          </div>
         </div>
-      </div>
-
     </div>
-  </div>
-</section>
+</div>
+
+
+
+
+
+
+
+
 <script>
 $(document).ready(function(){
 $("#sss").keyup(function(e) {
@@ -98,4 +114,4 @@ $.ajaxSetup({ headers: { 'csrftoken' : '<?php echo e(csrf_token()); ?>' } });
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\etc\PEMBELAJARAN\project\AO2\resources\views/indexMasterab.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.indexNVM', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\etc\PEMBELAJARAN\project\AO2\resources\views/indexMasterab.blade.php ENDPATH**/ ?>

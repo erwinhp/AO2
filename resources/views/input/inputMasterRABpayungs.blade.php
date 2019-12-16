@@ -1,33 +1,23 @@
-@extends('layouts.index')
+@extends('layouts.indexNVM')
+@section('header')
+Input RAB Master PK
+@endsection
 @section('content')
 <form class="form-horizontal" role="form" method="post" action="/cmasterabpayungs">
   @csrf
 <?php
-$getvals=[];
-$getformat="";
+$vals=[];
+$getstr="";
 foreach ($no_rab as $key => $gets) {
 foreach ($gets as $key => $getval) {
-// echo($getval)
-$getformat=substr($getval,-17);
-array_push($getvals,substr($getval,0, -17));
+$getint=substr($getval, 0, -17);
+$getstr=substr($getval,-17);
+array_push($vals,$getint);
 }
 }
-$getmaxmadude=max($getvals);
-// $getint=substr($getvals, 0, -17);
-$getmaxmadude=$getmaxmadude+1;
-$no_rab=$getmaxmadude.$getformat;
+$fixint=max($vals)+1;
+$no_rab=$fixint.$getstr;
 ?>
-<section class="forms">
-
-<div class="col-lg-12">
-  <div class="card">
-    <div class="card-close">
-
-    </div>
-    <div class="card-header d-flex align-items-center">
-      <h3 class="h4">Input Master RAB</h3>
-    </div>
-    <div class="card-body">
       <form class="form-horizontal">
 <!-- commentttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt -->
 
@@ -211,12 +201,6 @@ $no_rab=$getmaxmadude.$getformat;
           </div>
         </div>
       </form>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</section>
 </form>
 
 <script>

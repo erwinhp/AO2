@@ -1,11 +1,9 @@
- @extends('layouts.index')
+ @extends('layouts.indexNVM')
+ @section('header')
+Upload Excel RAB NON KHS
+ @endsection
 @section('content')
-
 <meta name="_token" content="{{ csrf_token() }}">
-
-
-
-
 <br>
   <div class="container">
      <h3 align="center">Import Excel File RAB KHS</h3>

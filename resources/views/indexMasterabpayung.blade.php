@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.indexNVM')
 @section('content')
 <meta name="_token" content="{{ csrf_token() }}">
 

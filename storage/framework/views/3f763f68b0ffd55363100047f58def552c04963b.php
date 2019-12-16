@@ -1,11 +1,10 @@
  
+
+ <?php $__env->startSection('header'); ?>
+Upload Excel RAB KHS
+ <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-
 <meta name="_token" content="<?php echo e(csrf_token()); ?>">
-
-
-
-
 <br>
   <div class="container">
      <h3 align="center">Import Excel File RAB KHS</h3>
@@ -49,12 +48,7 @@
        </table>
       </div>
      </form>
-
-
     </div>
-
-
-
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\etc\PEMBELAJARAN\project\AO2\resources\views/import_excelrabkhs.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.indexNVM', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\etc\PEMBELAJARAN\project\AO2\resources\views/import_excelrabkhs.blade.php ENDPATH**/ ?>
