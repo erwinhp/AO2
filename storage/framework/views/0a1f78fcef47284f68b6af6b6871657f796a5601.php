@@ -1,4 +1,7 @@
  
+ <?php $__env->startSection('header'); ?>
+ Detil RAB NON KHS
+ <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
 <meta name="_token" content="<?php echo e(csrf_token()); ?>">
@@ -65,7 +68,7 @@
 
 
 <div class="modal fade" id="addModal" aria-hidden="true">
-<div class="modal-dialog">
+
 <div class="modal-content">
     <div class="modal-header">
         <h4 class="modal-title"</h4>
@@ -136,14 +139,14 @@
     </div>
 </div>
 </div>
-</div>
+
 
 
 
 
 <!-- MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT-->
 <div class="modal fade" id="editModal" aria-hidden="true">
-<div class="modal-dialog">
+
 <div class="modal-content">
     <div class="modal-header">
         <h4 class="modal-title"</h4>
@@ -205,7 +208,6 @@
     </div>
     <div class="modal-footer">
 
-    </div>
 </div>
 </div>
 </div>
@@ -218,7 +220,7 @@
 delete modal -->
 
 <div id="deleteModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -237,7 +239,7 @@ delete modal -->
             </div>
         </div>
     </div>
-</div>
+
 
 </section>
 
@@ -317,7 +319,7 @@ delete modal -->
                  $('#harga_satuan').val('');
                  $('#total_biaya').val('');
                  $('.modal-title').text('Add');
-                 $('#addModal').modal('show');
+                 $('#addModal').appendTo("body").modal('show');
              });
 
 
@@ -356,7 +358,7 @@ delete modal -->
                      $('.modal-title').text('Edit');
                      $('#id_edit').val($(this).data('id'));
                      id = $('#id_edit').val();
-                     $('#editModal').modal('show');
+                     $('#editModal').appendTo("body").modal('show');
                  });
 
                  $('.modal-footer').on('click', '.edit', function() {
@@ -386,7 +388,7 @@ delete modal -->
 //DELETE ITEM DELETE ITEM DELETE ITEM
                      $(document).on('click', '.delete-modal', function() {
                          $('#id_delete').val($(this).data('id'));
-                         $('#deleteModal').modal('show');
+                         $('#deleteModal').appendTo("body").modal('show');
                          id = $('#id_delete').val();
                         });
 
@@ -413,4 +415,4 @@ delete modal -->
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\etc\PEMBELAJARAN\project\AO2\resources\views/indexdetilRABnonkhs.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.indexNVM', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\etc\PEMBELAJARAN\project\AO2\resources\views/indexdetilRABnonkhs.blade.php ENDPATH**/ ?>

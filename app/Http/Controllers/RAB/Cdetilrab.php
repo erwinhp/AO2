@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\RAB;
+use App\Http\Controllers\Controller;
 use App\rab_khs_detil;
 use App\mat_khs;
 use DB;

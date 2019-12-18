@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\RAB;
+use App\Http\Controllers\Controller;
 use App\master_rab;
 use DB;
 use Auth;

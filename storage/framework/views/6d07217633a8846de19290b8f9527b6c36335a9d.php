@@ -1,3 +1,6 @@
+<?php $__env->startSection('header'); ?>
+Master RAB NON KHS
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <meta name="_token" content="<?php echo e(csrf_token()); ?>">
 

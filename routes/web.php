@@ -15,6 +15,11 @@
 //     return view('welcome');
 // });
 //
+//==this is construction//==INI Konstruksi
+Route::get ('/bobot_pelaksanaan','Konstruksi\Cbobot_pelaksanaan@index');
+Route::get('/getnorab','Konstruksi\Cbobot_pelaksanaan@getrab');
+Route::get('/getdatarab','Konstruksi\Cbobot_pelaksanaan@getmaterial');
+
 Route::get ('/home','homez@index');
 
 //create spbj
@@ -27,20 +32,20 @@ Route::post ('/cspbj','Cspbpkj@store');
 Route::get ('/mspbjsearch','Cspbjpk@search');
 
 
-//RABNYA RABNY RABNYA RABNYA RBANY A;SLDFJALKSJDF Cmrabpayung
+//RABNYA RABNY RABNYA RABNYA RBANY A;SLDFJALKSJDF \RAB\Cmrabpayung
 //CMRABPASUNG
-Route::get ('/cmasterabpayung','Cmrabpayung@index');
-Route::get ('/cmasterabpayungs','Cmrabpayung@create');
-Route::post ('/cmasterabpayungs','Cmrabpayung@store');
-Route::get ('/cmasterabpayungsearch','Cmrabpayung@search');
-Route::get('/getnospbj','Cmrabpayung@getspbj');
+Route::get ('/cmasterabpayung','RAB\Cmrabpayung@index');
+Route::get ('/cmasterabpayungs','RAB\Cmrabpayung@create');
+Route::post ('/cmasterabpayungs','RAB\Cmrabpayung@store');
+Route::get ('/cmasterabpayungsearch','RAB\Cmrabpayung@search');
+Route::get('/getnospbj','RAB\Cmrabpayung@getspbj');
 
 //MASTER MASTER MASTER MASTER RAB PAYUNG RAB PAYUNG RAB PAYUNG RAB Crabpayung
 //untuk membuat kontrak sementara tidak usah dulu.
 //controller cmabpayung
 Route::get ('/mrabpayung','Crabpayung@index');
-Route::post ('/cmrabpayung','Crabpayung@store');
-Route::get ('/cmrabpayung','Crabpayung@create');
+Route::post ('/Cmrabpayung','Crabpayung@store');
+Route::get ('/Cmrabpayung','Crabpayung@create');
 Route::get('/searchpayung','Crabpayung@search');
 
 
@@ -54,30 +59,30 @@ Route::get ('/MAdetilpekfetch','detilindex@fetch_datapek');
 
 // Route::resource ('/mrab','Cmrab');
 //ROUTE MASTER RAB
-Route::post ('/cmrab','Cmrab@store');
-Route::get ('/cmrab','Cmrab@create');
-Route::get ('/mrab','Cmrab@index');
-Route::get('/search','Cmrab@search');
+Route::post ('/cmrab','RAB\Cmrab@store');
+Route::get ('/cmrab','RAB\Cmrab@create');
+Route::get ('/mrab','RAB\Cmrab@index');
+Route::get('/search','RAB\Cmrab@search');
 
-Route::post ('/cmrabnon','Crabnonkhsmaster@store');
-Route::get ('/cmrabnon','Crabnonkhsmaster@create');
-Route::get ('/mrabnonkhs','Crabnonkhsmaster@index');
-Route::get('/searchnon','Crabnonkhsmaster@search');
+Route::post ('/cmrabnon','RAB\Crabnonkhsmaster@store');
+Route::get ('/cmrabnon','RAB\Crabnonkhsmaster@create');
+Route::get ('/mrabnonkhs','RAB\Crabnonkhsmaster@index');
+Route::get('/searchnon','RAB\Crabnonkhsmaster@search');
 
 //ROUTE DETIL RAB
-Route::resource ('/Rdetil','Cdetilrab');
-Route::get ('/Rdetilfetch','Cdetilrab@fetch_data');
-Route::get ('/Rdetilfetchtransport','Cdetilrab@fetch_datatransport');
-Route::get ('/idmrab','Cdetilrab@index');
-Route::get('/searchmaterialjasa','Cdetilrab@dataAjax');
-Route::get('/searchmaterialjasatr','Cdetilrab@dataAjaxtr');
-Route::get ('/rgetmat','Cdetilrab@datamatget');
-Route::get ('/rgetmattr','Cdetilrab@datamatgettr');
+Route::resource ('/Rdetil','RAB\Cdetilrab');
+Route::get ('/Rdetilfetch','RAB\Cdetilrab@fetch_data');
+Route::get ('/Rdetilfetchtransport','RAB\Cdetilrab@fetch_datatransport');
+Route::get ('/idmrab','RAB\Cdetilrab@index');
+Route::get('/searchmaterialjasa','RAB\Cdetilrab@dataAjax');
+Route::get('/searchmaterialjasatr','RAB\Cdetilrab@dataAjaxtr');
+Route::get ('/rgetmat','RAB\Cdetilrab@datamatget');
+Route::get ('/rgetmattr','RAB\Cdetilrab@datamatgettr');
 
 
-Route::resource ('/Rdetilnon','cdetilrabnonkhs');
-Route::get ('/Rdetilfetchnon','cdetilrabnonkhs@fetch_data');
-Route::get ('/idmrabnon','cdetilrabnonkhs@index');
+Route::resource ('/Rdetilnon','RAB\Cdetilrabnonkhs');
+Route::get ('/Rdetilfetchnon','RAB\Cdetilrabnonkhs@fetch_data');
+Route::get ('/idmrabnon','RAB\Cdetilrabnonkhs@index');
 
 
 Route::get ('/excelrabkhs','Cexcel@index');

@@ -120,7 +120,7 @@ $atributs=$value;
 
 
  <div class="modal fade" id="transportaddModal" aria-hidden="true">
- <div class="modal-dialog">
+
  <div class="modal-content">
      <div class="modal-header">
          <h4 class="modal-title"</h4>
@@ -181,7 +181,6 @@ $atributs=$value;
      </div>
      <div class="modal-footer">
 
-     </div>
  </div>
  </div>
  </div>
@@ -189,7 +188,7 @@ $atributs=$value;
 
 
  <div class="modal fade" id="transporteditModal" aria-hidden="true">
- <div class="modal-dialog">
+
  <div class="modal-content">
      <div class="modal-header">
          <h4 class="modal-title"</h4>
@@ -250,7 +249,6 @@ $atributs=$value;
      </div>
      <div class="modal-footer">
 
-     </div>
  </div>
  </div>
  </div>
@@ -258,7 +256,7 @@ $atributs=$value;
 
 
 <div class="modal" id="addModal" aria-hidden="true">
-<div class="modal-dialog">
+
 <div class="modal-content">
    <div class="modal-header">
        <h4 class="modal-title"</h4>
@@ -333,7 +331,6 @@ $atributs=$value;
 
 <!-- MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT-->
 <div class="modal fade" id="editModal" aria-hidden="true">
-<div class="modal-dialog">
 <div class="modal-content">
    <div class="modal-header">
        <h4 class="modal-title"</h4>
@@ -404,7 +401,6 @@ $atributs=$value;
    </div>
 </div>
 </div>
-</div>
 
 
 
@@ -413,7 +409,7 @@ $atributs=$value;
 delete modal -->
 
 <div id="deleteModal" class="modal fade" role="dialog">
-   <div class="modal-dialog">
+
        <div class="modal-content">
            <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -432,7 +428,6 @@ delete modal -->
            </div>
        </div>
    </div>
-</div>
 
 </section>
 
@@ -440,8 +435,6 @@ delete modal -->
 
 
 <?php
-
-
  ob_start();
 ?>
 <html>
@@ -1914,7 +1907,7 @@ line-height:107%'>&nbsp;</span></p>
 
 <?php
 $html = ob_get_clean();
-
+echo '<input type="hidden" name="" value="'.$html.'">';
 
 ?>
 
@@ -2172,7 +2165,7 @@ $html = ob_get_clean();
                             $('#material_PFK').val('');
                             $('#total_biaya').val('');
                             $('.modal-title').text('Add');
-                            $('#transportaddModal').modal('show');
+                            $('#transportaddModal').appendTo("body").modal('show');
                         });
                         //get transportasi ddropdown
                         $('.DDselecttrans').select2({
@@ -2292,7 +2285,7 @@ $html = ob_get_clean();
                                          $('.modal-title').text('Edit');
                                          $('#id_edittr1').val($(this).data('id'));
                                          id = $('#id_edittr1').val();
-                                         $('#transporteditModal').modal('show');
+                                         $('#transporteditModal').appendTo("body").modal('show');
                                      });
 
                     //INI EDIT TRANSPORT
@@ -2325,7 +2318,7 @@ $html = ob_get_clean();
                     $('.modal-title').text('Edit');
                     $('#id_edit').val($(this).data('id'));
                     id = $('#id_edit').val();
-                    $('#editModal').modal('show');
+                    $('#editModal').appendTo("body").modal('show');
                 });
 
 //INI EDIT BIASA MATERIAL DAN JASA
@@ -2356,7 +2349,7 @@ $html = ob_get_clean();
 //DELETE ITEM DELETE ITEM DELETE ITEM
                     $(document).on('click', '.delete-modal', function() {
                         $('#id_delete').val($(this).data('id'));
-                        $('#deleteModal').modal('show');
+                        $('#deleteModal').appendTo("body").modal('show');
                         id = $('#id_delete').val();
                        });
 
@@ -2405,6 +2398,7 @@ $html = ob_get_clean();
 //     return defer;
 // };
  $(document).on('click', '#cetakexcel', function() {
+
  $("#export-content").table2excel({
    name: "WorksheetName",
    filename: "RAB", //do not include extension
@@ -2414,8 +2408,6 @@ $html = ob_get_clean();
 
 
  $(document).on('click', '#cetakrab', function() {
-   // a().then(b);
- location.reload();
  $("#export-content").wordExport();
  });
 </script>

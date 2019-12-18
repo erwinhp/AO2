@@ -1,4 +1,7 @@
 @extends('layouts.indexNVM')
+@section('header')
+Master RAB NON KHS
+@endsection
 @section('content')
 <meta name="_token" content="{{ csrf_token() }}">
 

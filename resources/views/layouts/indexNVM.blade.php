@@ -68,9 +68,8 @@ THIS IS THE JS MADUDE
 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js" type="text/javascript"></script>
-    <script src="{{URL::to('/')}}/js/FileSaver.js"></script>
-    <script src="{{URL::to('/')}}/js/jquery.wordexport.js"></script>
-    <script src="{{URL::to('/')}}/js/excel/src/jquery.table2excel.js"></script>
+
+
     <!-- Theme-->
     <!-- Concat all lib & plugins css-->
     <link id="mainstyle" rel="stylesheet" href="assets/stylesheets/theme-libs-plugins.css">
@@ -180,6 +179,7 @@ THIS IS THE JS MADUDE
           <li class="menu-block-has-sub nav-item"><a class="nav-link" href="#"><i class="icon ion-android-funnel"></i>
               <div class="menu-block-label">Konstruksi</div></a>
             <ul class="nav menu-block-sub">
+              <li class="nav-item"><a class="nav-link" href="/bobot_pelaksanaan">Bobot Pelaksanaan</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Pengawasan</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Input Data Laporan Berkala</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Monitoring Pekerjaan</a></li>
@@ -419,8 +419,10 @@ THIS IS THE JS MADUDE
     <!-- Below js just for this demo only-->
     <script src="assets/scripts/demo/demo-skin.js"></script>
     <script src="assets/scripts/demo/bar-chart-menublock.js"></script>
-
+    <script src="{{URL::to('/')}}/js/FileSaver.js"></script>
+    <script src="{{URL::to('/')}}/js/jquery.wordexport.js"></script>
+    <script src="{{URL::to('/')}}/js/excel/src/jquery.table2excel.js"></script>
     <!-- Below js just for this page only-->
-    <script src="assets/scripts/demo/bar-chart.js"></script>
+    <!-- <script src="assets/scripts/demo/bar-chart.js"></script> -->
   </body>
 </html>

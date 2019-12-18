@@ -1,6 +1,6 @@
 <?php
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\RAB;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\master_rab;
