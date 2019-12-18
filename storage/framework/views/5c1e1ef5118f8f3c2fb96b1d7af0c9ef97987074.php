@@ -1907,10 +1907,29 @@ line-height:107%'>&nbsp;</span></p>
 
 <?php
 $html = ob_get_clean();
-echo '<input type="hidden" name="" value="'.$html.'">';
+// echo '<input type="hidden" name="" value="'.$html.'">';
 
 ?>
-
+<div class="modal" id="excelmodal" aria-hidden="true">
+  <div class="modal-content">
+     <div class="modal-header">
+         <h4 class="modal-title"></h4>
+     </div>
+     <div class="modal-body">
+       <?php echo $html; ?>
+     </div>
+     <div class="modal-footer">
+       <div class="modal-footer">
+      <button type="button" class="btn btn-success adds" data-dismiss="modal" id="cetakexcel1">
+          <span  class='glyphicon glyphicon-check'></span> Cetak
+      </button>
+     <button type="button" class="btn btn-warning" data-dismiss="modal">
+       <span class='glyphicon glyphicon-remove'></span> Close
+     </button>
+       </div>
+     </div>
+</div>
+</div>
 
 
 <script>
@@ -2397,8 +2416,15 @@ echo '<input type="hidden" name="" value="'.$html.'">';
 //
 //     return defer;
 // };
- $(document).on('click', '#cetakexcel', function() {
 
+
+$(document).on('click', '#cetakexcel', function() {
+            $('#excelmodal').appendTo("body").modal('show');
+        });
+
+
+
+ $(document).on('click', '#cetakexcel1', function() {
  $("#export-content").table2excel({
    name: "WorksheetName",
    filename: "RAB", //do not include extension

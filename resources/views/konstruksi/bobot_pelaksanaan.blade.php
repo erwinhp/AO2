@@ -4,9 +4,10 @@ Bobot Pelaksanaan
 @endsection
 @section('content')
 
-
+<div>
     <select class="DDselect" style="width:440px;" name="itemName" id="rab_select"></select>
-
+</div>
+<br>
     <div class="responsive-nav">
                 <table class="table">
                   <thead>
@@ -59,7 +60,7 @@ $('.DDselect').on("select2:select", function(e) {
         for(var count=0; count < data.length; count++)
         {
         html +='<tr>';
-        html +='<td>Material '+(count+1)+'</td>';
+        html +='<td><b>Material '+(count+1)+'</b></td>';
         html +='</tr>';
         html +='<tr>';
         html +='<td class="column_name" data-column_name="uraian" data-id="'+data[count].id_detilrab+'">'+data[count].no_rab+'</td>';
