@@ -15,6 +15,14 @@
 //     return view('welcome');
 // });
 //
+Route::get ('/inputMA','smentara\inputMA@index');
+// Route::post ('/inputMA','smentara\inputMA@index');
+Route::get ('/getprksz','smentara\inputMA@getprksz');
+Route::get ('/getkontraks','smentara\inputMA@getkontraks');
+Route::post ('/storeprk','smentara\inputMA@storeprk');
+Route::post ('/storekontrak','smentara\inputMA@storekontrak');
+Route::post ('/storeadendum','smentara\inputMA@storeadendum');
+
 //==this is construction//==INI Konstruksi
 Route::get ('/bobot_pelaksanaan','Konstruksi\Cbobot_pelaksanaan@index');
 Route::get('/getnorab','Konstruksi\Cbobot_pelaksanaan@getrab');

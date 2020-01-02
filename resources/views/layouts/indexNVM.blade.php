@@ -25,7 +25,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-
     <!-- lib-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic">
     <!--
@@ -57,22 +56,36 @@
     link(rel="stylesheet" href="assets/stylesheets/plugin/bootstrap-markdown.min.css")
     link(rel="stylesheet" href="assets/stylesheets/plugin/bootstrap-select.css")
     link(rel="stylesheet" href="assets/stylesheets/plugin/asColorPicker.css")
-    link(rel="stylesheet" href="assets/stylesheets/plugin/bootstrap-datepicker.css")
+
     link(rel="stylesheet" href="assets/stylesheets/plugin/jquery-labelauty.css")
     link(rel="stylesheet" href="assets/stylesheets/plugin/owl.carousel.min.css")
     link(rel="stylesheet" href="assets/stylesheets/plugin/owl.theme.default.min.css")
-
     -->
 <!--
 THIS IS THE JS MADUDE
 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<!-- <script src="assets/scripts/plugins/bootstrap-datepicker.js"></script> -->
+  <!-- <script src="assets/scripts/plugins/moment.min.js"></script> -->
+<!-- <script src="assets/bootstrap/js/bootstrap.min.js"></script> -->
+    <!-- <script src="assets/scripts/lib/jquery-1.11.3.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="assets/scripts/lib/tether.min.js"></script>
+<!-- 90
+23Q -->
 
-
-    <!-- Theme-->
     <!-- Concat all lib & plugins css-->
-    <link id="mainstyle" rel="stylesheet" href="assets/stylesheets/theme-libs-plugins.css">
+        <!-- THIS I FORGOT ROFL -->
+        <!-- <link rel='stylesheet' href='assets/stylesheets/plugin/nifty-modal.css'> -->
+        <!-- THIS FIAL THE DATEPICKER  -->
+
+    <link id="mainstyle" rel="stylesheet" href="assets/stylesheets/plugin/select2.css">
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+      <link id="mainstyle" rel="stylesheet" href="assets/stylesheets/theme-libs-plugins.css">
+    <!-- <link rel="stylesheet" href="assets/stylesheets/plugin/bootstrap-datepicker.css"> -->
+
     <link id="mainstyle" rel="stylesheet" href="assets/stylesheets/skin.css">
 
     <!-- Demo only-->
@@ -90,7 +103,7 @@ THIS IS THE JS MADUDE
     * orchid
     * cadetblue
     * joomla
-    * influenza
+    * influenza2q
     * moss
     * mirage
     * stellar
@@ -297,9 +310,7 @@ THIS IS THE JS MADUDE
     </div>
 
     <!-- Lib-->
-    <script src="assets/scripts/lib/jquery-1.11.3.min.js"></script>
-    <script src="assets/scripts/lib/jquery-ui.js"></script>
-    <script src="assets/scripts/lib/tether.min.js"></script>
+
 
     <!-- Bootstrap js-->
     <!-- script(src="assets/bootstrap/js/bootstrap.min.js")-->
@@ -393,7 +404,7 @@ THIS IS THE JS MADUDE
     <!-- script(src="assets/scripts/plugins/bootstrap-select.js")-->
 
     <!-- Bootstrap-select: Bootstrap's dropdown.js to style and bring additional functionality to normal select boxes.-->
-    <!-- script(src="assets/scripts/plugins/bootstrap-datepicker.js")-->
+    <!-- <script src="assets/scripts/plugins/bootstrap-datepicker.js"> </script> -->
 
     <!-- jQuery asColorPicker-->
     <!-- script(src="assets/scripts/plugins/jquery-asColor.js")-->
