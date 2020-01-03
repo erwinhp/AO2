@@ -15,6 +15,12 @@ class inputMA extends Controller
       return view('input.inputMA')->with('fungsi',$fungsi);
   }
 
+  public function indexprk()
+  {   $fungsi=DB::select('select id_fungsi, nama_fungsi from fungsi',[]);
+      return view('input.inputPRK')->with('fungsi',$fungsi);
+  }
+
+
   public function getprksz(Request $request)
   {
     $data=DB::table('prk')->where('no_prk','LIKE','%'.$request->term."%")->get();
@@ -48,6 +54,8 @@ class inputMA extends Controller
         $prk->nama_prk = $request->nama_prk;
         $prk->pagu = $request->pagu;
         $prk->id_fungsi = $request->id_fungsi;
+        $prk->nilai_investasi=$request->nilai_investasi;
+        $prk->nilai_disbursement=$request->nilai_disbursement;
         $prk->save();
 }
 

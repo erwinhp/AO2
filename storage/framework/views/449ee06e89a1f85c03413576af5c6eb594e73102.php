@@ -7,8 +7,9 @@ Input Monitor Anggaran
 <?php
 
 ?>
-<a href="#" class="add-modal"><li>Tambah PRK</li></a>
-<a href="#" class="add-modaladendum"><li>Tambah Adendum</li></a>
+<!-- <a href="#" class="add-modal"><li>Tambah PRK</li></a> -->
+<a href="/inputPRK" class=""><li>Tambah PRK</li></a>
+<!-- <a href="#" class="add-modaladendum"><li>Tambah Adendum</li></a> -->
 <br>
 <div class="modal" id="addModal" aria-hidden="true">
 
@@ -102,7 +103,7 @@ Input Monitor Anggaran
                </div>
            </div>
          </div>
-  
+
 
 
        <!-- <div class="form-group row">

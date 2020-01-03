@@ -16,6 +16,7 @@
 // });
 //
 Route::get ('/inputMA','smentara\inputMA@index');
+Route::get ('/inputPRK','smentara\inputMA@indexprk');
 // Route::post ('/inputMA','smentara\inputMA@index');
 Route::get ('/getprksz','smentara\inputMA@getprksz');
 Route::get ('/getkontraks','smentara\inputMA@getkontraks');

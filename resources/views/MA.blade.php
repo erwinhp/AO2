@@ -12,6 +12,7 @@ Monitor Anggaran
 // }
 ?>
 
+<a class="btn btn-primary" href="/inputMA" role="button">Input Monitoring Anggaran</a>
 
 <!-- table madude-->
 
