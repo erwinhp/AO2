@@ -169,7 +169,7 @@ $no_rab=$fixint.$getstr;
 
 
 <div class="form-group row">
-<input type="hidden" id="tgl_rab" name="tgl_rab" value="{{ now()->toDateTimeString('Y-m-d') }}" >
+<input type="hidden" id="tgl_rab" name="tgl_rab" value="{{ now()->toDatestring('Y-m-d') }}" >
 </div>
 
 <div class="form-group row">

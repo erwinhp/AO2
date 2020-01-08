@@ -258,7 +258,7 @@ $atributs=$value;
 
 
 <div class="modal" id="addModal" aria-hidden="true">
-
+<div class="modal-dialog">
 <div class="modal-content">
    <div class="modal-header">
        <h4 class="modal-title"</h4>
@@ -328,7 +328,7 @@ $atributs=$value;
 </div>
 </div>
 
-
+</div>
 
 
 <!-- MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT-->

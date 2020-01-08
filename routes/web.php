@@ -37,7 +37,7 @@ Route::get ('/mspbj','SPBJ\Cspbjm@index');
 
 Route::get ('/mspbjpk','Cspbjpk@index');
 Route::get ('/cspbj','Cspbjpk@create');
-Route::post ('/cspbj','Cspbpkj@store');
+Route::post ('/cspbj','Cspbjpk@store');
 Route::get ('/mspbjsearch','Cspbjpk@search');
 
 
