@@ -1,19 +1,13 @@
-@extends('layouts.index')
+@extends('layouts.indexNVM')
+@section('header')
+Input Master spbj
+@endsection
 @section('content')
 <form class="form-horizontal" role="form" method="post" action="/cspbj">
   @csrf
-<section class="forms">
 
-<div class="col-lg-12">
-  <div class="card">
-    <div class="card-close">
 
-    </div>
-    <div class="card-header d-flex align-items-center">
-      <h3 class="h4">Input Master RAB</h3>
-    </div>
-    <div class="card-body">
-      <form class="form-horizontal">
+  <form class="form-horizontal">
 
 
         <div class="line"></div>
@@ -69,8 +63,6 @@
     </div>
   </div>
 </div>
-</div>
-</div>
-</section>
+
 </form>
 @endsection

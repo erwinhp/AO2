@@ -22,9 +22,16 @@ public function index()
            from master_rab i WHERE i.no_rab=:a',['a'=>$rab]);
 
           $material_utama=DB::select('select i.satuan, i.jumlah, i.material_PLN, i.total_biaya,(SELECT(LEFT(i.uraian,1)))as hvuraian,
+          (SELECT j.mat_utama from mat_khs j WHERE j.kode_matkhs=i.uraian)as mat_utama,
           (SELECT j.uraian_matkhs from mat_khs j WHERE j.kode_matkhs=i.uraian)as uraian_nama,
           (SELECT j.harga_matkhs from mat_khs j WHERE j.kode_matkhs=i.uraian)as matkhs_harga
-          from rab_khs_detil i where i.no_rab=:a HAVING hvuraian="M"',['a'=>$rab]);
+          from rab_khs_detil i where i.no_rab=:a HAVING hvuraian="M" AND mat_utama=1',['a'=>$rab]);
+
+          $material_nonutama=DB::select('select i.satuan, i.jumlah, i.material_PLN, i.total_biaya,(SELECT(LEFT(i.uraian,1)))as hvuraian,
+          (SELECT j.mat_utama from mat_khs j WHERE j.kode_matkhs=i.uraian)as mat_utama,
+          (SELECT j.uraian_matkhs from mat_khs j WHERE j.kode_matkhs=i.uraian)as uraian_nama,
+          (SELECT j.harga_matkhs from mat_khs j WHERE j.kode_matkhs=i.uraian)as matkhs_harga
+          from rab_khs_detil i where i.no_rab=:a HAVING hvuraian="M" AND mat_utama=0',['a'=>$rab]);
 
           $jasa=DB::select('select i.satuan, i.jumlah, i.material_PLN, i.total_biaya,(SELECT(LEFT(i.uraian,1)))as hvuraian,
           (SELECT j.uraian_matkhs from mat_khs j WHERE j.kode_matkhs=i.uraian)as uraian_nama,
@@ -90,7 +97,8 @@ public function index()
       return view('indexdetilRAB')->with('no_spbj',$spbj)->with('rab',$rab)->with('atribut',$atribut)
       ->with('material_utama',$material_utama)
       ->with('jasa',$jasa)
-      ->with('transport',$transport);
+      ->with('transport',$transport)
+      ->with('material_nonutama',$material_nonutama);
 }
 /**
  * Store a newly created resource in storage.

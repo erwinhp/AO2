@@ -47,7 +47,7 @@
 
 
 <div class="form-group row">
-<input type="hidden" id="tanggal_spbj" name="tanggal_spbj" value="{{ now()->toDateTimeString('Y-m-d') }}" >
+<input type="hidden" id="tanggal_spbj" name="tanggal_spbj" value="{{ now()->toDateString('Y-m-d') }}" >
 </div>
 
 
