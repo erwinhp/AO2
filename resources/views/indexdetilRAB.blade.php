@@ -2255,10 +2255,10 @@ $html = ob_get_clean();
                                 // console.log(data);
                                $("#total_biayatr").attr("placeholder", data[0]);
                                $('#total_biayatr').val(data[0]);
-                               $('#jumlahtr').val(data[1]);
-                               $("#jumlahtr").attr("placeholder", data[1]);
-                               $('#harga_satuantr').val(data[2]);
-                               $("#harga_satuantr").attr("placeholder", data[2]);
+                               $('#jumlahtr').val(data[2]);
+                               $("#jumlahtr").attr("placeholder", data[2]);
+                               $('#harga_satuantr').val(data[1]);
+                               $("#harga_satuantr").attr("placeholder", data[1]);
 
                               },
                           });
