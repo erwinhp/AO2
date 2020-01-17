@@ -15,6 +15,13 @@
 //     return view('welcome');
 // });
 //
+
+Route::get ('/inputPembayaran','CMApembayaran@index');
+Route::get ('/DetilPembayaran','CMApembayaran@indexdetilpembayaran');
+Route::get ('/gettermyn','CMApembayaran@gettermyn');
+Route::get ('/getdetilpembayaran','CMApembayaran@getdetilpembayaran');
+
+
 Route::get ('/inputMA','smentara\inputMA@index');
 Route::get ('/inputPRK','smentara\inputMA@indexprk');
 // Route::post ('/inputMA','smentara\inputMA@index');
@@ -28,6 +35,8 @@ Route::post ('/storeadendum','smentara\inputMA@storeadendum');
 Route::get ('/bobot_pelaksanaan','Konstruksi\Cbobot_pelaksanaan@index');
 Route::get('/getnorab','Konstruksi\Cbobot_pelaksanaan@getrab');
 Route::get('/getdatarab','Konstruksi\Cbobot_pelaksanaan@getmaterial');
+Route::get('/getcount','Konstruksi\Cbobot_pelaksanaan@getcount');
+Route::post ('/storebobot','Konstruksi\Cbobot_pelaksanaan@storebobot');
 
 Route::get ('/home','homez@index');
 

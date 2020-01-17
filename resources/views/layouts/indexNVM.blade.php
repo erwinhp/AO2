@@ -205,7 +205,7 @@ THIS IS THE JS MADUDE
           <li class="menu-block-has-sub nav-item"><a class="nav-link" href="#"><i class="icon ion-ios-grid-view-outline"></i>
               <div class="menu-block-label">Pembayaran</div></a>
             <ul class="nav menu-block-sub">
-              <li class="nav-item"><a class="nav-link" href="#">Monitoring Pembayaran</a></li>
+              <li class="nav-item"><a class="nav-link" href="/inputPembayaran">Monitoring Pembayaran</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Input Data Berkala</a></li>
             </ul>
           </li>

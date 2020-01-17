@@ -316,22 +316,22 @@ Input Monitor Anggaran
           <label class="col-sm-3 form-control-label">Aktif BASTP</label>
           <div class="col-sm-9">
             <select  class="form-control mb-3" name="aktif_bastp" id="aktif_bastp"  value="{{ old('aktif_bastp') }}">
-              <option>Option</option>
-              <option value="YES">YES</option>
-              <option value="NO">NO</option>
+              <option>Pilih</option>
+              <option value="YES">YES (BASTP sudah ada)</option>
+              <option value="NO">NO (BASTP belum ada)</option>
             </select>
           </div>
         </div>
 
-
+<!-- validasi jika bastp no tidak bisa tidak boleh aktif bayar yes -->
         <div class="line"></div>
         <div class="form-group row">
           <label class="col-sm-3 form-control-label">Aktif Bayar</label>
           <div class="col-sm-9">
             <select  class="form-control mb-3" name="aktif_byr" id="aktif_byr"  value="{{ old('aktif_byr') }}">
-              <option>Option</option>
-              <option value="YES">YES</option>
-              <option value="NO">NO</option>
+              <option>Pilih</option>
+              <option value="YES">YES (Sudah dibayar)</option>
+              <option value="NO">NO (Belum Dibayar)</option>
             </select>
           </div>
         </div>

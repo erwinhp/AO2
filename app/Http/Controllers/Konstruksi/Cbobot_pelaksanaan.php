@@ -20,12 +20,39 @@ class Cbobot_pelaksanaan extends Controller
      return response()->json($data);
  }
 
+public function getcount()
+{
+    $count=1;
+    $counts=DB::select('select distinct kodebanyak FROM bobot_pelaksanaan',[]);
+    foreach ($counts as $key => $value) {
+    $count=$value;
+  }
+  return response()->json($count);
+}
+
+
+public function storebobot(Request $request)
+{
+      $getsum=1;
+      $adendum = new adendum();
+      $adendum->no_rab = $request->no_rab;
+      $adendum->uraian = $request->uraian;
+      $adendum->volume_spbj = $request->volume_spbj;
+      $adendum->volume_cek = $request->volume_cek;
+      $adendum->tanggal_cek = $request->tanggal_cek;
+      $adendum->kodebanyak = $request->kodebanyak;
+      $adendum->save();
+}
+
  public function getmaterial(Request $request)
 {
+
   if($request->ajax())
      {
-  $norab=DB::select('select i.no_rab,i.id_detilrab,(SELECT o.uraian_matkhs FROM mat_khs o WHERE o.kode_matkhs=i.uraian) as uraian,i.jumlah
-  FROM rab_khs_detil i where no_rab=:a AND LEFT(i.uraian,1)="M"',['a'=>$request->getrab]);
+  $norab=DB::select('
+select i.no_rab,i.id_detilrab,(SELECT o.uraian_matkhs FROM mat_khs o WHERE o.kode_matkhs=i.uraian) as uraians,i.uraian,i.jumlah, i.total_biaya,
+(select i.total_biaya/sum(j.total_biaya)*100 from rab_khs_detil j group by i.total_biaya)
+as prosentase FROM rab_khs_detil i where i.no_rab=:a and i.total_biaya != 0',['a'=>$request->getrab]);
   return response()->json($norab);
 }
 }
