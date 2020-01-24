@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Konstruksi;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\bobot_pelaksanaan;
 use DB;
 class Cbobot_pelaksanaan extends Controller
 {
@@ -20,12 +21,23 @@ class Cbobot_pelaksanaan extends Controller
      return response()->json($data);
  }
 
-public function getcount()
+
+
+public function getcount(Request $request)
 {
-    $count=1;
-    $counts=DB::select('select distinct kodebanyak FROM bobot_pelaksanaan',[]);
+    $count=0;
+    $counts=DB::select('select distinct max(kodebanyak) as kodebanyak FROM bobot_pelaksanaan where no_rab=:a',['a'=>$request->getrab]);
     foreach ($counts as $key => $value) {
-    $count=$value;
+      foreach ($value as $key => $value2) {
+            $count=$value2;
+      }
+  }
+  if($count==null)
+  {
+    $count=1;
+  }
+  else {
+    $count=$count+1;
   }
   return response()->json($count);
 }
@@ -34,7 +46,7 @@ public function getcount()
 public function storebobot(Request $request)
 {
       $getsum=1;
-      $adendum = new adendum();
+      $adendum = new bobot_pelaksanaan();
       $adendum->no_rab = $request->no_rab;
       $adendum->uraian = $request->uraian;
       $adendum->volume_spbj = $request->volume_spbj;
@@ -56,5 +68,33 @@ as prosentase FROM rab_khs_detil i where i.no_rab=:a and i.total_biaya != 0',['a
   return response()->json($norab);
 }
 }
+
+
+public function getdate(Request $request)
+{
+  $counts=DB::select('select distinct tanggal_cek FROM bobot_pelaksanaan where no_rab=:a',['a'=>$request->getrab]);
+  return response()->json($counts);
+}
+
+public function getdataedit(Request $request)
+{
+  $counts=DB::select('select o.id_bobot, o.no_rab, o.uraian, o.volume_spbj, o.volume_cek, o.tanggal_cek, o.kodebanyak, (select uraian_matkhs from mat_khs i where i.kode_matkhs=o.uraian)
+ as uraians FROM bobot_pelaksanaan o where o.no_rab=:a and o.tanggal_cek=:b',['a'=>$request->getrab,'b'=>$request->gettgl]);
+  return response()->json($counts);
+}
+
+public function update(Request $request)
+  {
+    $bobot = bobot_pelaksanaan::findOrFail($request->id_bobot);
+    $bobot->volume_cek = $request->volume_cek;
+    $bobot->save();
+  }
+
+
+public function editbobotindex()
+{
+    return view('Konstruksi.editbobot_pelaksanaan');
+}
+
 
 }

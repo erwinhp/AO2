@@ -34,9 +34,15 @@ Route::post ('/storeadendum','smentara\inputMA@storeadendum');
 //==this is construction//==INI Konstruksi
 Route::get ('/bobot_pelaksanaan','Konstruksi\Cbobot_pelaksanaan@index');
 Route::get('/getnorab','Konstruksi\Cbobot_pelaksanaan@getrab');
-Route::get('/getdatarab','Konstruksi\Cbobot_pelaksanaan@getmaterial');
+Route::get('/editbobotindex','Konstruksi\Cbobot_pelaksanaan@editbobotindex');
+Route::get('/getdate','Konstruksi\Cbobot_pelaksanaan@getdate');
 Route::get('/getcount','Konstruksi\Cbobot_pelaksanaan@getcount');
 Route::post ('/storebobot','Konstruksi\Cbobot_pelaksanaan@storebobot');
+Route::get ('/getdataedit','Konstruksi\Cbobot_pelaksanaan@getdataedit');
+Route::get('/getdatarab','Konstruksi\Cbobot_pelaksanaan@getmaterial');
+Route::put('/updatebobot/{id_bobot}','Konstruksi\Cbobot_pelaksanaan@update');
+
+
 
 Route::get ('/home','homez@index');
 

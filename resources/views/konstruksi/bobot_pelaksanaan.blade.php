@@ -4,12 +4,9 @@ Bobot Pelaksanaan
 @endsection
 @section('content')
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-<div>
-    <select class="DDselect" style="width:440px;" name="itemName" id="rab_select"></select>
+<div class="text-right">
+    <a href="/editbobotindex"  class="btn btn-primary" >Edit Bobot</a>
 </div>
-
-<br>
 
 <div class="input-group date" data-provide="datepicker" style="width:40%">
     <input type="text" class="form-control bobot_datepicker" id="tanggal_bobot">
@@ -18,8 +15,19 @@ Bobot Pelaksanaan
     </div>
 </div>
 
+<br>
+<!-- NO RAB -->
+<div>
+    <select class="DDselect" style="width:440px;" name="itemName" id="rab_select"></select>
+</div>
+
+<br>
+
+<!-- KODE BANYAK -->
  <input type="hidden" id="kodebanyak" name="CodeBanyak" value="">
+ <!-- TANGGAL CEK -->
  <input type="hidden" id="tanggal_bobotfix" name="tanggalfix" value="">
+ <!-- SEHARUSNY DIBAWAH -->
   <input type="hidden" id="kodeuraian" name="kodeuraian" value="">
 
 <br>
@@ -66,7 +74,6 @@ $('.DDselect').select2({
                   id: item.no_rab,
               }
           })
-
       };
     },
     cache: true
@@ -74,21 +81,38 @@ $('.DDselect').select2({
 });
 
 $('.DDselect').on("select2:select", function(e) {
-  $.ajax({
-      type: 'GET',
-      url: '/getcount',
-      success:function(data)
-      {
-        $('#kodebanyak').val(data);
-     },
-  });
+  if ($('#tanggal_bobot').val()==("")) {
+    $('#tanggal_bobot').focus();
+  }
+  else
+  {
+    var getrab = document.getElementById("rab_select").value;
+    $.ajax({
+        type: 'GET',
+        url: '/getcount',
+        data:{'getrab': getrab},
+        success:function(data)
+        {
+          $('#kodebanyak').val(data);
+       },
+    });
+  }
+
 });
 
 
 
-
+//tablenya
 $('.DDselect').on("select2:select", function(e) {
+  if ($('#tanggal_bobot').val()==("")) {
+    $('#tanggal_bobot').focus();
+    alert("Isi tanggal Terlebih dahulu");
+  }
+  else {
+    {
+  }
   var getrab = document.getElementById("rab_select").value;
+  // var arraytemp = [];
   $.ajax({
       type: 'GET',
       url: '/getdatarab',
@@ -98,22 +122,29 @@ $('.DDselect').on("select2:select", function(e) {
         html='';
         for(var count=0; count < data.length; count++)
         {
-        html +='<form class="form-horizontal" role="form" method="post" action="/cmrab">'
+          // arraytemp.push({
+          //     uraian: data[count].uraians,
+          //     volume_spbj: data[count].jumlah,
+          //     jumlah: data[count].jumlah,
+          // });
+        html +='<form class="form-horizontal" role="form" method="post" action="/storebobot">'
         html +='<tr>';
         html +='<td>'+(count+1)+'</td>';
-        html +='<td class="column_name" data-column_name="uraian" data-id="'+data[count].id_detilrab+'">'+data[count].uraians+'</td>';
-        html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_detilrab+'">'+data[count].jumlah+'</td>';
-        html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_detilrab+'">'+data[count].total_biaya+'</td>';
-        html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_detilrab+'">'+data[count].prosentase+'</td>';
-        html +='<td> <input type="text" class="form-control" id="usr"> </td>';
+        html +='<td class="column_name" data-column_name="uraian" data-id="'+data[count].id_bobot+'">'+data[count].uraians+'</td>';
+        html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_bobot+'">'+data[count].jumlah+'</td>';
+        html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_bobot+'">'+data[count].total_biaya+'</td>';
+        html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_bobot+'">'+data[count].prosentase+'</td>';
+        html +='<td> <input type="text" class="form-control inputs" value="" data-id="'+data[count].id_bobot+'" data-uraian="'+data[count].uraian+'" data-jumlah="'+data[count].jumlah+'"  id="volumes" required> </td>';
         html +='</tr>';
         }
-        html +=' <button type="button" class="btn btn-success addabc" data-dismiss="modal" id="idadd"> <span id="" class="glyphicon glyphicon-check"></span> Save </button>';
+        html +=' <button type="button" class="btn btn-success addabc" data-dismiss="modal" id="idadd"> <span class="glyphicon glyphicon-check "></span> Save </button>';
         html +='</form>';
         // console.log(html);
         $('#tablerab').html(html);
+
      },
   });
+}
 });
 
 
@@ -124,36 +155,146 @@ var dayz=datez.substring(3, 5);
 var yearz=datez.substring(6, 10);
 var datefixz=yearz+'-'+monthz+'-'+dayz;
 $('#tanggal_bobotfix').val(datefixz);
+if (arraytemp.length==0)
+{
+
+}
+else {
+for (i = 0; i < arraytemp.length; i++) {
+  arraytemp[i].tanggal_cek=$('#tanggal_bobotfix').val();
+}
+}
+});
+
+
+//MAKE THE ARRAY MAKE THE ARRAY MAKE THE ARRAY
+var arraytemp=[];
+$(document).on('focusout', '#volumes', function() {
+var temparr=[];
+if (($(this).val())==("")) {
+  if(arraytemp.length==0)
+  {
+    //pass
+  }
+  else {
+    for (i = 0; i < arraytemp.length; i++) {
+      if (((arraytemp[i].uraian.includes($(this).data("uraian")))==true) && (($(this).val())==("")))
+        {
+            arraytemp.splice(i, 1)
+        }
+    }
+  }
+}
+else {
+      if(arraytemp.length==0)
+      {
+        arraytemp.push({
+        uraian: $(this).data("uraian"),
+        volume_spbj: $(this).data("jumlah"),
+        jumlah: $(this).val(),
+        tanggal_cek : $("#tanggal_bobotfix").val(),
+        kodebanyak : $("#kodebanyak").val(),
+        no_rab : $("#rab_select").val(),
+      });
+    }
+      else {
+        arrtemp={};
+          for (i = 0; i < arraytemp.length; i++) {
+            if (((arraytemp[i].uraian.includes($(this).data("uraian")))==true) && ((arraytemp[i].jumlah.includes($(this).val()))==false))
+            {
+              arrtemp=({
+              uraian: $(this).data("uraian"),
+              volume_spbj: $(this).data("jumlah"),
+              jumlah: $(this).val(),
+              tanggal_cek : $("#tanggal_bobotfix").val(),
+              kodebanyak : $("#kodebanyak").val(),
+              no_rab : $("#rab_select").val(),
+            });
+            arraytemp[i]=arrtemp;
+            arraytemp.splice(i, 1)
+            }
+            else if (arraytemp[i].uraian.includes($(this).data("uraian"))==true)
+            {
+              arrtemp={};
+              return arrtemp
+              //pass
+            }
+
+            else {
+              arrtemp=({
+              uraian: $(this).data("uraian"),
+              volume_spbj: $(this).data("jumlah"),
+              jumlah: $(this).val(),
+              tanggal_cek : $("#tanggal_bobotfix").val(),
+              kodebanyak : $("#kodebanyak").val(),
+              no_rab : $("#rab_select").val(),
+            });
+            }
+          }
+          if (arrtemp!={}){
+            arraytemp.push(arrtemp);
+          }
+      }
+
+}
+
+// console.log($(this).data("uraian"));
+// console.log($(this).data("jumlah"));
+// console.log($("#tanggal_bobotfix").val());
+// console.log($("#kodebanyak").val());
+// console.log($("#rab_select").val());
+// console.log($(this).val());
+console.log(arraytemp);
 });
 
 
 
-$('.addabc').on('click', '#idadd', function() {
+
+
+
+// $(document).on('click', '#idad', function() {
+// alert('mouse up');
+// });
+
+//add to db add to db
+$(document).on('click', '#idadd', function() {
+  sukaes=0;
+if(arraytemp==[])
+{
+//pass it brah
+}
+else
+{
+for (i = 0; i < arraytemp.length; i++) {
         $.ajax({
             type: 'POST',
             url: '/storebobot',
             data: {
-              '_token': $('input[name=_token]').val(),
-              'tanggal_bobotfix': $('#tanggal_bobotfix').val(),
-              'kodebanyak': $('#kodebanyak').val(),
-              'no_rab' : $('#rab_select').val(),
-              'fungsi': $('#fungsi').val(),
-              'nilai_investasi' : $('#nilai_investasi').val(),
-              'nilai_disbursement': $('#nilai_disbursement').val(),
+              "_token": "{{ csrf_token() }}",
+              // '_token': $('input[name=_token]').val(),
+              'tanggal_cek': arraytemp[i].tanggal_cek,
+              'kodebanyak': arraytemp[i].kodebanyak,
+              'no_rab' : arraytemp[i].no_rab,
+              'volume_spbj' : arraytemp[i].volume_spbj,
+              'volume_cek' :arraytemp[i].jumlah,
+              'uraian': arraytemp[i].uraian,
             },
             success:function(data)
             {
-                          $('#id_fungsi').val('');
-                          $('#pagu').val('');
-                          $('#nama_prk').val('');
-                          $('#no_prk').val('');
-                          $('#nilai_investasi').val('');
-                          $('#nilai_disbursement').val('');
-                          $('#no_prk').focus();
-                          alert('Input PRK sukses');
+              sukaes=sukaes+1;
+              if (sukaes==arraytemp.length)
+              {
+                alert("sukses input");
+                arraytemp=[];
+                $('#tablerab').html("");
+                $("#tanggal_bobot").val("");
+                $("#tanggal_bobot").focus;
+              }
            },
         });
-    });
+      }
+  }
+});
 
 
 
