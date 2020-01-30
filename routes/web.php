@@ -42,6 +42,13 @@ Route::get ('/getdataedit','Konstruksi\Cbobot_pelaksanaan@getdataedit');
 Route::get('/getdatarab','Konstruksi\Cbobot_pelaksanaan@getmaterial');
 Route::put('/updatebobot/{id_bobot}','Konstruksi\Cbobot_pelaksanaan@update');
 
+//this is chart ren construction ini chart ren konstruksi
+Route::get ('/chart_ren','Konstruksi\Ccharts_perencanaan@index');
+Route::post ('/chart_renpost','Konstruksi\Ccharts_perencanaan@storepoint');
+Route::get ('/getcurves','Konstruksi\Ccharts_perencanaan@getcurves');
+Route::get ('/getsum','Konstruksi\Ccharts_perencanaan@getsum');
+
+
 
 
 Route::get ('/home','homez@index');
