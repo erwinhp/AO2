@@ -47,7 +47,9 @@ Route::get ('/chart_ren','Konstruksi\Ccharts_perencanaan@index');
 Route::post ('/chart_renpost','Konstruksi\Ccharts_perencanaan@storepoint');
 Route::get ('/getcurves','Konstruksi\Ccharts_perencanaan@getcurves');
 Route::get ('/getsum','Konstruksi\Ccharts_perencanaan@getsum');
-
+Route::get ('/getdatachart','Konstruksi\Ccharts_perencanaan@getdatachart');
+Route::get ('/indexedits','Konstruksi\Ccharts_perencanaan@indexedits');
+Route::put('/updatechart/{id_chartren}','Konstruksi\Ccharts_perencanaan@updatechart');
 
 
 
