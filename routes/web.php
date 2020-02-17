@@ -22,8 +22,7 @@ Route::get ('/gettermyn','CMApembayaran@gettermyn');
 Route::get ('/getdetilpembayaran','CMApembayaran@getdetilpembayaran');
 
 
-Route::get ('/inputMA','smentara\inputMA@index');
-Route::get ('/inputPRK','smentara\inputMA@indexprk');
+
 // Route::post ('/inputMA','smentara\inputMA@index');
 Route::get ('/getprksz','smentara\inputMA@getprksz');
 Route::get ('/getkontraks','smentara\inputMA@getkontraks');
@@ -88,7 +87,8 @@ Route::resource ('/MA','Cindex');
 Route::resource ('/detilindex','detilindex');
 Route::get ('/MAdetilgenfetch','detilindex@fetch_datagen');
 Route::get ('/MAdetilpekfetch','detilindex@fetch_datapek');
-
+Route::get ('/inputMA','smentara\inputMA@index');
+Route::get ('/inputPRK','smentara\inputMA@indexprk');
 
 // Route::resource ('/mrab','Cmrab');
 //ROUTE MASTER RAB
@@ -127,9 +127,20 @@ Route::get ('/excelrabnonkhsz','Cexcel@storenonkhs');
 Route::post ('/excelrabnonkhsz','Cexcel@storenonkhs');
 
 
+//pengadaan this is pengadaan ini Pengadaan MADUDE
+Route::get ('/rab_penawarans','Pengadaan\rab_penawaran@index');
+Route::get ('/getmaxid','Pengadaan\rab_penawaran@getmaxid');
+Route::get ('/getvendor','Pengadaan\rab_penawaran@getvendor');
+Route::post ('/storerab_penawaran','Pengadaan\rab_penawaran@storerab_penawaran');
+Route::get ('/edit_rabpenawaran','Pengadaan\rab_penawaran@edit_rabpenawaran');
+Route::get ('/getdatavendror','Pengadaan\rab_penawaran@getdatavendror');
+Route::put('/update_rabpenawaran/{id_detilrab}','Pengadaan\rab_penawaran@update_rabpenawaran');
+Route::get ('/iputvendors','Pengadaan\inputvendor@index');
+Route::post ('/storevendor','Pengadaan\inputvendor@storevendor');
 
-
-
+Route::get ('/metodelelangs','Pengadaan\metode_lelang@index');
+Route::get ('/getpekerjaan','Pengadaan\metode_lelang@getnamapekerjaan');
+Route::post ('/storemetodelelang','Pengadaan\metode_lelang@storemetodelelang');
 
 
 
@@ -149,7 +160,12 @@ Route::group(['prefix' => '/'], function()
 
   // Route::get('/', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
   // Route::post('/', ['as' => 'login.post', 'uses' => 'Auth\LoginController@login']);
-  Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+  // Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+  Route::get('logout', 'Auth\LoginController@logout', function () {
+      return abort(404);
+  });
+
+
 
 // Registration Routes...
   Route::get('register', ['as' => 'register', 'uses' => 'Auth\RegisterController@showRegistrationForm']);

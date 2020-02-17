@@ -75,7 +75,7 @@ public function storebobot(Request $request)
   if($request->ajax())
      {
   $norab=DB::select('
-select i.no_rab,i.id_detilrab,(SELECT o.uraian_matkhs FROM mat_khs o WHERE o.kode_matkhs=i.uraian) as uraians,i.uraian,i.jumlah, i.total_biaya,
+select i.no_rab,i.id_detilrab,(SELECT o.uraian_matkhs FROM mat_khs o WHERE o.kode_matkhs=i.uraian) as uraians,i.uraian,i.jumlah, i.total_biaya, i.harga_satuan, i.kontrak, i.spbj, i.material_PLN, i.satuan, i.nama_uraian,
 (select (i.total_biaya/(sum(j.total_biaya)))*100 from rab_khs_detil j WHERE j.no_rab=i.no_rab) as prosentase
 FROM rab_khs_detil i where i.no_rab=:a and i.total_biaya != 0',['a'=>$request->getrab]);
   return response()->json($norab);
@@ -95,6 +95,7 @@ public function getdataedit(Request $request)
  as uraians FROM bobot_pelaksanaan o where o.no_rab=:a and o.tanggal_cek=:b',['a'=>$request->getrab,'b'=>$request->gettgl]);
   return response()->json($counts);
 }
+
 
 public function update(Request $request)
   {

@@ -141,12 +141,20 @@ THIS IS THE JS MADUDE
               <div class="menu-block-label">Home</div></a></li>
 
 
-          <li class="nav-item"><a class="nav-link" href="/MA" ><i class="icon ion-monitor"></i>
-              <div class="menu-block-label">Monitoring Anggaran</div></a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="/MA" ><i class="icon ion-monitor"></i>
+              <div class="menu-block-label">Monitoring Anggaran</div></a></li> -->
+              <li class="menu-block-has-sub nav-item"><a class="nav-link" href="#"><i class="icon ion-ios-list-outline"></i>
+                  <div class="menu-block-label">Anggaran</div></a>
+                <ul class="nav menu-block-sub">
+                  <li class="nav-item"><a class="nav-link" href="/MA">Monitor Anggaran</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/inputMA ">Input Anggaran</a></li>
+                </ul>
+              </li>
+
 
 
           <li class="menu-block-has-sub nav-item"><a class="nav-link" href="#"><i class="icon ion-ios-list-outline"></i>
-              <div class="menu-block-label">Buat RAB SPBJ/PK</div></a>
+              <div class="menu-block-label">Buat RAB</div></a>
             <ul class="nav menu-block-sub">
               <li class="nav-item menu-block-has-sub"><a href="#">RAB SPBJ</a>
                 <ul class="nav menu-block-sub">
@@ -154,28 +162,44 @@ THIS IS THE JS MADUDE
                   <li class="nav-item"><a class="nav-link" href="/mrab">Entri RAB SPBJ</a></li>
                 </ul>
               </li>
+
               <li class="nav-item menu-block-has-sub"><a href="#">RAB PK</a>
                 <ul class="nav menu-block-sub">
                   <li class="nav-item"><a class="nav-link" href="#">Upload Excel</a></li>
                   <li class="nav-item"><a class="nav-link" href="/cmasterabpayung">Entri RAB PK</a></li>
                 </ul>
               </li>
+
+              <li class="nav-item menu-block-has-sub"><a href="#">RAB NON KHS</a>
+                <ul class="nav menu-block-sub">
+                  <li class="nav-item"><a class="nav-link" href="/excelrabnonkhs">Upload Excel</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/mrabnonkhs">Entri RAB NON KHS</a></li>
+                </ul>
+              </li>
+
             </ul>
           </li>
 
           <!-- RAB NON KHS -->
-          <li class="menu-block-has-sub nav-item"><a class="nav-link" href="#"><i class="icon ion-ios-list-outline"></i>
+          <!-- <li class="menu-block-has-sub nav-item"><a class="nav-link" href="#"><i class="icon ion-ios-list-outline"></i>
             <div class="menu-block-label">Buat RAB NON KHS</div></a>
             <ul class="nav menu-block-sub">
               <li class="nav-item"><a class="nav-link" href="/excelrabnonkhs">Upload Excel</a></li>
               <li class="nav-item"><a class="nav-link" href="/mrabnonkhs">Entri RAB NON KHS</a></li>
             </ul>
-          </li>
+          </li> -->
 
 
           <li class="menu-block-has-sub nav-item"><a class="nav-link" href="#"><i class="icon ion-cube"></i>
               <div class="menu-block-label">Pengadaan</div></a>
             <ul class="nav menu-block-sub">
+              <li class="nav-item menu-block-has-sub"><a href="#">REN DAN</a>
+                <ul class="nav menu-block-sub">
+                  <li class="nav-item"><a class="nav-link" href="/iputvendors">Input Vendor</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/metodelelangs">Metode Lelang</a></li>
+                </ul>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="/rab_penawarans">RAB Penawaran</a></li>
               <li class="nav-item menu-block-has-sub"><a href="#">SPBJ Baru</a>
                 <ul class="nav menu-block-sub">
                   <li class="nav-item"><a class="nav-link" href="/mspbj">Buat SPBJ</a></li>
@@ -198,6 +222,8 @@ THIS IS THE JS MADUDE
               <li class="nav-item"><a class="nav-link" href="#">Monitoring Pekerjaan</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Laporan Realisasi Fisik</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Chart</a></li>
+              <li class="nav-item"><a class="nav-link" href="/chart_ren">Chart Perencanaan</a></li>
+
               <li class="nav-item"><a class="nav-link" href="#">Raport Mitra Kerja</a></li>
             </ul>
           </li>
@@ -272,7 +298,7 @@ THIS IS THE JS MADUDE
                 </div>
               </div>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#"><i class="icon ion-android-exit"></i></a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('/logout') }}"><i class="icon ion-android-exit"></i></a></li>
             <li class="nav-item"><a class="nav-link close-mobile-nav js-close-mobile-nav" href="#"><i class="icon ion-close"></i></a></li>
             <!-- END TOP RIGHT MENU-->
           </ul>

@@ -70,7 +70,7 @@
                 <!-- Notifications-->
 
                 <!-- Logout    -->
-                <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
+                <li class="nav-item"><a href="{{ url('/logout') }}" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
               </ul>
             </div>
           </div>
@@ -106,6 +106,12 @@
                 <li><a href="#exampledropdownDropdown112" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>RAB PK</a>
                   <ul id="exampledropdownDropdown112" class="collapse list-unstyled ">
                 <li><a href="/cmasterabpayung">Entri RAB PK</a></li>
+                  </ul>
+                </li>
+                <li><a href="#exampledropdownDropdown1" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Buat RAB NON KHS</a>
+                  <ul id="exampledropdownDropdown112" class="collapse list-unstyled ">
+                    <li><a href="/excelrabnonkhs">Upload Excel</a></li>
+                    <li><a href="/mrabnonkhs">Entri RAB</a></li>
                   </ul>
                 </li>
               </ul>

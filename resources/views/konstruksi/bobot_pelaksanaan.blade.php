@@ -171,11 +171,13 @@ for (i = 0; i < arraytemp.length; i++) {
 var arraytemp=[];
 $(document).on('focusout', '#volumes', function() {
 var temparr=[];
+//KARENA FOCUS OUT MISALKAN DIA FOCUS OUT DLUAN DIA BAKAL NYIMPEN ARRAY KOSONG
 if (($(this).val())==("")) {
   if(arraytemp.length==0)
   {
     //pass
   }
+  //ELSE NGECEK ARRAY KOSONG DAN DI SPLIE/DELETE
   else {
     for (i = 0; i < arraytemp.length; i++) {
       if (((arraytemp[i].uraian.includes($(this).data("uraian")))==true) && (($(this).val())==("")))
@@ -185,6 +187,7 @@ if (($(this).val())==("")) {
     }
   }
 }
+//NGEPUSH ARRAY SAAT FOCUS OUT
 else {
       if(arraytemp.length==0)
       {

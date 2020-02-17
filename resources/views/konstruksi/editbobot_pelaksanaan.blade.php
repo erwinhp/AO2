@@ -164,7 +164,7 @@ $( "#tanggal_bobot" ).change(function() {
                 html +='<td class="column_name" data-column_name="uraian" data-id="'+data[count].id_bobot+'">'+data[count].uraians+'</td>';
                 html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_bobot+'">'+data[count].volume_spbj+'</td>';
                 html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_bobot+'">'+data[count].volume_cek+'</td>';
-                html += '<td><button class="edit-modal btn btn-info" id="editbutton" data-id="'+data[count].id_bobot+'"><span class="glyphicon glyphicon-trash">Edit</span></button>';
+                html += '<td><button class="edit-modal btn btn-info" id="editbutton" data-id="'+data[count].id_bobot+'"><span class="glyphicon glyphicon-trash">Edit</span></button></td>';
                 html +='</tr>';
                 }
                 $('#tablerab').html(html);
@@ -204,6 +204,8 @@ function fetch_datatrasnport()
 
 }
 
+
+//open modal
 $(document).on('click', '.edit-modal', function() {
      $('#volume_cek').val('');
      id = $(this).data("id");
