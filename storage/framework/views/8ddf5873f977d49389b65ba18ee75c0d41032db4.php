@@ -147,7 +147,8 @@ THIS IS THE JS MADUDE
                   <div class="menu-block-label">Anggaran</div></a>
                 <ul class="nav menu-block-sub">
                   <li class="nav-item"><a class="nav-link" href="/MA">Monitor Anggaran</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/inputMA ">Input Anggaran</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/inputPRK ">Input PRK</a></li>
+                  <!-- <li class="nav-item"><a class="nav-link" href="/inputMA ">Input Anggaran</a></li> -->
                 </ul>
               </li>
 
@@ -199,6 +200,15 @@ THIS IS THE JS MADUDE
                   <li class="nav-item"><a class="nav-link" href="/metodelelangs">Metode Lelang</a></li>
                 </ul>
               </li>
+              <li class="nav-item menu-block-has-sub"><a href="#">LAK DAN</a>
+                <ul class="nav menu-block-sub">
+                  <li class="nav-item"><a class="nav-link" href="/indexviewjadwal">Jadwal Lelang</a></li>
+
+                  <!-- <li class="nav-item"><a class="nav-link" href="/metodelelangs">Metode Lelang</a></li> -->
+                </ul>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="/buatkontraks">Buat Kontrak</a></li>
+              <li class="nav-item"><a class="nav-link" href="/indexpesertalelangs">Peserta Lelang</a></li>
               <li class="nav-item"><a class="nav-link" href="/rab_penawarans">RAB Penawaran</a></li>
               <li class="nav-item menu-block-has-sub"><a href="#">SPBJ Baru</a>
                 <ul class="nav menu-block-sub">
@@ -221,7 +231,7 @@ THIS IS THE JS MADUDE
               <li class="nav-item"><a class="nav-link" href="#">Input Data Laporan Berkala</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Monitoring Pekerjaan</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Laporan Realisasi Fisik</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Chart</a></li>
+              <li class="nav-item"><a class="nav-link" href="/chartsbobot">Chart</a></li>
               <li class="nav-item"><a class="nav-link" href="/chart_ren">Chart Perencanaan</a></li>
 
               <li class="nav-item"><a class="nav-link" href="#">Raport Mitra Kerja</a></li>

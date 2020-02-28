@@ -9,6 +9,13 @@ use DB;
 class Cbobot_pelaksanaan extends Controller
 {
 
+  // public function getprosentasebobot(Request $request)
+  // {
+  //
+  // }
+
+
+
   public function fetch_dataedit(Request $request)
   {
 
@@ -66,6 +73,8 @@ public function storebobot(Request $request)
       $adendum->volume_cek = $request->volume_cek;
       $adendum->tanggal_cek = $request->tanggal_cek;
       $adendum->kodebanyak = $request->kodebanyak;
+      $adendum->harga_nego = $request->harga_nego;
+      $adendum->total_harganego = $request->total_harganego;
       $adendum->save();
 }
 
@@ -75,10 +84,23 @@ public function storebobot(Request $request)
   if($request->ajax())
      {
   $norab=DB::select('
+select i.no_rab,i.id_detilrab,(SELECT o.uraian_matkhs FROM mat_khs o WHERE o.kode_matkhs=i.uraian) as uraians,i.uraian,i.jumlah, i.total_harganego, i.harga_nego, i.kontrak, i.spbj, i.material_PLN, i.satuan, i.nama_uraian,
+(select (i.total_harganego/(sum(j.total_harganego)))*100 from rab_penawaran j WHERE j.no_rab=i.no_rab) as prosentase
+FROM rab_penawaran i where i.no_rab=:a and i.total_harganego != 0',['a'=>$request->getrab]);
+  return response()->json($norab);
+}
+}
+
+public function getmaterialpenawaran(Request $request)
+{
+
+ if($request->ajax())
+    {
+ $norab=DB::select('
 select i.no_rab,i.id_detilrab,(SELECT o.uraian_matkhs FROM mat_khs o WHERE o.kode_matkhs=i.uraian) as uraians,i.uraian,i.jumlah, i.total_biaya, i.harga_satuan, i.kontrak, i.spbj, i.material_PLN, i.satuan, i.nama_uraian,
 (select (i.total_biaya/(sum(j.total_biaya)))*100 from rab_khs_detil j WHERE j.no_rab=i.no_rab) as prosentase
 FROM rab_khs_detil i where i.no_rab=:a and i.total_biaya != 0',['a'=>$request->getrab]);
-  return response()->json($norab);
+ return response()->json($norab);
 }
 }
 

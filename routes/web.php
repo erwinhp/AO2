@@ -40,16 +40,22 @@ Route::post ('/storebobot','Konstruksi\Cbobot_pelaksanaan@storebobot');
 Route::get ('/getdataedit','Konstruksi\Cbobot_pelaksanaan@getdataedit');
 Route::get('/getdatarab','Konstruksi\Cbobot_pelaksanaan@getmaterial');
 Route::put('/updatebobot/{id_bobot}','Konstruksi\Cbobot_pelaksanaan@update');
+Route::get('/getmaterialpenawaran','Konstruksi\Cbobot_pelaksanaan@getmaterialpenawaran');
 
 //this is chart ren construction ini chart ren konstruksi
 Route::get ('/chart_ren','Konstruksi\Ccharts_perencanaan@index');
 Route::post ('/chart_renpost','Konstruksi\Ccharts_perencanaan@storepoint');
 Route::get ('/getcurves','Konstruksi\Ccharts_perencanaan@getcurves');
+Route::get ('/gettglsperencanaans','Konstruksi\Ccharts_perencanaan@gettglsperencanaans');
 Route::get ('/getsum','Konstruksi\Ccharts_perencanaan@getsum');
 Route::get ('/getdatachart','Konstruksi\Ccharts_perencanaan@getdatachart');
 Route::get ('/indexedits','Konstruksi\Ccharts_perencanaan@indexedits');
 Route::put('/updatechart/{id_chartren}','Konstruksi\Ccharts_perencanaan@updatechart');
-
+Route::get ('/chartsbobot','Konstruksi\charts@index');
+Route::get ('/getdatlaks','Konstruksi\charts@getdatlak');
+Route::get ('/getdatrens','Konstruksi\charts@getdatren');
+Route::get ('/gettanggalbbt','Konstruksi\charts@gettanggalbbt');
+Route::get ('/getnokontrakrab','Konstruksi\charts@getnokontrakrab');
 
 
 Route::get ('/home','homez@index');
@@ -144,6 +150,26 @@ Route::post ('/storemetodelelang','Pengadaan\metode_lelang@storemetodelelang');
 
 
 
+Route::get ('/jadwallelangs','Pengadaan\jadwal_lelang@index');
+Route::post ('/storejadwallelangs','Pengadaan\jadwal_lelang@storejadwallelangs');
+Route::get ('/getrks','Pengadaan\jadwal_lelang@getrks');
+Route::get ('/indexeditjadwal','Pengadaan\jadwal_lelang@indexeditjadwal');
+Route::get ('/getrksjadwal','Pengadaan\jadwal_lelang@getrksjadwal');
+Route::get ('/editjadwallelangs','Pengadaan\jadwal_lelang@editjadwallelangs');
+Route::get ('/getdatajadwal','Pengadaan\jadwal_lelang@getdatajadwal');
+Route::put('/updatejadwallelang/{id_jadwal_lelang}','Pengadaan\jadwal_lelang@updatejadwallelang');
+Route::get ('/indexviewjadwal','Pengadaan\jadwal_lelang@indexviewjadwal');
+
+Route::get ('/indexpesertalelangs','Pengadaan\peserta_lelang@index');
+Route::get ('/getrabsmetode','Pengadaan\peserta_lelang@getrabsmetode');
+Route::get ('/getmetodes','Pengadaan\peserta_lelang@getmetodes');
+Route::post ('/storepesertalelang','Pengadaan\peserta_lelang@storepesertalelang');
+Route::get ('/indexeditpesertalelangs','Pengadaan\peserta_lelang@indexeditpesertalelangs');
+Route::get ('/getdatafulleditpesertalelang','Pengadaan\peserta_lelang@getdatafulleditpesertalelang');
+Route::get ('/getrabvendorsz','Pengadaan\peserta_lelang@getrabvendorsz');
+Route::put ('/editpesertalelang/{id_peserta_lelang}','Pengadaan\peserta_lelang@editpesertalelang');
+
+Route::get ('/buatkontraks','smentara\inputMA@index');
 
 
 Route::group(['prefix' => '/'], function()

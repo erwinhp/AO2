@@ -21,7 +21,6 @@ Bobot Pelaksanaan
 </div>
 
 <br>
-
 <!-- KODE BANYAK -->
  <input type="hidden" id="kodebanyak" name="CodeBanyak" value="">
  <!-- TANGGAL CEK -->
@@ -61,7 +60,7 @@ $('.bobot_datepicker').datepicker({
 $('.DDselect').select2({
   placeholder: 'Select an item',
   ajax: {
-    url: '/getnorab',
+    url: '/getnokontrakrab',
     dataType: 'json',
     delay: 250,
     processResults: function (data) {
@@ -69,7 +68,7 @@ $('.DDselect').select2({
         results:  $.map(data, function (item) {
               return {
 
-                  text: item.no_rab,
+                  text: item.no_kontrak,
                   id: item.no_rab,
               }
           })
@@ -96,7 +95,6 @@ $('.DDselect').on("select2:select", function(e) {
        },
     });
   }
-
 });
 
 
@@ -131,9 +129,9 @@ $('.DDselect').on("select2:select", function(e) {
         html +='<td>'+(count+1)+'</td>';
         html +='<td class="column_name" data-column_name="uraian" data-id="'+data[count].id_bobot+'">'+data[count].uraians+'</td>';
         html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_bobot+'">'+data[count].jumlah+'</td>';
-        html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_bobot+'">'+data[count].total_biaya+'</td>';
+        html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_bobot+'">'+data[count].total_harganego+'</td>';
         html +='<td  class="column_name" data-column_name="uraian" data-id="'+data[count].id_bobot+'">'+data[count].prosentase+'</td>';
-        html +='<td> <input type="text" class="form-control inputs" value="" data-id="'+data[count].id_bobot+'" data-uraian="'+data[count].uraian+'" data-jumlah="'+data[count].jumlah+'"  id="volumes" required> </td>';
+        html +='<td> <input type="text" class="form-control inputs" value="" data-id="'+data[count].id_bobot+'" data-uraian="'+data[count].uraian+'" data-jumlah="'+data[count].jumlah+'"data-harga="'+data[count].harga_nego+'"data-totalharga="'+data[count].total_harganego+'" id="volumes" required> </td>';
         html +='</tr>';
         }
         html +=' <button type="button" class="btn btn-success addabc" data-dismiss="modal" id="idadd"> <span class="glyphicon glyphicon-check "></span> Save </button>';
@@ -197,6 +195,8 @@ else {
         tanggal_cek : $("#tanggal_bobotfix").val(),
         kodebanyak : $("#kodebanyak").val(),
         no_rab : $("#rab_select").val(),
+        harga_nego: $(this).data("harga"),
+        total_harganego: $(this).data("totalharga"),
       });
     }
       else {
@@ -211,6 +211,8 @@ else {
               tanggal_cek : $("#tanggal_bobotfix").val(),
               kodebanyak : $("#kodebanyak").val(),
               no_rab : $("#rab_select").val(),
+              harga_nego: $(this).data("harga"),
+              total_harganego: $(this).data("totalharga"),
             });
             arraytemp[i]=arrtemp;
             arraytemp.splice(i, 1)
@@ -230,6 +232,8 @@ else {
               tanggal_cek : $("#tanggal_bobotfix").val(),
               kodebanyak : $("#kodebanyak").val(),
               no_rab : $("#rab_select").val(),
+              harga_nego: $(this).data("harga"),
+              total_harganego: $(this).data("totalharga"),
             });
             }
           }
@@ -249,10 +253,39 @@ else {
 console.log(arraytemp);
 });
 
+function storeprosentase()
+{
+  $.ajax({
+      type: 'POST',
+      url: '/chart_renpost',
+      Async:"False",
+      data: {
+        "_token": "<?php echo e(csrf_token()); ?>",
+        'tgl_progress':$('#tanggal_bobotfix').val(),
+        'jumlah_progress': prosentase,
+        'no_rab' : $('#rab_select').val(),
+        'jenis_chart' : "lak",
+      },
+      success:function(data)
+      {
+        prosentase=0;
+     },
+   });
+}
 
+var prosentase=0;
+function getprosentase()
+{
 
-
-
+  var sums=0;
+  var ttlharga=0;
+  for (i = 0; i < arraytemp.length; i++) {
+    sums=sums+(arraytemp[i].harga_nego*arraytemp[i].jumlah);
+    ttlharga=ttlharga+arraytemp[i].total_harganego;
+}
+  prosentase=(sums/ttlharga)*100;
+  console.log(prosentase);
+}
 
 // $(document).on('click', '#idad', function() {
 // alert('mouse up');
@@ -280,15 +313,20 @@ for (i = 0; i < arraytemp.length; i++) {
               'volume_spbj' : arraytemp[i].volume_spbj,
               'volume_cek' :arraytemp[i].jumlah,
               'uraian': arraytemp[i].uraian,
+              'harga_nego': arraytemp[i].harga_nego,
+              'total_harganego': arraytemp[i].total_harganego,
             },
             success:function(data)
             {
               sukaes=sukaes+1;
               if (sukaes==arraytemp.length)
               {
+                getprosentase();
+                storeprosentase();
                 alert("sukses input");
                 arraytemp=[];
                 $('#tablerab').html("");
+                $('#rab_select').val(null).trigger('change'),
                 $("#tanggal_bobot").val("");
                 $("#tanggal_bobot").focus;
               }

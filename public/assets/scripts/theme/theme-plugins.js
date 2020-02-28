@@ -2443,7 +2443,7 @@ return a.isFunction(i)&&(i=i(this.$element)),b.syncCssClasses(e,this.$element,g)
 
       if (options.value !== undefined && options.value !== null){
         options = [options];
-      } 
+      }
       $.each(options, function(index, option){
         if (option.value !== undefined && option.value !== null &&
             that.$element.find("option[value='"+option.value+"']").length === 0){
@@ -2556,7 +2556,7 @@ return a.isFunction(i)&&(i=i(this.$element)),b.syncCssClasses(e,this.$element,g)
       }
       if ($nextElem.length > 0){
         $nextElem.addClass('ms-hover');
-        var scrollTo = $list.scrollTop() + $nextElem.position().top - 
+        var scrollTo = $list.scrollTop() + $nextElem.position().top -
                        containerHeight / 2 + elemHeight / 2;
 
         $list.scrollTop(scrollTo);
@@ -3465,9 +3465,9 @@ return a.isFunction(i)&&(i=i(this.$element)),b.syncCssClasses(e,this.$element,g)
   });
 })(window.jQuery);
 
-/* ========================================================== 
- * 
- * bootstrap-maxlength.js v 1.6.0 
+/* ==========================================================
+ *
+ * bootstrap-maxlength.js v 1.6.0
  * Copyright 2015 Maurizio Napoleoni @mimonap
  * Licensed under MIT License
  * URL: https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE
@@ -3823,7 +3823,7 @@ Chart.defaultstooltipTitleFontSize= 12;
                 // after the maximum, don't display this range option at all.
                 if ((this.minDate && end.isBefore(this.minDate)) || (maxDate && start.isAfter(maxDate)))
                     continue;
-                
+
                 //Support unicode chars in the range names.
                 var elem = document.createElement('textarea');
                 elem.innerHTML = range;
@@ -4047,7 +4047,7 @@ Chart.defaultstooltipTitleFontSize= 12;
                 } else {
                     this.rightCalendar.month = this.startDate.clone().date(2).add(1, 'month');
                 }
-                
+
             } else {
                 if (this.leftCalendar.month.format('YYYY-MM') != this.startDate.format('YYYY-MM') && this.rightCalendar.month.format('YYYY-MM') != this.startDate.format('YYYY-MM')) {
                     this.leftCalendar.month = this.startDate.clone().date(2);
@@ -4676,7 +4676,7 @@ Chart.defaultstooltipTitleFontSize= 12;
                 this.container.find('input[name=daterangepicker_start]').val(dates[0].format(this.locale.format));
                 this.container.find('input[name=daterangepicker_end]').val(dates[1].format(this.locale.format));
             }
-            
+
         },
 
         clickRange: function(e) {
@@ -4807,7 +4807,7 @@ Chart.defaultstooltipTitleFontSize= 12;
                 this.endDate = null;
                 this.setStartDate(date.clone());
             } else if (!this.endDate && date.isBefore(this.startDate)) {
-                //special case: clicking the same date for start/end, 
+                //special case: clicking the same date for start/end,
                 //but the time of the end date is before the start date
                 this.setEndDate(this.startDate.clone());
             } else {
@@ -5029,7 +5029,7 @@ Chart.defaultstooltipTitleFontSize= 12;
         });
         return this;
     };
-    
+
     return DateRangePicker;
 
 }));
@@ -10540,7 +10540,7 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
  * easy-pie-chart
  * Lightweight plugin to render simple, animated and retina optimized pie charts
  *
- * @license 
+ * @license
  * @author Robert Fleischmann <rendro87@gmail.com> (http://robert-fleischmann.de)
  * @version 2.1.7
  **/
@@ -10560,10 +10560,10 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
 (function(undefined){
 
     'use strict';
-    
+
     var BehaveHooks = BehaveHooks || (function(){
 		var hooks = {};
-		
+
 		return {
 		    add: function(hookName, fn){
 			    if(typeof hookName == "object"){
@@ -10588,7 +10588,7 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
 		    	}
 		    }
 	    };
-	    
+
 	})(),
 	Behave = Behave || function (userOpts) {
 
@@ -10655,18 +10655,18 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
 
         },
         utils = {
-        	
+
         	_callHook: function(hookName, passData){
     			var hooks = BehaveHooks.get(hookName);
 	    		passData = typeof passData=="boolean" && passData === false ? false : true;
-	    		
+
 	    		if(hooks){
 			    	if(passData){
 				    	var theEditor = defaults.textarea,
 				    		textVal = theEditor.value,
 				    		caretPos = utils.cursor.get(),
 				    		i;
-				    	
+
 				    	for(i=0; i<hooks.length; i++){
 					    	hooks[i].call(undefined, {
 					    		editor: {
@@ -10690,11 +10690,11 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
 			    	}
 		    	}
 	    	},
-        	
+
             defineNewLine: function(){
                 var ta = document.createElement('textarea');
                 ta.value = "\n";
-                
+
                 if(ta.value.length==2){
                     newLine = "\r\n";
                 } else {
@@ -10702,13 +10702,13 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
                 }
             },
             defineTabSize: function(tabSize){
-                if(typeof defaults.textarea.style.OTabSize != "undefined"){ 
+                if(typeof defaults.textarea.style.OTabSize != "undefined"){
                     defaults.textarea.style.OTabSize = tabSize; return;
                 }
-                if(typeof defaults.textarea.style.MozTabSize != "undefined"){ 
+                if(typeof defaults.textarea.style.MozTabSize != "undefined"){
                     defaults.textarea.style.MozTabSize = tabSize; return;
                 }
-                if(typeof defaults.textarea.style.tabSize != "undefined"){ 
+                if(typeof defaults.textarea.style.tabSize != "undefined"){
                     defaults.textarea.style.tabSize = tabSize; return;
                 }
             },
@@ -10750,12 +10750,12 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
                 },
                 selection: function(){
                     var textAreaElement = defaults.textarea,
-                        start = 0, 
-                        end = 0, 
-                        normalizedValue, 
+                        start = 0,
+                        end = 0,
+                        normalizedValue,
                         range,
-                        textInputRange, 
-                        len, 
+                        textInputRange,
+                        len,
                         endRange;
 
                     if (typeof textAreaElement.selectionStart == "number" && typeof textAreaElement.selectionEnd == "number") {
@@ -10765,10 +10765,10 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
                         range = document.selection.createRange();
 
                         if (range && range.parentElement() == textAreaElement) {
-                            
+
                             normalizedValue = utils.editor.get();
                             len = normalizedValue.length;
-                            
+
                             textInputRange = textAreaElement.createTextRange();
                             textInputRange.moveToBookmark(range.getBookmark());
 
@@ -10873,7 +10873,7 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
                 }
 
                 var finalLevels = levels - toDecrement;
-                
+
                 return finalLevels >=0 ? finalLevels : 0;
             },
             deepExtend: function(destination, source) {
@@ -10902,7 +10902,7 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
 	                element.detachEvent("on"+eventName, func);
 	            }
 	        },
-	        
+
             preventDefaultEvent: function(e){
                 if(e.preventDefault){
                     e.preventDefault();
@@ -10918,16 +10918,16 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
 
                 if (e.keyCode == 9) {
                     utils.preventDefaultEvent(e);
-                    
+
                     var toReturn = true;
                     utils._callHook('tab:before');
-                    
+
                     var selection = utils.cursor.selection(),
                         pos = utils.cursor.get(),
                         val = utils.editor.get();
 
                     if(selection){
-                        
+
                         var tempStart = selection.start;
                         while(tempStart--){
                             if(val.charAt(tempStart)=="\n"){
@@ -10947,7 +10947,7 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
                                 }
                             }
                             toIndent = lines.join("\n");
-                            
+
                             utils.editor.set( val.substring(0,selection.start) + toIndent + val.substring(selection.end) );
                             utils.cursor.set(selection.start, selection.start+toIndent.length);
 
@@ -10989,7 +10989,7 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
 
                     utils.preventDefaultEvent(e);
                     utils._callHook('enter:before');
-                    
+
                     var pos = utils.cursor.get(),
                         val = utils.editor.get(),
                         left = val.substring(0, pos),
@@ -11015,7 +11015,7 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
                                 closingBreak = newLine;
                             }
                         }
-                        
+
                     }
 
                     var edited = left + newLine + ourIndent + closingBreak + (ourIndent.substring(0, ourIndent.length-tab.length) ) + right;
@@ -11027,12 +11027,12 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
             deleteKey: function (e) {
 
 	            if(!utils.fenceRange()){ return; }
-	
+
 	            if(e.keyCode == 8){
 	            	utils.preventDefaultEvent(e);
-	                            
+
 	            	utils._callHook('delete:before');
-	            	
+
 	            	var pos = utils.cursor.get(),
 	                    val = utils.editor.get(),
 	                    left = val.substring(0, pos),
@@ -11040,7 +11040,7 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
 	                    leftChar = left.charAt(left.length - 1),
 	                    rightChar = right.charAt(0),
 	                    i;
-	            	
+
 	                if( utils.cursor.selection() === false ){
 	                    for(i=0; i<charSettings.keyMap.length; i++) {
 	                        if (charSettings.keyMap[i].open == leftChar && charSettings.keyMap[i].close == rightChar) {
@@ -11059,9 +11059,9 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
 	                    utils.editor.set(edited);
 	                    utils.cursor.set(pos);
 	                }
-	                
+
 	                utils._callHook('delete:after');
-	                
+
 	            }
 	        }
         },
@@ -11099,7 +11099,7 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
                 if(!utils.fenceRange()){ return; }
 
                 var theCode = e.which || e.keyCode;
-                
+
                 if(theCode == 39 || theCode == 40 && e.which===0){ return; }
 
                 var _char = String.fromCharCode(theCode),
@@ -11125,7 +11125,7 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
                 if(defaults.autoStrip){ utils.addEvent(defaults.textarea, 'keydown', intercept.deleteKey); }
 
                 utils.addEvent(defaults.textarea, 'keypress', action.filter);
-                
+
                 utils.addEvent(defaults.textarea, 'keydown', function(){ utils._callHook('keydown'); });
                 utils.addEvent(defaults.textarea, 'keyup', function(){ utils._callHook('keyup'); });
             }
@@ -11172,8 +11172,8 @@ searchText:this.searchText,sortName:this.options.sortName,sortOrder:this.options
     }
 
     if (typeof define === "function" && define.amd) {
-        define("behave", [], function () { 
-            return Behave; 
+        define("behave", [], function () {
+            return Behave;
         });
     }
 
@@ -12807,7 +12807,7 @@ function merge_text_nodes( jsonml ) {
  */
 
 var toMarkdown = function(string) {
-  
+
   var ELEMENTS = [
     {
       patterns: 'p',
@@ -12872,7 +12872,7 @@ var toMarkdown = function(string) {
       }
     }
   ];
-  
+
   for(var i = 0, len = ELEMENTS.length; i < len; i++) {
     if(typeof ELEMENTS[i].patterns === 'string') {
       string = replaceEls(string, { tag: ELEMENTS[i].patterns, replacement: ELEMENTS[i].replacement, type:  ELEMENTS[i].type });
@@ -12883,7 +12883,7 @@ var toMarkdown = function(string) {
       }
     }
   }
-  
+
   function replaceEls(html, elProperties) {
     var pattern = elProperties.type === 'void' ? '<' + elProperties.tag + '\\b([^>]*)\\/?>' : '<' + elProperties.tag + '\\b([^>]*)>([\\s\\S]*?)<\\/' + elProperties.tag + '>',
         regex = new RegExp(pattern, 'gi'),
@@ -12898,26 +12898,26 @@ var toMarkdown = function(string) {
     }
     return markdown;
   }
-  
+
   function attrRegExp(attr) {
     return new RegExp(attr + '\\s*=\\s*["\']?([^"\']*)["\']?', 'i');
   }
-  
+
   // Pre code blocks
-  
+
   string = string.replace(/<pre\b[^>]*>`([\s\S]*)`<\/pre>/gi, function(str, innerHTML) {
     innerHTML = innerHTML.replace(/^\t+/g, '  '); // convert tabs to spaces (you know it makes sense)
     innerHTML = innerHTML.replace(/\n/g, '\n    ');
     return '\n\n    ' + innerHTML + '\n';
   });
-  
+
   // Lists
 
   // Escape numbers that could trigger an ol
   // If there are more than three spaces before the code, it would be in a pre tag
   // Make sure we are escaping the period not matching any character
   string = string.replace(/^(\s{0,3}\d+)\. /g, '$1\\. ');
-  
+
   // Converts lists that have no child lists (of same type) first, then works it's way up
   var noChildrenRegex = /<(ul|ol)\b[^>]*>(?:(?!<ul|<ol)[\s\S])*?<\/\1>/gi;
   while(string.match(noChildrenRegex)) {
@@ -12925,18 +12925,18 @@ var toMarkdown = function(string) {
       return replaceLists(str);
     });
   }
-  
+
   function replaceLists(html) {
-    
+
     html = html.replace(/<(ul|ol)\b[^>]*>([\s\S]*?)<\/\1>/gi, function(str, listType, innerHTML) {
       var lis = innerHTML.split('</li>');
       lis.splice(lis.length - 1, 1);
-      
+
       for(i = 0, len = lis.length; i < len; i++) {
         if(lis[i]) {
           var prefix = (listType === 'ol') ? (i + 1) + ".  " : "*   ";
           lis[i] = lis[i].replace(/\s*<li[^>]*>([\s\S]*)/i, function(str, innerHTML) {
-            
+
             innerHTML = innerHTML.replace(/^\s+/, '');
             innerHTML = innerHTML.replace(/\n\n/g, '\n\n    ');
             // indent nested lists
@@ -12949,7 +12949,7 @@ var toMarkdown = function(string) {
     });
     return '\n\n' + html.replace(/[ \t]+\n|\s+$/g, '');
   }
-  
+
   // Blockquotes
   var deepest = /<blockquote\b[^>]*>((?:(?!<blockquote)[\s\S])*?)<\/blockquote>/gi;
   while(string.match(deepest)) {
@@ -12957,7 +12957,7 @@ var toMarkdown = function(string) {
       return replaceBlockquotes(str);
     });
   }
-  
+
   function replaceBlockquotes(html) {
     html = html.replace(/<blockquote\b[^>]*>([\s\S]*?)<\/blockquote>/gi, function(str, inner) {
       inner = inner.replace(/^\s+|\s+$/g, '');
@@ -12968,14 +12968,14 @@ var toMarkdown = function(string) {
     });
     return html;
   }
-  
+
   function cleanUp(string) {
     string = string.replace(/^[\t\r\n]+|[\t\r\n]+$/g, ''); // trim leading/trailing whitespace
     string = string.replace(/\n\s+\n/g, '\n\n');
     string = string.replace(/\n{3,}/g, '\n\n'); // limit consecutive linebreaks to 2
     return string;
   }
-  
+
   return cleanUp(string);
 };
 
@@ -13011,8 +13011,8 @@ if (typeof exports === 'object') {
   var Markdown = function (element, options) {
     // @TODO : remove this BC on next major release
     // @see : https://github.com/toopay/bootstrap-markdown/issues/109
-    var opts = ['autofocus', 'savable', 'hideable', 'width', 
-      'height', 'resize', 'iconlibrary', 'language', 
+    var opts = ['autofocus', 'savable', 'hideable', 'width',
+      'height', 'resize', 'iconlibrary', 'language',
       'footer', 'fullscreen', 'hiddenButtons', 'disabledButtons'];
     $.each(opts,function(_, opt){
       if (typeof $(element).data(opt) !== 'undefined') {
@@ -13254,7 +13254,7 @@ if (typeof exports === 'object') {
         if (options.additionalButtons.length > 0) {
           // iterate the additional button groups
           $.each(options.additionalButtons[0], function(idx, buttonGroup){
-            
+
             // see if the group name of the addional group matches an existing group
             var matchingGroups = $.grep(allBtnGroups, function(allButtonGroup, allIdx){
               return allButtonGroup.name === buttonGroup.name;
@@ -13263,12 +13263,12 @@ if (typeof exports === 'object') {
             // if it matches add the addional buttons to that group, if not just add it to the all buttons group
             if(matchingGroups.length > 0) {
               matchingGroups[0].data = matchingGroups[0].data.concat(buttonGroup.data);
-            } else {              
+            } else {
               allBtnGroups.push(options.additionalButtons[0][idx]);
             }
 
           });
-        } 
+        }
 
         // Reduce and/or reorder the button groups
         if (options.reorderButtonGroups.length > 0) {
@@ -13492,7 +13492,7 @@ if (typeof exports === 'object') {
         // @see https://github.com/toopay/bootstrap-markdown/issues/170
         return this;
       }
-      
+
       // Give flag that tell the editor enter preview mode
       this.$isPreview = true;
       // Disable all buttons
@@ -13884,7 +13884,7 @@ if (typeof exports === 'object') {
       setTimeout(function(){
         text.bind("scroll",$.proxy(_this.textscroll,_this));
       },100)
-    }  
+    }
   , select: function (e) {
       this.$options.onSelect(this);
       return this;
@@ -14768,7 +14768,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 	};
 
 	// IE9 throws an 'unknown error' if document.activeElement is used
-	// inside an iframe or frame. 
+	// inside an iframe or frame.
 	var activeEl;
 
 	try {
@@ -15240,7 +15240,7 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
           that.$button
             .addClass('bs-invalid')
             .focus();
-          
+
           that.$element.on({
             'focus.bs.select': function () {
               that.$button.focus();
@@ -15257,7 +15257,7 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
               that.$element.off('rendered.bs.select');
             }
           });
-          
+
         });
       }
 
@@ -15894,12 +15894,12 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
     },
 
     tabIndex: function () {
-      if (this.$element.data('tabindex') !== this.$element.attr('tabindex') && 
+      if (this.$element.data('tabindex') !== this.$element.attr('tabindex') &&
         (this.$element.attr('tabindex') !== -98 && this.$element.attr('tabindex') !== '-98')) {
         this.$element.data('tabindex', this.$element.attr('tabindex'));
         this.$button.attr('tabindex', this.$element.data('tabindex'));
       }
-      
+
       this.$element.attr('tabindex', -98);
     },
 
@@ -16225,7 +16225,7 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
 
     toggle: function (e) {
       e = e || window.event;
-      
+
       if (e) e.stopPropagation();
 
       this.$button.trigger('click');
@@ -16784,7 +16784,7 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
     AsColor.prototype = {
         constructor: AsColor,
         init: function(string) {
-            this.format(this.options.format);         
+            this.format(this.options.format);
             this.fromString(string);
         },
         isValid: function() {

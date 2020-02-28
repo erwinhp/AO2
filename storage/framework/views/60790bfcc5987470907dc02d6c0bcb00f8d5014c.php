@@ -122,7 +122,7 @@ Penawaran RAB
                  <div class="form-group">
                      <label class="col-sm-2 control-label">Volume</label>
                      <div class="col-sm-12">
-                         <input type="jumlah" class="form-control" id="volumesz" name="volumesz" placeholder="" value="Masukan Jumlah" required="">
+                         <input type="jumlah" class="form-control" id="volumesz" name="volumesz" placeholder="Masukan Jumlah" value="" required="">
                      </div>
                  </div>
 
@@ -155,7 +155,7 @@ Penawaran RAB
 //     format: 'mm/dd/yyyy',
 //     startDate: '-3d'
 // });
-
+var arraytemp=[];
 $(document).ready( function () {
   $.ajax({
       type: 'GET',
@@ -179,7 +179,7 @@ $(document).ready( function () {
 
 
 
-var arraytemp=[];
+
 $('.bobot_datepicker').datepicker({
 });
 
@@ -228,26 +228,28 @@ $('.DDselectvendors').on("select2:select", function(e) {
 $('#namavendor').val($('#vendors').val());
 });
 
-//tablenya
-$('.DDselect').on("select2:select", function(e) {
+
+
+function fetchmadude()
+{
   var getrab = document.getElementById("rab_select").value;
-  // var arraytemp = [];
   $.ajax({
       type: 'GET',
-      url: '/getdatarab',
+      url: '/getmaterialpenawaran',
       data:{'getrab': getrab},
       success:function(data)
       {
         html='';
-
+        // console.log(data);
         idsz=$('#maxids').val();
         for(var count=0; count < data.length; count++)
         {
           idsz=idsz+1;
           //ARRAY PUSH Here
           arraytemp.push({
-            id_detilrab : idsz,
+            id_detilrab : data[count].id_detilrab,
           uraian: data[count].uraian,
+          uraians: data[count].uraians,
           jumlah: data[count].jumlah,
           no_rab : data[count].no_rab,
           nama_uraian : data[count].nama_uraian,
@@ -274,9 +276,39 @@ $('.DDselect').on("select2:select", function(e) {
         html +='</form>';
         // console.log(html);
         $('#tablerab').html(html);
-        console.log(arraytemp);
+        // console.log(arraytemp);
      },
   });
+}
+
+
+function fetcharraymadude()
+{
+html='';
+for(var count=0; count < arraytemp.length; count++)
+{
+html +='<form class="form-horizontal" role="form" method="post" action="/storebobot">'
+html +='<tr>';
+html +='<td>'+(count+1)+'</td>';
+html +='<td class="column_name" data-column_name="uraian" data-id="'+arraytemp[count].id_detilrab+'">'+arraytemp[count].uraians+'</td>';
+html +='<td  class="column_name" data-column_name="uraian" data-id="'+arraytemp[count].id_detilrab+'">'+arraytemp[count].jumlah+'</td>';
+html +='<td  class="column_name" data-column_name="uraian" data-id="'+arraytemp[count].id_detilrab+'">'+arraytemp[count].harga_satuan+'</td>';
+html +='<td  class="column_name" data-column_name="uraian" data-id="'+arraytemp[count].id_detilrab+'">'+arraytemp[count].total_biaya+'</td>';
+html +='<td><button class="edit-modal btn btn-info" id="editbutton" data-id="'+arraytemp[count].id_detilrab+'"  data-uraian="'+arraytemp[count].uraians+'"  data-jumlah="'+arraytemp[count].jumlah+'"><span class="glyphicon glyphicon-trash">Edit</span></button></td>';
+html +='</tr>';
+}
+html +=' <button type="button" class="btn btn-success addabc" data-dismiss="modal" id="idadd"> <span class="glyphicon glyphicon-check "></span> Save </button>';
+html +='</form>';
+// console.log(html);
+$('#tablerab').html(html);
+}
+
+
+
+//tablenya
+$('.DDselect').on("select2:select", function(e) {
+arraytemp=[];
+fetchmadude()
 });
 
 //kalkulasi kalkulasi kalkulasi
@@ -294,30 +326,40 @@ $("#totalsz").val(total);
 //open the modal
 $(document).on('click', '.edit-modal', function() {
      $('#uraiansz').val($(this).data("uraian"));
-     $('#jumlahszsz').val($(this).data("jumlah"));
+     $('#volumesz').val($(this).data("jumlah"));
+      $('#harga_satuansz').val("");
      id = $(this).data("id");
+     // console.log(id);
     $('#editModal').appendTo("body").modal('show');
 });
 
 
 $(document).on('click', '#edito', function() {
+  // console.log(arraytemp);
   if($("#harga_satuansz").val()=="")
   {
     alert("mohon isi harga satuan");
   }
   else {
+
     for(var count=0; count < arraytemp.length; count++)
     {
       if(id==arraytemp[count].id_detilrab)
       {
-          arraytemp[count].jumlah=$('#volumesz').val();
-        arraytemp[count].harga_nego=$('#harga_satuansz').val();
-        arraytemp[count].total_harganego=$('#totalsz').val();
+        arraytemp[count].jumlah=$('#volumesz').val();
+        arraytemp[count].harga_satuan=$('#harga_satuansz').val();
+        arraytemp[count].total_biaya=$('#totalsz').val();
       }
     }
-    console.log(arraytemp);
-  }
+    // console.log(arraytemp);
+    fetcharraymadude();
+    $('#uraiansz').val("");
+    $('#volumesz').val("");
+    $('#harga_satuansz').val("");
+    $('#totalsz').val("");
 
+
+  }
 });
 // $(document).on('click', '#idad', function() {
 // alert('mouse up');

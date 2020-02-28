@@ -1,15 +1,15 @@
 @extends('layouts.indexNVM')
 @section('header')
-Input Monitor Anggaran
+Input Kontrak
 @endsection
 @section('content')
 <form class="form-horizontal" role="form" method="post" action="/cmrab">
   @csrf
 <?php
-
+//CONTROLLERNY DI INPUTMA.PHP
 ?>
 <!-- <a href="#" class="add-modal"><li>Tambah PRK</li></a> -->
-<a href="/inputPRK" class=""><li>Tambah PRK</li></a>
+<!-- <a href="/inputPRK" class=""><li>Tambah PRK</li></a> -->
 <!-- <a href="#" class="add-modaladendum"><li>Tambah Adendum</li></a> -->
 <br>
 <div class="modal" id="addModal" aria-hidden="true">
@@ -175,6 +175,13 @@ Input Monitor Anggaran
         </div>
 
 
+        <div class="form-group row">
+          <label class="col-sm-3 form-control-label">Nomor RAB</label>
+          <div class="col-sm-9">
+                <select class="DDrabs" style="width:440px;" name="itemName" id="DDrab"></select>
+            </div>
+        </div>
+
         <div class="line"></div>
         <div class="form-group row">
           <label class="col-sm-3 form-control-label">No SKK</label>
@@ -188,7 +195,7 @@ Input Monitor Anggaran
         <div class="form-group row">
           <label class="col-sm-3 form-control-label">Pekerjaan</label>
           <div class="col-sm-9">
-            <input type="text" placeholder="pekerjaan" class="form-control" name="pekerjaan" id="pekerjaan" value="{{ old('pekerjaan') }}">
+            <input type="text" placeholder="pekerjaan" class="form-control" name="pekerjaan" id="pekerjaan" value="{{ old('pekerjaan') }}" disabled>
             <!-- yg value= gak harus -->
           </div>
         </div>
@@ -246,20 +253,13 @@ Input Monitor Anggaran
 
 
         <div class="line"></div>
-        <!-- <div class="form-group row">
-          <label class="col-sm-3 form-control-label">Vendor</label>
+        <div class="form-group row">
+          <label class="col-sm-3 form-control-label">Nama Vendor</label>
           <div class="col-sm-9">
-            <input type="text" placeholder="Vendor" class="form-control" name="vendor" id="vendor"  value="{{ old('vendor') }}">
+            <select class="DDselectvendor" style="width:440px;" name="itemName" id="vendor"></select>
+            <!-- yg value= gak harus -->
           </div>
-        </div> -->
-
-        <div class="row m-b-3">
-             <div class="form-group col-sm-3">
-               <h4 class="demo-sub-title">Nama Vendor</h4>
-               <select class="DDselectvendor" style="width:440px;" name="itemName" id="nama_vendor"></select>
-                    <!-- yg value= gak harus -->
-             </div>
-           </div>
+        </div>
 
 
         <div class="line"></div>
@@ -285,65 +285,10 @@ Input Monitor Anggaran
         <div class="form-group row">
           <label class="col-sm-3 form-control-label">Total Kontrak</label>
           <div class="col-sm-9">
-            <input type="text" placeholder="Total Kontrak" class="form-control" name="total_kontrak" id="total_kontrak"  value="{{ old('total_kontrak') }}">
+            <input type="text" placeholder="Total Kontrak" class="form-control" name="total_kontrak" id="total_kontrak"  value="{{ old('total_kontrak') }}" disabled>
             <!-- yg value= gak harus -->
           </div>
         </div>
-
-        <div class="line"></div>
-        <div class="form-group row">
-          <label class="col-sm-3 form-control-label">Material Bayar</label>
-          <div class="col-sm-9">
-            <input type="text" placeholder="Material Bayar" class="form-control" id="material_bayar" name="material_bayar"  value="{{ old('material_bayar') }}">
-            <!-- yg value= gak harus -->
-          </div>
-        </div>
-
-        <div class="line"></div>
-        <div class="form-group row">
-          <label class="col-sm-3 form-control-label">Jasa Bayar</label>
-          <div class="col-sm-9">
-            <input type="text" placeholder="Jasa Bayar" class="form-control" name="jasa_bayar" id="jasa_bayar"  value="{{ old('jasa_bayar') }}">
-            <!-- yg value= gak harus -->
-          </div>
-        </div>
-
-        <div class="line"></div>
-        <div class="form-group row">
-          <label class="col-sm-3 form-control-label">Total Bayar</label>
-          <div class="col-sm-9">
-            <input type="text" placeholder="Total Bayar" class="form-control" name="total_bayar" id="total_bayar"  value="{{ old('total_bayar') }}">
-            <!-- yg value= gak harus -->
-          </div>
-        </div>
-
-
-        <div class="line"></div>
-        <div class="form-group row">
-          <label class="col-sm-3 form-control-label">Aktif BASTP</label>
-          <div class="col-sm-9">
-            <select  class="form-control mb-3" name="aktif_bastp" id="aktif_bastp"  value="{{ old('aktif_bastp') }}">
-              <option>Pilih</option>
-              <option value="YES">YES (BASTP sudah ada)</option>
-              <option value="NO">NO (BASTP belum ada)</option>
-            </select>
-          </div>
-        </div>
-
-<!-- validasi jika bastp no tidak bisa tidak boleh aktif bayar yes -->
-        <div class="line"></div>
-        <div class="form-group row">
-          <label class="col-sm-3 form-control-label">Aktif Bayar</label>
-          <div class="col-sm-9">
-            <select  class="form-control mb-3" name="aktif_byr" id="aktif_byr"  value="{{ old('aktif_byr') }}">
-              <option>Pilih</option>
-              <option value="YES">YES (Sudah dibayar)</option>
-              <option value="NO">NO (Belum Dibayar)</option>
-            </select>
-          </div>
-        </div>
-
-
 
 
 <!-- <input type="hidden" id="custId" name="custId" value="3487"> -->
@@ -376,11 +321,80 @@ Input Monitor Anggaran
 //     format: 'mm/dd/yyyy',
 //     startDate: '-3d'
 // });
+$("#jasa_kontrak").keyup(function(e) {
+  var totals = +$('#jasa_kontrak').val()+ +$('#material_kontrak').val()
+  $('#total_kontrak').val(totals);
+});
+
+$("#material_kontrak").keyup(function(e) {
+var totals = +$('#jasa_kontrak').val()+ +$('#material_kontrak').val()
+$('#total_kontrak').val(totals);
+});
+
 $(document).ready( function () {
   $('#tanggal_now').val($.datepicker.formatDate('yy-mm-dd', new Date()));
 
 });
 
+$('.DDselectvendor').select2({
+  placeholder: 'Select an item',
+  ajax: {
+    url: '/getvendor',
+    dataType: 'json',
+    delay: 250,
+    processResults: function (data) {
+      return {
+        results:  $.map(data, function (item) {
+              return {
+
+                  text: item.nama_perusahaan,
+                  id: item.id_vendor,
+              }
+          })
+      };
+    },
+    cache: true
+  }
+
+});
+$('.DDrabs').select2({
+  placeholder: 'Select an item',
+  ajax: {
+    url: '/getnorab',
+    dataType: 'json',
+    delay: 250,
+    processResults: function (data) {
+      return {
+        results:  $.map(data, function (item) {
+              return {
+
+                  text: item.no_rab,
+                  id: item.no_rab,
+              }
+          })
+      };
+    },
+    cache: true
+  }
+
+});
+
+
+$('.DDrabs').on("select2:select", function(e) {
+
+    var getrab = document.getElementById("DDrab").value;
+    // console.log(getrab);
+    $.ajax({
+        type: 'GET',
+        url: '/getpekerjaan',
+        data:{'getrab': getrab},
+        success:function(data)
+        {
+          // console.log(data);
+          $('#pekerjaan').val(data[0].judul);
+        },
+    });
+});
 
 
 
@@ -514,9 +528,14 @@ $(document).on('click', '.add-modal', function() {
                     'total_bayar': $('#total_bayar').val(),
                     'aktif_bastp': $('#aktif_bastp').val(),
                     'aktif_byr': $('#aktif_byr').val(),
+                    'no_rab': $('#DDrab').val(),
+
                   },
                   success:function(data)
                   {
+                              $('#DDprk').val(null).trigger('change'),
+                              $('#vendor').val(null).trigger('change'),
+                              $('#DDrab').val(null).trigger('change'),
                     $('#no_kontrak').val(""),
                     $('#DDprk').val(""),
                     $('#no_skk').val(""),

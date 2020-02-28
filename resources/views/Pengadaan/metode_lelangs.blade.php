@@ -24,7 +24,7 @@ Input Monitor Anggaran
         </div>
 
         <div class="form-group row">
-          <label class="col-sm-3 form-control-label">No RKS</label>
+          <label class="col-sm-3 form-control-label">No RAB</label>
         <div class="col-sm-9">
             <select class="DDselect" style="width:440px;" name="itemName" id="rab_select"></select>
         </div>
@@ -45,11 +45,11 @@ Input Monitor Anggaran
           <div class="col-sm-9">
             <select class="form-control" id="metode">
               <option value="">Pilih Metode</option>
-              <option value="belilangsung">Beli Langsung</option>
-              <option value="tunjuklangsung">Tunjuk Langsung</option>
+              <option value="belilangsung">Pembelian Langsung</option>
+              <option value="tunjuklangsung">Penunjukan Langsung</option>
+              <option value="lelangterbatas">Pelelangan Terbatas</option>
+              <option value="lelangterbuka">Pelelangan Terbuka</option>
               <option value="spbj">SPBJ</option>
-              <option value="lelangterbatas">Lelang Terbatas</option>
-              <option value="lelangterbuka">Lelang Terbuka</option>
             </select>
           </div>
         </div>
@@ -95,7 +95,7 @@ Input Monitor Anggaran
       //INI ADD Kontrak
       $('.addkontrak').on('click', '#addkont', function() {
         // alert('madude');
-        if(($('#no_rks').val()=="")||(document.getElementById("rab_select").value=="")||($('#nama_pekerjaan').val()=="")||(document.getElementById("metode").value==""))
+        if(($('#nama_pekerjaan').val()=="")||(document.getElementById("metode").value==""))
         {
           alert('lengkapi semua data');
           $('#no_rks').val();

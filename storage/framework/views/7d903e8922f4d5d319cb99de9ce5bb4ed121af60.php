@@ -1,8 +1,7 @@
-@extends('layouts.indexNVM')
-@section('header')
+<?php $__env->startSection('header'); ?>
 Chart Perencanaan
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <!-- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js" type="text/javascript"></script>
 <div class="text-right">
@@ -365,7 +364,7 @@ function postchart()
       url: '/chart_renpost',
       Async:"False",
       data: {
-        "_token": "{{ csrf_token() }}",
+        "_token": "<?php echo e(csrf_token()); ?>",
         // '_token': $('input[name=_token]').val(),
         'tgl_progress': $('#tanggal_awlfix').val(),
         'jumlah_progress': $('#ren_progress').val(),
@@ -440,4 +439,6 @@ chartszdfjfj();
 
 
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.indexNVM', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\git\AO2\resources\views/Konstruksi/chartrenindex.blade.php ENDPATH**/ ?>

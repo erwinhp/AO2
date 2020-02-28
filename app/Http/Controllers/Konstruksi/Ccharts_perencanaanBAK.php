@@ -36,29 +36,19 @@ class Ccharts_perencanaan extends Controller
       foreach ($norab as $key => $value) {
         if($sum==0)
         {
-
+        array_push($sums, ['label' => $value->tgl_progress, 'y' => $value->jumlah_progress]);
         $sum=$sum+$value->jumlah_progress;
-        array_push($sums, $sum);
         }
         else {
           $sum=$sum+$value->jumlah_progress;
-          array_push($sums, $sum);
+          array_push($sums, ['label' => $value->tgl_progress, 'y' =>$sum]);
         }
       }
       // dd($sums);
       return response()->json($sums);
       }
 
-      public function gettglsperencanaans(Request $request)
-      {
-        $norab=DB::select('select tgl_progress FROM chart_perencanaan where no_rab=:a and jenis_chart="ren"',['a'=>$request->getrab]);
-        $tglperencanaanschart=[];
-        foreach ($norab as $key => $value) {
-          array_push($tglperencanaanschart, $value->tgl_progress);
-        }
-        // dd($sums);
-        return response()->json($tglperencanaanschart);
-        }
+
 
 
       public function getsum(Request $request)
@@ -92,5 +82,10 @@ class Ccharts_perencanaan extends Controller
             return response()->json($norab);
             }
 
+            // public function getkontraks rab_kon(Request $request)
+            // {
+            //   $norab=DB::select('select id_chartren, no_rab, tgl_progress, jumlah_progress FROM chart_perencanaan where no_rab=:a',['a'=>$request->getrab]);
+            //   return response()->json($norab);
+            //   }
 
 }
