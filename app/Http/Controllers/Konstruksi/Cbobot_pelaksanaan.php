@@ -75,6 +75,7 @@ public function storebobot(Request $request)
       $adendum->kodebanyak = $request->kodebanyak;
       $adendum->harga_nego = $request->harga_nego;
       $adendum->total_harganego = $request->total_harganego;
+      $adendum->adendum_ke = $request->adendum_ke;
       $adendum->save();
 }
 
@@ -87,8 +88,20 @@ public function storebobot(Request $request)
 select i.no_rab,i.id_detilrab,(SELECT o.uraian_matkhs FROM mat_khs o WHERE o.kode_matkhs=i.uraian) as uraians,i.uraian,i.jumlah, i.total_harganego, i.harga_nego, i.kontrak, i.spbj, i.material_PLN, i.satuan, i.nama_uraian,
 (select (i.total_harganego/(sum(j.total_harganego)))*100 from rab_penawaran j WHERE j.no_rab=i.no_rab) as prosentase
 FROM rab_penawaran i where i.no_rab=:a and i.total_harganego != 0',['a'=>$request->getrab]);
+
+$norab1=DB::select('
+select i.no_rab,i.id_adendum,(SELECT o.uraian_matkhs FROM mat_khs o WHERE o.kode_matkhs=i.uraian) as uraians,i.uraian,i.adendum_ke,i.jumlah, i.total_harganego, i.harga_nego, i.no_kontrak, i.spbj, i.material_PLN, i.satuan, i.nama_uraian,
+(select (i.total_harganego/(sum(j.total_harganego)))*100 from adendum j WHERE j.no_rab=i.no_rab) as prosentase
+FROM adendum i where i.no_rab=:a and i.total_harganego != 0',['a'=>$request->getrab]);
+
+if($norab1===NULL)
+{
   return response()->json($norab);
 }
+else {
+  return response()->json($norab1);
+}
+  }
 }
 
 public function getmaterialpenawaran(Request $request)

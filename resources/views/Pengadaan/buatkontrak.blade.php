@@ -158,6 +158,9 @@ Input Kontrak
 
       <form class="form-horizontal">
 
+
+
+
         <div class="form-group row">
           <label class="col-sm-3 form-control-label">Nomor Kontrak</label>
           <div class="col-sm-9">
@@ -168,19 +171,21 @@ Input Kontrak
 
 
         <div class="form-group row">
-          <label class="col-sm-3 form-control-label">Nomor PRK</label>
-          <div class="col-sm-9">
-                <select class="DDprks" style="width:440px;" name="itemName" id="DDprk"></select>
-            </div>
-        </div>
-
-
-        <div class="form-group row">
           <label class="col-sm-3 form-control-label">Nomor RAB</label>
           <div class="col-sm-9">
                 <select class="DDrabs" style="width:440px;" name="itemName" id="DDrab"></select>
             </div>
         </div>
+
+        <div class="form-group row">
+          <label class="col-sm-3 form-control-label">Nomor PRK</label>
+          <div class="col-sm-9">
+            <input type="text" placeholder="No PRK" class="form-control" name="no_prk" id="prkszs" value="{{ old('pekerjaan') }}" disabled>
+                <!-- <select class="DDprks" style="width:440px;" name="itemName" id="DDprk"></select> -->
+            </div>
+        </div>
+
+
 
         <div class="line"></div>
         <div class="form-group row">
@@ -203,7 +208,7 @@ Input Kontrak
 
         <div class="line"></div>
         <div class="form-group row">
-          <label class="col-sm-3 form-control-label">Tanggal SPBJ</label>
+          <label class="col-sm-3 form-control-label">Tanggal Awal</label>
           <div class="col-sm-9">
         <div class="input-group date" data-provide="datepicker" style="width:40%">
             <input type="text" class="form-control bobot_datepicker" id="tanggal_spbj" >
@@ -219,7 +224,7 @@ Input Kontrak
         <div class="line"></div>
 
         <div class="form-group row">
-          <label class="col-sm-3 form-control-label">Tanggal Akhir SPBJ</label>
+          <label class="col-sm-3 form-control-label">Tanggal Akhir</label>
           <div class="col-sm-9">
         <div class="input-group date" data-provide="datepicker" style="width:40%">
             <input type="text" class="form-control bobot_datepicker1" id="tanggal_akhir">
@@ -240,16 +245,6 @@ Input Kontrak
         </div>
 
         <div class="line"></div>
-        <div class="form-group row">
-          <label class="col-sm-3 form-control-label">Aktif SPBJ</label>
-          <div class="col-sm-9">
-            <select  class="form-control mb-3" name="aktif_spbj" id="aktif_spbj"  value="{{ old('aktif_spbj') }}">
-              <option>Option</option>
-              <option value="YES">YES</option>
-              <option value="NO">NO</option>
-            </select>
-          </div>
-        </div>
 
 
         <div class="line"></div>
@@ -280,16 +275,47 @@ Input Kontrak
             <!-- yg value= gak harus -->
           </div>
         </div>
-
+        @csrf
         <div class="line"></div>
         <div class="form-group row">
-          <label class="col-sm-3 form-control-label">Total Kontrak</label>
+          <label class="col-sm-3 form-control-label">Nomor Jaminan Pelaksanaan</label>
           <div class="col-sm-9">
-            <input type="text" placeholder="Total Kontrak" class="form-control" name="total_kontrak" id="total_kontrak"  value="{{ old('total_kontrak') }}" disabled>
+            <input type="text" placeholder="Nomor Jaminan Pelaksanaan" class="form-control" name="no_lak" id="no_lak"  value="{{ old('total_kontrak') }}" >
             <!-- yg value= gak harus -->
           </div>
         </div>
 
+        <div class="line"></div>
+        <div class="form-group row">
+          <label class="col-sm-3 form-control-label">Tanggal Jaminan Pelaksanaan</label>
+          <div class="col-sm-9">
+        <div class="input-group date" data-provide="datepicker" style="width:40%">
+            <input type="text" class="form-control bobot_datepicker1" id="tanggal_jamlak">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+        <div class="line"></div>
+        <div class="form-group row">
+          <label class="col-sm-3 form-control-label">Nilai Jaminan Pelaksanaan</label>
+          <div class="col-sm-9">
+            <input type="text" placeholder="Nilai Jaminan Pelaksanaan" class="form-control" name="nilai_lak" id="nilai_lak"  value="{{ old('total_kontrak') }}" >
+            <!-- yg value= gak harus -->
+          </div>
+        </div>
+
+        <div class="line"></div>
+        <div class="form-group row">
+          <label class="col-sm-3 form-control-label">Penerbit Jaminan Pelaksanaan</label>
+          <div class="col-sm-9">
+            <input type="text" placeholder="Penerbit Jaminan Pelaksanaan" class="form-control" name="penerbit_lak" id="penerbit_lak"  value="{{ old('total_kontrak') }}" >
+            <!-- yg value= gak harus -->
+          </div>
+        </div>
 
 <!-- <input type="hidden" id="custId" name="custId" value="3487"> -->
 
@@ -321,6 +347,8 @@ Input Kontrak
 //     format: 'mm/dd/yyyy',
 //     startDate: '-3d'
 // });
+var tanggalfixjamlak = "";
+
 $("#jasa_kontrak").keyup(function(e) {
   var totals = +$('#jasa_kontrak').val()+ +$('#material_kontrak').val()
   $('#total_kontrak').val(totals);
@@ -390,7 +418,9 @@ $('.DDrabs').on("select2:select", function(e) {
         data:{'getrab': getrab},
         success:function(data)
         {
+
           // console.log(data);
+          $('#prkszs').val(data[0].no_prk);
           $('#pekerjaan').val(data[0].judul);
         },
     });
@@ -436,7 +466,14 @@ $( "#adendum_tanggal" ).change(function() {
 $('#tanggal_adendumedit').val(datefix2);
 });
 
-
+$( "#tanggal_jamlak" ).change(function() {
+  var date33=$('#tanggal_jamlak').val();
+  var month33=date33.substring(0, 2);
+  var day33=date33.substring(3, 5);
+  var year33=date33.substring(6, 10);
+  var datefix33=year33+'-'+month33+'-'+day33;
+  tanggalfixjamlak=datefix33;
+});
 
 
 $(document).on('click', '.add-modal', function() {
@@ -506,19 +543,36 @@ $(document).on('click', '.add-modal', function() {
       //INI ADD Kontrak
       $('.addkontrak').on('click', '#addkont', function() {
         // alert('madude');
+        // alert($('#prkszs').val());
+        $.ajax({
+            type: 'POST',
+            url: '/storejamlak',
+            data: {
+              "_token": "{{ csrf_token() }}",
+              'no_rab': $('#DDrab').val(),
+              'no_lak' : $('#no_lak').val(),
+              'tanggal_lak': tanggalfixjamlak,
+              'nilai_lak' : $('#nilai_lak').val(),
+              'penerbit_lak' : $('#penerbit_lak').val(),
+            },
+            success:function(data)
+            {
+
+            },
+          });
+
               $.ajax({
                   type: 'POST',
                   url: '/storekontrak',
                   data: {
                     '_token': $('input[name=_token]').val(),
                     'no_kontrak': $('#no_kontrak').val(),
-                    'no_prk': $('#DDprk').val(),
+                    'no_prk': $('#prkszs').val(),
                     'no_skk' : $('#no_skk').val(),
                     'pekerjaan': $('#pekerjaan').val(),
                     'tanggal_spbj' : $('#tanggal_spbjedit').val(),
                     'tanggal_akhir': $('#tanggal_akhiredit').val(),
                     'akhir_pemeliharaan': $('#akhir_pemeliharaan').val(),
-                    'aktif_spbj': $('#aktif_spbj').val(),
                     'vendor': $('#vendor').val(),
                     'material_kontrak' : $('#material_kontrak').val(),
                     'total_kontrak': $('#total_kontrak').val(),
@@ -545,7 +599,6 @@ $(document).on('click', '.add-modal', function() {
                     $('#tanggal_spbjedit').val(""),
                     $('#tanggal_akhiredit').val(""),
                     $('#akhir_pemeliharaan').val(""),
-                    $('#aktif_spbj').val(""),
                     $('#vendor').val(""),
                     $('#material_kontrak').val(""),
                     $('#total_kontrak').val(""),
@@ -555,7 +608,13 @@ $(document).on('click', '.add-modal', function() {
                     $('#total_bayar').val(""),
                     $('#aktif_bastp').val(""),
                     $('#aktif_byr').val(""),
+                    $('#prkszs').val(""),
                     $('#no_kontrak').focus(),
+                    $('#no_lak').val(""),
+                    $('#tanggal_lak').val(""),
+                    $('#nilai_lak').val(""),
+                    $('#penerbit_lak').val(""),
+
                     alert("input sukses");
                  },
               });

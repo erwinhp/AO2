@@ -1,6 +1,6 @@
 @extends('layouts.indexNVM')
 @section('header')
-Penawaran RAB
+Negosiasi Harga
 @endsection
 @section('content')
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
@@ -116,7 +116,7 @@ Penawaran RAB
                  <div class="form-group">
                      <label class="col-sm-2 control-label">Harga Satuan</label>
                      <div class="col-sm-12">
-                         <input type="jumlah" class="form-control" id="harga_satuansz" name="volume_cek" placeholder="Masukan Harga Satuan" value="" required="">
+                         <input type="jumlah" class="form-control" id="harga_satuanszsz" name="volume_cek" placeholder="Masukan Harga Satuan" value="" required="">
                      </div>
                  </div>
 
@@ -183,6 +183,8 @@ $(document).ready( function () {
 
 $('.bobot_datepicker').datepicker({
 });
+
+
 
 $('.DDselect').select2({
   placeholder: 'Select an item',
@@ -259,11 +261,11 @@ function fetchmadude()
           material_PLN : data[count].material_PLN,
           total_biaya : data[count].total_biaya,
           kontrak : data[count].kontrak,
-          kontrak : data[count].spbj,
+          spbj : data[count].spbj,
           harga_nego :  data[count].harga_satuan,
           total_harganego : data[count].total_biaya,
         });
-        html +='<form class="form-horizontal" role="form" method="post" action="/storebobot">'
+        html +='<form class="form-horizontal" role="form" method="post" action="/">'
         html +='<tr>';
         html +='<td>'+(count+1)+'</td>';
         html +='<td class="column_name" data-column_name="uraian" data-id="'+data[count].id_detilrab+'">'+data[count].uraians+'</td>';
@@ -288,13 +290,13 @@ function fetcharraymadude()
 html='';
 for(var count=0; count < arraytemp.length; count++)
 {
-html +='<form class="form-horizontal" role="form" method="post" action="/storebobot">'
+html +='<form class="form-horizontal" role="form" method="post" action="/">'
 html +='<tr>';
 html +='<td>'+(count+1)+'</td>';
 html +='<td class="column_name" data-column_name="uraian" data-id="'+arraytemp[count].id_detilrab+'">'+arraytemp[count].uraians+'</td>';
 html +='<td  class="column_name" data-column_name="uraian" data-id="'+arraytemp[count].id_detilrab+'">'+arraytemp[count].jumlah+'</td>';
-html +='<td  class="column_name" data-column_name="uraian" data-id="'+arraytemp[count].id_detilrab+'">'+arraytemp[count].harga_satuan+'</td>';
-html +='<td  class="column_name" data-column_name="uraian" data-id="'+arraytemp[count].id_detilrab+'">'+arraytemp[count].total_biaya+'</td>';
+html +='<td  class="column_name" data-column_name="uraian" data-id="'+arraytemp[count].id_detilrab+'">'+arraytemp[count].harga_nego+'</td>';
+html +='<td  class="column_name" data-column_name="uraian" data-id="'+arraytemp[count].id_detilrab+'">'+arraytemp[count].total_harganego+'</td>';
 html +='<td><button class="edit-modal btn btn-info" id="editbutton" data-id="'+arraytemp[count].id_detilrab+'"  data-uraian="'+arraytemp[count].uraians+'"  data-jumlah="'+arraytemp[count].jumlah+'"><span class="glyphicon glyphicon-trash">Edit</span></button></td>';
 html +='</tr>';
 }
@@ -313,13 +315,13 @@ fetchmadude()
 });
 
 //kalkulasi kalkulasi kalkulasi
-$("#harga_satuansz").keyup(function(e) {
-  var total=$("#volumesz").val()*$("#harga_satuansz").val();
+$("#harga_satuanszsz").keyup(function(e) {
+  var total=$("#volumesz").val()*$("#harga_satuanszsz").val();
 $("#totalsz").val(total);
 });
 
 $("#volumesz").keyup(function(e) {
-  var total=$("#volumesz").val()*$("#harga_satuansz").val();
+  var total=$("#volumesz").val()*$("#harga_satuanszsz").val();
 $("#totalsz").val(total);
 });
 
@@ -328,7 +330,7 @@ $("#totalsz").val(total);
 $(document).on('click', '.edit-modal', function() {
      $('#uraiansz').val($(this).data("uraian"));
      $('#volumesz').val($(this).data("jumlah"));
-      $('#harga_satuansz').val("");
+      $('#harga_satuanszsz').val("");
      id = $(this).data("id");
      // console.log(id);
     $('#editModal').appendTo("body").modal('show');
@@ -337,29 +339,25 @@ $(document).on('click', '.edit-modal', function() {
 
 $(document).on('click', '#edito', function() {
   // console.log(arraytemp);
-  if($("#harga_satuansz").val()=="")
+  if($("#harga_satuanszsz").val()=="")
   {
     alert("mohon isi harga satuan");
   }
   else {
-
     for(var count=0; count < arraytemp.length; count++)
     {
       if(id==arraytemp[count].id_detilrab)
       {
         arraytemp[count].jumlah=$('#volumesz').val();
-        arraytemp[count].harga_satuan=$('#harga_satuansz').val();
-        arraytemp[count].total_biaya=$('#totalsz').val();
+        arraytemp[count].harga_nego=$('#harga_satuanszsz').val();
+        arraytemp[count].total_harganego=$('#totalsz').val();
       }
     }
-    // console.log(arraytemp);
     fetcharraymadude();
     $('#uraiansz').val("");
     $('#volumesz').val("");
-    $('#harga_satuansz').val("");
+    $('#harga_satuanszsz').val("");
     $('#totalsz').val("");
-
-
   }
 });
 // $(document).on('click', '#idad', function() {
@@ -391,9 +389,9 @@ for (i = 0; i < arraytemp.length; i++) {
                   material_PLN : arraytemp[i].material_PLN,
                   total_biaya : arraytemp[i].total_biaya,
                   kontrak : arraytemp[i].kontrak,
-                  kontrak : arraytemp[i].spbj,
-                  harga_nego :  arraytemp[i].harga_satuan,
-                  total_harganego : arraytemp[i].total_biaya,
+                  spbj : arraytemp[i].spbj,
+                  harga_nego :  arraytemp[i].harga_nego,
+                  total_harganego : arraytemp[i].total_harganego,
                   id_vendor : $('#vendors').val(),
             },
             success:function(data)

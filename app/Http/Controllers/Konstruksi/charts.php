@@ -45,11 +45,22 @@ class charts extends Controller
   public function getdatlak(Request $request)
   {
     $lak=DB::select('select jumlah_progress FROM chart_perencanaan where no_rab=:a and jenis_chart="lak"',['a'=>$request->getrab]);
+    $lak1=DB::select('select i.jumlah_progress FROM chart_perencanaan i where i.no_rab=:a and i.jenis_chart="add" and i.adendum_ke=(select max(o.adendum_ke) FROM chart_perencanaan o where i.no_rab=o.no_rab and o.jenis_chart="add")',['a'=>$request->getrab]);
     $laks=[];
-    foreach ($lak as $key => $value) {
-      array_push($laks, $value->jumlah_progress);
+    if ($lak1===null)
+    {
+      foreach ($lak1 as $key => $value) {
+        array_push($laks, $value->jumlah_progress);
+      }
+      return response()->json($laks);
     }
-    return response()->json($laks);
+    else {
+      foreach ($lak as $key => $value) {
+        array_push($laks, $value->jumlah_progress);
+      }
+      return response()->json($laks);
+    }
+
     }
 
 
@@ -78,17 +89,18 @@ class charts extends Controller
     $sum=0;
     $rens=[];
     for ($x = 0; $x < $count; $x++) {
-        if($x==0)
-        {
-          $sum=$ren[$x]->jumlah_progress;
-          array_push($rens, $sum);
-        }
-        else
-        {
-          $sum=$sum+$ren[$x]->jumlah_progress;
-          $ren[$x]->jumlah_progress=$sum;
-          array_push($rens, $sum);
-        }
+      array_push($rens, $ren[$x]->jumlah_progress);
+        // if($x==0)
+        // {
+        //   $sum=$ren[$x]->jumlah_progress;
+        //   array_push($rens, $sum);
+        // }
+        // else
+        // {
+        //   $sum=$sum+$ren[$x]->jumlah_progress;
+        //   $ren[$x]->jumlah_progress=$sum;
+        //   array_push($rens, $sum);
+        // }
       }
     return response()->json($rens);
     }

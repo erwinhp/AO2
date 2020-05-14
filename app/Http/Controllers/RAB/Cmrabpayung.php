@@ -20,6 +20,17 @@ public function getspbj(Request $request)
  return response()->json($data);
 }
 
+public function getprksz(Request $request)
+{
+  $counts=DB::select('select no_prk FROM prk',[]);
+  return response()->json($counts);
+}
+
+public function getprkspbj(Request $request)
+{
+  $counts=DB::select('select no_prk FROM spbj where no_spbj=:a',['a'=>$request->getspbjs]);
+  return response()->json($counts);
+}
 
 
 public function search(Request $request)
@@ -78,7 +89,7 @@ public function store(Request $request)
   $master_rab = new master_rab;
   $master_rab -> no_rab = $request->no_rab;
   $master_rab -> tgl_rab = $request->tgl_rab;
-  $master_rab -> no_prk = $request->no_prk;
+  $master_rab -> no_prk = $request->no_prkabc;
   $master_rab -> program = $request->program;
   $master_rab -> fungsi = $request->fungsi;
   $master_rab -> judul = $request->judul;

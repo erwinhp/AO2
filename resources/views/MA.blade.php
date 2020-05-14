@@ -12,18 +12,19 @@ Monitor Anggaran
 // }
 ?>
 
-<a class="btn btn-primary" href="/inputMA" role="button">Input Monitoring Anggaran</a>
+<!-- <a class="btn btn-primary" href="/inputMA" role="button">Input Monitoring Anggaran</a> -->
 
 <!-- table madude-->
-
+<button type="button" class="btn btn-primary" id="cetakexcel">CETAK EXCEL</button>
 <div class="container-fluid">
         <div class="panel-wrapper">
           <div class="panel">
               <div class="responsive-nav">
-                <table class="table">
+                <table class="table" id="export-content">
                 <thead>
                   <tr>
                     <th>#</th>
+                    <th>No SKK</th>
                     <th>No PRK</th>
                     <th>Nama PRK</th>
                     <th>PAGU</th>
@@ -39,10 +40,10 @@ Monitor Anggaran
                     <tr>
                       <th>{{$nomor}}</th>
                       <?php $nomor++; ?>
+                      <th>{{$prkview->no_skk}}</th>
                       <form method="get" action="/detilindex">
                       <input type="hidden" name="no_prk" value="{{$prkview->no_prk}}">
                       <th><input type="submit" value="{{$prkview->no_prk}}" class="btn btn-primary btn-lg active col-md-12" role="button" aria-pressed="true"></th>
-
                       </form>
                       <th>{{$prkview->namaprk}}</th>
                       <th>{{$prkview->pagu}}</th>
@@ -59,4 +60,13 @@ Monitor Anggaran
         </div>
       </div>
 
+<script>
+$(document).on('click', '#cetakexcel', function() {
+$("#export-content").table2excel({
+  name: "WorksheetName",
+  filename: "Monitoring Anggaran", //do not include extension
+  fileext: ".xls" // file extension
+});
+});
+</script>
 @stop

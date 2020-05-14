@@ -1,6 +1,6 @@
 @extends('layouts.indexNVM')
 @section('header')
-Input Monitor Anggaran
+Input Data Vendor
 @endsection
 @section('content')
 <form class="form-horizontal" role="form" method="post" action="">
@@ -19,6 +19,14 @@ Input Monitor Anggaran
           <label class="col-sm-3 form-control-label">Nama Perusahaan</label>
           <div class="col-sm-9">
             <input type="text" placeholder="Input Nama Perusahaan" class="form-control" name="nama_perusahaan" id="nama_perusahaan"  value="{{ old('nama_perusahaan') }}">
+            <!-- yg value= gak harus -->
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-3 form-control-label">Nama Direktur</label>
+          <div class="col-sm-9">
+            <input type="text" placeholder="Input Nama Direktur" class="form-control" name="direktur" id="direktur"  value="{{ old('nama_perusahaan') }}">
             <!-- yg value= gak harus -->
           </div>
         </div>
@@ -82,7 +90,7 @@ $('.addkontrak').on('click', '#cancle', function() {
   $('#nama_perusahaan').val("");
   $('#alamat').val("");
   $('#nomor_kontak').val("");
-  $('#npwp').val("");   
+  $('#npwp').val("");
 });
 
 
@@ -101,6 +109,8 @@ $('.addkontrak').on('click', '#cancle', function() {
                     'alamat': $('#alamat').val(),
                     'nomor_kontak' : $('#nomor_kontak').val(),
                     'npwp': $('#npwp').val(),
+                    'direktur': $('#direktur').val(),
+
 
                   },
                   success:function(data)
@@ -110,6 +120,7 @@ $('.addkontrak').on('click', '#cancle', function() {
                     $('#alamat').val(""),
                     $('#nomor_kontak').val(""),
                     $('#npwp').val(""),
+                    $('#direktur').val(""),
                     alert("input sukses");
                  },
               });

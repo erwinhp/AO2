@@ -12,7 +12,7 @@ get data from database and make array dictionary out of it
 done -->
 </div>
 <div class="text-right">
-    <a href="/indexedits"  class="btn btn-primary" >Edit Chart Perencanaan</a>
+
 </div>
 
 Tanggal Progress
@@ -27,7 +27,7 @@ Tanggal Progress
 
 <br>
 <!-- NO RAB -->
-Pilih RAB
+Pilih No Kontrak
 <div>
     <select class="DDselect" style="width:440px;" name="itemName" id="rab_select"></select>
 </div>
@@ -54,7 +54,8 @@ Input Rencana progress
 
 <div class="text-right">
     <a href="#"  class="btn btn-primary" id="saveu">save</a>
-      <a href="/editbobotindex"  class="btn btn-primary" >Edit Chart</a>
+      <a href="/indexedits"  class="btn btn-primary" >Edit Chart Perencanaan</a>
+      <!-- <a href="/editbobotindex"  class="btn btn-primary" >Edit Chart</a> -->
 </div>
 
 <!-- KODE BANYAK -->
@@ -85,8 +86,11 @@ Input Rencana progress
                   </tbody>
                 </table>
               </div>
+              <div class="col-md-10">
+              <!--       Chart.js Canvas Tag -->
+                <canvas id="barChart"></canvas>
+              </div>
 
-                <canvas id="lineChart" height="50" width="200"></canvas>
 
 <script>
 // $('.datepicker').datepicker({
@@ -151,7 +155,6 @@ $('.DDselect').on("select2:select", function(e) {
 //tablenya
 $('.DDselect').on("select2:select", function(e) {
   var getrab = document.getElementById("rab_select").value;
-  getsums()
   $('#rabs').val(getrab);
   // var arraytemp = [];
   $.ajax({
@@ -216,11 +219,10 @@ $('.DDselect').on("select2:select", function(e) {
 
 
 $(document).on('focusout', '#ren_progress', function() {
-getsums();
 var data1=parseInt($('#ren_progress').val(),10);
 var data2=parseInt ($('#getsum').val(),10);
 // console.log(data2+data1);
-if((data2+data1)>100)
+if((data1)>100)
 {
   $('#ren_progress').val("");
   $('#ren_progress').focus();
@@ -289,42 +291,71 @@ function getsums()
     });
 }
 
+
+var jenischarts="";
 var dps=[];//lable
 var dps1=[];//point
 function chartszdfjfj(){
+  var canvas = document.getElementById("barChart");
+  var ctx = canvas.getContext('2d');
+
+  // Global Options:
+  Chart.defaults.global.defaultFontColor = 'black';
+  Chart.defaults.global.defaultFontSize = 16;
 
   var data = {
-       labels: dps,
-       datasets: [
-           {
-               label: "Prime and Fibonacci",
-               fillColor: "rgba(220,220,220,0.2)",
-               strokeColor: "rgba(220,220,220,1)",
-               pointColor: "rgba(220,220,220,1)",
-               pointStrokeColor: "#fff",
-               pointHighlightFill: "#fff",
-               pointHighlightStroke: "rgba(220,220,220,1)",
-               data: dps1
-           },
-           {
-               label: "My Second dataset",
-               fillColor: "rgba(151,187,205,0.2)",
-               strokeColor: "rgba(151,187,205,1)",
-               pointColor: "rgba(151,187,205,1)",
-               pointStrokeColor: "#fff",
-               pointHighlightFill: "#fff",
-               pointHighlightStroke: "rgba(151,187,205,1)",
-               data: dps1
-           }
-       ]
-   };
-   var ctx = document.getElementById("lineChart").getContext("2d");
-   var options = {
-     legend:{
-       display:true,
-   }
- };
-   var lineChart = new Chart(ctx).Line(data, options);
+    labels: dps,
+    datasets: [{
+        label: "Perencanaan",
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "rgba(225,0,0,0.4)",
+        borderColor: "Red", // The main line color
+        borderCapStyle: 'square',
+        borderDash: [], // try [5, 15] for instance
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "black",
+        pointBackgroundColor: "white",
+        pointBorderWidth: 1,
+        pointHoverRadius: 8,
+        pointHoverBackgroundColor: "Red",
+        pointHoverBorderColor: "Black",
+        pointHoverBorderWidth: 2,
+        pointRadius: 4,
+        pointHitRadius: 10,
+        // notice the gap in the data and the spanGaps: true
+        data: dps1,
+        spanGaps: true,
+      }
+
+    ]
+  };
+
+  // Notice the scaleLabel at the same level as Ticks
+  var options = {
+    scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+
+                  },
+                  scaleLabel: {
+                       display: true,
+                       labelString: 'Prosentase',
+                       fontSize: 20
+                    }
+              }]
+          }
+  };
+
+  // Chart declaration:
+  var myBarChart = new Chart(ctx, {
+    type: 'line',
+    data: data,
+    options: options
+  });
+
 }
 
 
@@ -386,11 +417,10 @@ function postchart()
 
 //add to db add to db
 $(document).on('click', '#saveu', function() {
-  getsums();
   var data1=parseInt($('#ren_progress').val(),10);
   var data2=parseInt($('#getsum').val(),10);
   // console.log(data1+data2);
-  if ((data1+data2)>100)
+  if ((data1)>100)
   {
     $('#ren_progress').val("");
     $('#ren_progress').focus();
@@ -404,7 +434,7 @@ $(document).on('click', '#saveu', function() {
   else {
     postchart();
     fetchandpusharray();
-chartszdfjfj();
+    chartszdfjfj();
   }
 
 });

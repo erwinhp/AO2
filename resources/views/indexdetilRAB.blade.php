@@ -328,7 +328,6 @@ $atributs=$value;
 </div>
 </div>
 
-</div>
 
 
 <!-- MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT MODAL EDIT-->

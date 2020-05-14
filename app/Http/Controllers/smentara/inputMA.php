@@ -8,6 +8,7 @@ use DB;
 use App\prk;
 use App\kontrak;
 use App\adendum;
+use App\jaminan_pelaksanaan;
 class inputMA extends Controller
 {
   public function index()
@@ -59,9 +60,10 @@ class inputMA extends Controller
         $getsum=1;
         $prk = new prk();
         $prk->no_prk = $request->no_prk;
+        $prk->no_skk = $request->no_skk;
         $prk->nama_prk = $request->nama_prk;
         $prk->pagu = $request->pagu;
-        $prk->id_fungsi = $request->id_fungsi;
+        $prk->id_fungsi = $request->fungsi;
         $prk->nilai_investasi=$request->nilai_investasi;
         $prk->nilai_disbursement=$request->nilai_disbursement;
         $prk->save();
@@ -78,7 +80,6 @@ public function storekontrak(Request $request)
       $kontrak->tanggal_spbj = $request->tanggal_spbj;
       $kontrak->tanggal_akhir = $request->tanggal_akhir;
       $kontrak->akhir_pemeliharaan = $request->akhir_pemeliharaan;
-      $kontrak->aktif_spbj = $request->aktif_spbj;
       $kontrak->vendor = $request->vendor;
       $kontrak->material_kontrak = $request->material_kontrak;
       $kontrak->total_kontrak = $request->total_kontrak;
@@ -92,7 +93,17 @@ public function storekontrak(Request $request)
       $kontrak->save();
 }
 
-
+public function storejamlak(Request $request)
+{
+      $getsum=1;
+      $jamlak = new jaminan_pelaksanaan();
+      $jamlak->no_rab = $request->no_rab;
+      $jamlak->no_lak = $request->no_lak;
+      $jamlak->tanggal_lak = $request->tanggal_lak;
+      $jamlak->nilai_lak = $request->nilai_lak;
+      $jamlak->penerbit_lak = $request->penerbit_lak;
+      $jamlak->save();
+}
 
 
 

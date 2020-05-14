@@ -22,6 +22,7 @@ class inputvendor extends Controller
         $addvendor->alamat = $request->alamat;
         $addvendor->nomor_kontak = $request->nomor_kontak;
         $addvendor->npwp = $request->npwp;
+        $addvendor->direktur = $request->direktur;
         $addvendor->save();
   }
 

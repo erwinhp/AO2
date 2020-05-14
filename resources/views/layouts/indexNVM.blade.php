@@ -72,14 +72,19 @@ THIS IS THE JS MADUDE
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js" type="text/javascript"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="assets/scripts/lib/tether.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.js"></script>
 <!-- 90
 23Q -->
+<script type="text/javascript" src="js/bootstrap-clockpicker.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="js/bootstrap-clockpicker.min.css">
 
     <!-- Concat all lib & plugins css-->
         <!-- THIS I FORGOT ROFL -->
         <!-- <link rel='stylesheet' href='assets/stylesheets/plugin/nifty-modal.css'> -->
         <!-- THIS FIAL THE DATEPICKER  -->
-
+        <!-- <script src="js/tinymce.js" referrerpolicy="origin"></script> -->
     <link id="mainstyle" rel="stylesheet" href="assets/stylesheets/plugin/select2.css">
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
@@ -146,8 +151,8 @@ THIS IS THE JS MADUDE
               <li class="menu-block-has-sub nav-item"><a class="nav-link" href="#"><i class="icon ion-ios-list-outline"></i>
                   <div class="menu-block-label">Anggaran</div></a>
                 <ul class="nav menu-block-sub">
-                  <li class="nav-item"><a class="nav-link" href="/MA">Monitor Anggaran</a></li>
                   <li class="nav-item"><a class="nav-link" href="/inputPRK ">Input PRK</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/MA">Monitor Anggaran</a></li>
                   <!-- <li class="nav-item"><a class="nav-link" href="/inputMA ">Input Anggaran</a></li> -->
                 </ul>
               </li>
@@ -166,7 +171,7 @@ THIS IS THE JS MADUDE
 
               <li class="nav-item menu-block-has-sub"><a href="#">RAB PK</a>
                 <ul class="nav menu-block-sub">
-                  <li class="nav-item"><a class="nav-link" href="#">Upload Excel</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/excelpk">Upload Excel</a></li>
                   <li class="nav-item"><a class="nav-link" href="/cmasterabpayung">Entri RAB PK</a></li>
                 </ul>
               </li>
@@ -202,22 +207,32 @@ THIS IS THE JS MADUDE
               </li>
               <li class="nav-item menu-block-has-sub"><a href="#">LAK DAN</a>
                 <ul class="nav menu-block-sub">
-                  <li class="nav-item"><a class="nav-link" href="/indexviewjadwal">Jadwal Lelang</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/metodelelangs">Metode Lelang</a></li>
+                  <li class="nav-item menu-block-has-sub"><a href="#">Pelelangan</a>
+                    <ul class="nav menu-block-sub">
+                      <li class="nav-item"><a class="nav-link" href="/indexviewjadwal">Jadwal Lelang</a></li>
+                      <li class="nav-item"><a class="nav-link" href="/indexpesertalelangs">Peserta Lelang</a></li>
+                      <li class="nav-item"><a class="nav-link" href="/rab_penawarans">Negosiasi Harga</a></li>
+                      <li class="nav-item"><a class="nav-link" href="/buatkontraks">Buat Kontrak</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item menu-block-has-sub"><a href="#">Kontrak Rinci</a>
+                    <ul class="nav menu-block-sub">
+                      <li class="nav-item"><a class="nav-link" href="#">Buat Kontrak Rinci</a></li>
+                      <li class="nav-item"><a class="nav-link" href="/mspbjpk">Buat Perintah Kerja</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item"><a class="nav-link" href="/buatkontraks">Pengadaan Langsung</a></li>
+                </ul>
+              </li>
 
-                  <!-- <li class="nav-item"><a class="nav-link" href="/metodelelangs">Metode Lelang</a></li> -->
-                </ul>
-              </li>
-              <li class="nav-item"><a class="nav-link" href="/buatkontraks">Buat Kontrak</a></li>
-              <li class="nav-item"><a class="nav-link" href="/indexpesertalelangs">Peserta Lelang</a></li>
-              <li class="nav-item"><a class="nav-link" href="/rab_penawarans">RAB Penawaran</a></li>
-              <li class="nav-item menu-block-has-sub"><a href="#">SPBJ Baru</a>
+              <li class="nav-item menu-block-has-sub"><a href="#">Monitoring</a>
                 <ul class="nav menu-block-sub">
-                  <li class="nav-item"><a class="nav-link" href="/mspbj">Buat SPBJ</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/mspbjpk">Buat SPBJ PK</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">Monitor Pengadaan</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">Salinan Kontrak</a></li>
                 </ul>
               </li>
-              <li class="nav-item"><a class="nav-link" href="#">Monitor Proses Pengadaan</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Salilnan SPBJ Kontrak</a></li>
+
             </ul>
           </li>
 
@@ -226,25 +241,62 @@ THIS IS THE JS MADUDE
           <li class="menu-block-has-sub nav-item"><a class="nav-link" href="#"><i class="icon ion-android-funnel"></i>
               <div class="menu-block-label">Konstruksi</div></a>
             <ul class="nav menu-block-sub">
-              <li class="nav-item"><a class="nav-link" href="/bobot_pelaksanaan">Bobot Pelaksanaan</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Pengawasan</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Input Data Laporan Berkala</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Monitoring Pekerjaan</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Laporan Realisasi Fisik</a></li>
-              <li class="nav-item"><a class="nav-link" href="/chartsbobot">Chart</a></li>
-              <li class="nav-item"><a class="nav-link" href="/chart_ren">Chart Perencanaan</a></li>
+              <li class="nav-item menu-block-has-sub"><a href="#">Persiapan Kerja</a>
+                <ul class="nav menu-block-sub">
+                  <li class="nav-item"><a class="nav-link" href="/chart_ren">Time Schedule</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/cda">C D A</a></li>
+                </ul>
+              </li>
 
-              <li class="nav-item"><a class="nav-link" href="#">Raport Mitra Kerja</a></li>
+              <li class="nav-item menu-block-has-sub"><a href="#">Pelaksanaan Kerja</a>
+                <ul class="nav menu-block-sub">
+                  <li class="nav-item"><a class="nav-link" href="/bobot_pelaksanaan">Bobot Pelaksanaan</a></li>
+                  <!-- <li class="nav-item"><a class="nav-link" href="/laporankonst">Pengawasan</a></li> -->
+                  <li class="nav-item"><a class="nav-link" href="/inputpengawasans">Pengawasan</a></li>
+                </ul>
+              </li>
+
+
+              <li class="nav-item menu-block-has-sub"><a href="#">Addendum</a>
+                <ul class="nav menu-block-sub">
+                  <li class="nav-item"><a class="nav-link" href="/addendums">Kerja Tambah/Kurang</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/chart_ren">Reschedule</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">Justifikasi</a></li>
+                </ul>
+              </li>
+              <li class="nav-item menu-block-has-sub"><a href="#">Monitor Kerja</a>
+                <ul class="nav menu-block-sub">
+                  <li class="nav-item"><a class="nav-link" href="/chartsbobot">Kurva S</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">Monitoring Pekerjaan</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">Raport Mitra Kerja</a></li>
+                </ul>
+              </li>
+
+
+
+
+
+
+
             </ul>
           </li>
 
           <li class="menu-block-has-sub nav-item"><a class="nav-link" href="#"><i class="icon ion-ios-grid-view-outline"></i>
-              <div class="menu-block-label">Pembayaran</div></a>
+              <div class="menu-block-label">Keuangan</div></a>
             <ul class="nav menu-block-sub">
+
+              <li class="nav-item"><a class="nav-link" href="/verifikasirabs ">Pencadangan Anggaran</a></li>
+              <!-- Input Monitoring FOrm -->
+              <li class="nav-item"><a class="nav-link" href="/index_rencana_pembayaran">Rencana Pembayaran</a></li>
+              <li class="nav-item"><a class="nav-link" href="/indexbayars">Pembayaran</a></li>
               <li class="nav-item"><a class="nav-link" href="/inputPembayaran">Monitoring Pembayaran</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Input Data Berkala</a></li>
+              <!-- <li class="nav-item"><a class="nav-link" href="#">Input Data Berkala</a></li> -->
             </ul>
           </li>
+
+          <li class="nav-item"><a class="nav-link" href="/home"><i class="icon ion-android-funnel"></i>
+              <div class="menu-block-label">Asset Management</div></a></li>
+
 
         </ul>
         <!-- END SITE MAINMENU-->

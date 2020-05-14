@@ -67,14 +67,11 @@ $no_rab=$fixint.$getstr;
         <div class="form-group row">
           <label class="col-sm-3 form-control-label">Nomor PRK</label>
           <div class="col-sm-9">
-            <select  class="form-control mb-3" name="no_prk"  value="{{ old('no_prk') }}">
-              <option>Nomor PRK</option>
-              @foreach($prk as $no_prk)
-              <option value="{{$no_prk->no_prk}}">{{$no_prk->no_prk}}</option>
-              @endforeach
-            </select>
+            <input type="text" placeholder="Nomor PRK" class="form-control" name="no_prk"  value="" id="no_prksks" disabled>
           </div>
         </div>
+
+
 
 
         <div class="line"></div>
@@ -132,7 +129,7 @@ $no_rab=$fixint.$getstr;
         <div class="form-group row">
           <label class="col-sm-3 form-control-label">Triwulan</label>
           <div class="col-sm-9">
-            <input type="text" placeholder="Triwulan" class="form-control" name="triwulan"  value="{{ old('triwulan') }}">
+            <input type="text" placeholder="Triwulan (Contoh: 1)" class="form-control" name="triwulan"  value="{{ old('triwulan') }}" onkeypress="return isNumber(event)">
           </div>
         </div>
 
@@ -166,7 +163,7 @@ $no_rab=$fixint.$getstr;
         </div> -->
 
 <!-- <input type="hidden" id="custId" name="custId" value="3487"> -->
-
+<input type="hidden" id="no_prkabc" name="no_prkabc" value="" >
 
 <div class="form-group row">
 <input type="hidden" id="tgl_rab" name="tgl_rab" value="{{ now()->toDatestring('Y-m-d') }}" >
@@ -225,6 +222,50 @@ $('.DDselect').select2({
   }
 });
 
+
+$('.DDselect').on("select2:select", function(e) {
+  var getspbjs = document.getElementById("uraian").value;
+  // console.log(getrab);
+  $.ajax({
+      type: 'GET',
+      url: '/getprkspbj',
+      data:{'getspbjs': getspbjs},
+      success:function(data)
+      {
+        // $('#no_prksks').val("ajg kenapagk mau");
+        document.getElementById("no_prksks").value = data[0].no_prk;
+        document.getElementById("no_prkabc").value = data[0].no_prk;
+
+
+        // alert($('#no_prksks').val());
+        // data[0].no_prk
+      },
+  });
+});
+
+
+
+$('.DDselectprk').select2({
+  placeholder: 'Select an item',
+  ajax: {
+    url: '/getprkszz',
+    dataType: 'json',
+    delay: 250,
+    processResults: function (data) {
+      return {
+        results:  $.map(data, function (item) {
+              return {
+
+                  text: item.no_prk,
+                  id: item.no_prk,
+              }
+          })
+      };
+    },
+    cache: true
+  }
+});
+
 // $('.DDselect').on("select2:select", function(e) {
 //   var idmat = document.getElementById("uraian").value;
 //   var hrg = document.getElementById("jumlah").value;
@@ -238,6 +279,16 @@ $('.DDselect').select2({
 //      },
 //   });
 // });
+
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+
 
 </script>
 @endsection

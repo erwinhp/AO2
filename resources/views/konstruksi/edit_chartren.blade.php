@@ -102,7 +102,7 @@ $('.bobot_datepicker').datepicker({
 $('.DDselect').select2({
   placeholder: 'Select an item',
   ajax: {
-    url: '/getnorab',
+    url: '/getnokontrakrab',
     dataType: 'json',
     delay: 250,
     processResults: function (data) {
@@ -110,8 +110,8 @@ $('.DDselect').select2({
         results:  $.map(data, function (item) {
               return {
 
-                  text: item.no_rab,
-                  id: item.no_rab,
+                text: item.no_kontrak,
+                id: item.no_rab,
               }
           })
       };

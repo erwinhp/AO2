@@ -1,6 +1,6 @@
 @extends('layouts.indexNVM')
 @section('header')
-Input Monitor Anggaran
+Input Metode Lelang
 @endsection
 @section('content')
 <form class="form-horizontal" role="form" >
@@ -46,10 +46,11 @@ Input Monitor Anggaran
             <select class="form-control" id="metode">
               <option value="">Pilih Metode</option>
               <option value="belilangsung">Pembelian Langsung</option>
-              <option value="tunjuklangsung">Penunjukan Langsung</option>
+              <!-- wut penununjukan langsung? -->
+              <option value="tunjuklangsung">Pengadaan Langsung</option>
               <option value="lelangterbatas">Pelelangan Terbatas</option>
               <option value="lelangterbuka">Pelelangan Terbuka</option>
-              <option value="spbj">SPBJ</option>
+              <option value="spbj">Kontrak Rinci</option>
             </select>
           </div>
         </div>

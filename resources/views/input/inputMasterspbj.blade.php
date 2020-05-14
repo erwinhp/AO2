@@ -32,7 +32,7 @@ Input Master spbj
         <div class="form-group row">
           <label class="col-sm-3 form-control-label">Nilai</label>
           <div class="col-sm-9">
-            <input type="text" placeholder="program" class="form-control" name="nilai"  value="{{ old('program') }}">
+            <input type="text" placeholder="Nilai SPBJ" class="form-control" name="nilai"  value="{{ old('program') }}">
             <!-- yg value= gak harus -->
           </div>
         </div>
@@ -40,13 +40,21 @@ Input Master spbj
 
         <div class="line"></div>
         <div class="form-group row">
-          <label class="col-sm-3 form-control-label">Vendor</label>
+          <label class="col-sm-3 form-control-label">Nama Vendor</label>
           <div class="col-sm-9">
-            <input type="text" placeholder="program" class="form-control" name="vendor"  value="{{ old('program') }}">
+            <select class="DDselectvendor" style="width:440px;" name="vendor" id="vendor"></select>
             <!-- yg value= gak harus -->
           </div>
         </div>
 
+
+        <div class="form-group row">
+          <label class="col-sm-3 form-control-label">No PRK</label>
+          <div class="col-sm-9">
+            <select class="DDprks" style="width:440px;" name="no_prk" id="no_prk"></select>
+            <!-- yg value= gak harus -->
+          </div>
+        </div>
 
 <!-- <input type="hidden" id="custId" name="custId" value="3487"> -->
 
@@ -65,4 +73,50 @@ Input Master spbj
 </div>
 
 </form>
+<script>
+
+$('.DDselectvendor').select2({
+  placeholder: 'Select an item',
+  ajax: {
+    url: '/getvendor',
+    dataType: 'json',
+    delay: 250,
+    processResults: function (data) {
+      return {
+        results:  $.map(data, function (item) {
+              return {
+
+                  text: item.nama_perusahaan,
+                  id: item.id_vendor,
+              }
+          })
+      };
+    },
+    cache: true
+  }
+});
+
+$('.DDprks').select2({
+  placeholder: 'Select an item',
+  ajax: {
+    url: '/getprksz',
+    dataType: 'json',
+    delay: 250,
+    processResults: function (data) {
+      return {
+        results:  $.map(data, function (item) {
+              return {
+                  text: item.no_prk,
+                  id: item.no_prk,
+              }
+          })
+
+      };
+    },
+    cache: true
+  }
+});
+
+
+</script>
 @endsection

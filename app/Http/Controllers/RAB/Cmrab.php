@@ -42,6 +42,14 @@ return Response($output);
 }
 
 
+public function getprkszzz(Request $request)
+{
+  $norab=DB::select('select i.id_fungsi, (select o.nama_fungsi from fungsi o where i.id_fungsi=o.id_fungsi)as nama_fungsi FROM prk i where i.no_prk=:a',['a'=>$request->getprk]);
+  return response()->json($norab);
+  }
+
+
+
 public function create()
 {
   $user = Auth::user()->name;

@@ -320,7 +320,7 @@ public function datamatgettr(Request $request)
 
    public function dataAjax(Request $request)
 {
-        $data=DB::table('mat_khs')->where('uraian_matkhs','LIKE','%'.$request->term."%")->get();
+        $data=DB::table('mat_khs')->where('uraian_matkhs','LIKE','%'.$request->term."%")->where('uraian_matkhs','<>','Transport')->get();
     return response()->json($data);
 }
 

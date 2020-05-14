@@ -16,7 +16,7 @@ class metode_lelang extends Controller
 
   public function getnamapekerjaan(Request $request)
   {
-    $counts=DB::select('select judul FROM master_rab where no_rab=:a',['a'=>$request->getrab]);
+    $counts=DB::select('select judul,no_prk FROM master_rab where no_rab=:a',['a'=>$request->getrab]);
     return response()->json($counts);
   }
 

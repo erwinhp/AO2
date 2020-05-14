@@ -54,6 +54,9 @@ Bobot Pelaksanaan
 //     startDate: '-3d'
 // });
 
+var jenischartmadude="";
+
+var adendum_ke=0;
 
 $('.bobot_datepicker').datepicker({
 });
@@ -118,6 +121,23 @@ $('.DDselect').on("select2:select", function(e) {
       success:function(data)
       {
         html='';
+        try {
+          adendum_ke=data[0].adendum_ke;
+          jenischartmadude="add";
+        }
+        catch(err) {
+          adendum_ke=0;
+          jenischartmadude="lak";
+
+        }
+        //
+        // if (typeof data[0].adendum_ke !== "undefined")
+        // {
+        //   adendum_ke=data[0].adendum_ke;
+        // }
+        // else {
+        //   adendum_ke=0;
+        // }
         for(var count=0; count < data.length; count++)
         {
           // arraytemp.push({
@@ -265,7 +285,8 @@ function storeprosentase()
         'tgl_progress':$('#tanggal_bobotfix').val(),
         'jumlah_progress': prosentase,
         'no_rab' : $('#rab_select').val(),
-        'jenis_chart' : "lak",
+        'jenis_chart' : jenischartmadude,
+        'adendum_ke' : adendum_ke,
       },
       success:function(data)
       {
@@ -281,11 +302,13 @@ function getprosentase()
   var sums=0;
   var ttlharga=0;
   for (i = 0; i < arraytemp.length; i++) {
+    //jumlah is volume cek
     sums=sums+(arraytemp[i].harga_nego*arraytemp[i].jumlah);
     ttlharga=ttlharga+arraytemp[i].total_harganego;
 }
-  prosentase=(sums/ttlharga)*100;
-  console.log(prosentase);
+  prosentases=(sums/ttlharga)*100;
+  prosentase = prosentases.toFixed(2);
+  // console.log(prosentase);
 }
 
 // $(document).on('click', '#idad', function() {
@@ -316,6 +339,7 @@ for (i = 0; i < arraytemp.length; i++) {
               'uraian': arraytemp[i].uraian,
               'harga_nego': arraytemp[i].harga_nego,
               'total_harganego': arraytemp[i].total_harganego,
+              'adendum_ke' : adendum_ke,
             },
             success:function(data)
             {
@@ -324,6 +348,7 @@ for (i = 0; i < arraytemp.length; i++) {
               {
                 getprosentase();
                 storeprosentase();
+                adendum_ke=0;
                 alert("sukses input");
                 arraytemp=[];
                 $('#tablerab').html("");

@@ -15,6 +15,33 @@
 //     return view('welcome');
 // });
 //
+Route::get ('/getprksbayarandkontrak','homez@getprksbayarandkontrak');
+//KEU KEU KEU KEU KEU
+Route::get ('/getsumsbyrs','keuangan\pembayaran@getsumsbyrs');
+Route::get ('/indexbayars','keuangan\pembayaran@index');
+Route::get ('/getdatabayar','keuangan\pembayaran@getdatabayar');
+Route::post ('/storebyr','keuangan\pembayaran@storebyr');
+Route::put('/updatebyrkontrak/{id_kontrak}','keuangan\pembayaran@updatebyrkontrak');
+Route::put('/updatebyr/{id_bayar}','keuangan\pembayaran@updatebyr');
+Route::get ('/indexbuatpembayanrans','keuangan\pembayaran@indexbuatpembayanrans');
+
+//keuangan keuangan keuangan keuangan keuangan
+Route::get ('/index_rencana_pembayaran','keuangan\rencana_pembayaran@index');
+Route::get ('/getdatarencanabayar','keuangan\rencana_pembayaran@getdatarencanabayar');
+Route::post ('/storerpbyr','keuangan\rencana_pembayaran@storerpbyr');
+
+
+Route::get ('/verifikasirabs','keuangan\verifikasi_rab@index');
+Route::get ('/getdataverifikasi','keuangan\verifikasi_rab@getdataverifikasi');
+Route::get ('/getmasterrabid','keuangan\verifikasi_rab@getmasterrabid');
+// Route::put('/lalala/{no_rab}','keuangan\verifikasi_rab@lalala');
+
+Route::put('/updateverifikasirab/{id_master_rab}','keuangan\verifikasi_rab@updateverifikasirab');
+
+
+Route::get ('/pdd','Pengadaan\pengawas_dan_direksis@index');
+Route::post ('/storepdd','Pengadaan\pengawas_dan_direksis@storepdd');
+
 
 Route::get ('/inputPembayaran','CMApembayaran@index');
 Route::get ('/DetilPembayaran','CMApembayaran@indexdetilpembayaran');
@@ -29,7 +56,27 @@ Route::get ('/getkontraks','smentara\inputMA@getkontraks');
 Route::post ('/storeprk','smentara\inputMA@storeprk');
 Route::post ('/storekontrak','smentara\inputMA@storekontrak');
 Route::post ('/storeadendum','smentara\inputMA@storeadendum');
+Route::post ('/storejamlak','smentara\inputMA@storejamlak');
 
+//ADDENDUM ADDENDUMADDENDUMADDENDUMADDENDUM ADDENDUM ADDENDUM ADDENDUM ADDENDUM ADDENDUM ADDENDUM
+Route::get ('/getdataaddendumsz','Konstruksi\addendum@getdataaddendumsz');
+Route::get ('/addendums','Konstruksi\addendum@index');
+Route::post ('/storeaddendums','Konstruksi\addendum@storeaddendums');
+
+Route::get ('/getlokasis','Konstruksi\pengawasans@getlokasis');
+Route::get ('/getkontraksdata','Konstruksi\pengawasans@getkontraksdata');
+Route::get ('/inputpengawasans','Konstruksi\pengawasans@index');
+Route::post ('/storepengawasan','Konstruksi\laporan_pengawasz@storepengawasan');
+
+//LAPORAN PENGAWAS LAPORAN PENGAWAS LAPORAN PENGAWAS
+Route::post ('/storelaporankons','Konstruksi\laporan_pengawasz@storelaporankons');
+Route::get ('/laporankonst','Konstruksi\laporan_pengawasz@index');
+Route::get ('/getlaporandata','Konstruksi\laporan_pengawasz@getlaporandata');
+
+//CDACDACDACDA
+Route::post ('/storecda','Konstruksi\cda@storecda');
+Route::get ('/cda','Konstruksi\cda@index');
+Route::get ('/getcdadata','Konstruksi\cda@getcdadata');
 //==this is construction//==INI Konstruksi
 Route::get ('/bobot_pelaksanaan','Konstruksi\Cbobot_pelaksanaan@index');
 Route::get('/getnorab','Konstruksi\Cbobot_pelaksanaan@getrab');
@@ -43,6 +90,9 @@ Route::put('/updatebobot/{id_bobot}','Konstruksi\Cbobot_pelaksanaan@update');
 Route::get('/getmaterialpenawaran','Konstruksi\Cbobot_pelaksanaan@getmaterialpenawaran');
 
 //this is chart ren construction ini chart ren konstruksi
+
+Route::get ('/gettgldatacek','Konstruksi\Ccharts_perencanaan@gettgldatacek');
+Route::get ('/getdatarennewprosentase','Konstruksi\Ccharts_perencanaan@getdatarennewprosentase');
 Route::get ('/chart_ren','Konstruksi\Ccharts_perencanaan@index');
 Route::post ('/chart_renpost','Konstruksi\Ccharts_perencanaan@storepoint');
 Route::get ('/getcurves','Konstruksi\Ccharts_perencanaan@getcurves');
@@ -72,7 +122,10 @@ Route::get ('/mspbjsearch','Cspbjpk@search');
 
 //RABNYA RABNY RABNYA RABNYA RBANY A;SLDFJALKSJDF \RAB\Cmrabpayung
 //CMRABPASUNG
+
+Route::get ('/getprkspbj','RAB\Cmrabpayung@getprkspbj');
 Route::get ('/cmasterabpayung','RAB\Cmrabpayung@index');
+Route::get ('/getprkszz','RAB\Cmrabpayung@getprksz');
 Route::get ('/cmasterabpayungs','RAB\Cmrabpayung@create');
 Route::post ('/cmasterabpayungs','RAB\Cmrabpayung@store');
 Route::get ('/cmasterabpayungsearch','RAB\Cmrabpayung@search');
@@ -102,6 +155,10 @@ Route::post ('/cmrab','RAB\Cmrab@store');
 Route::get ('/cmrab','RAB\Cmrab@create');
 Route::get ('/mrab','RAB\Cmrab@index');
 Route::get('/search','RAB\Cmrab@search');
+Route::get('/getprkszzz','RAB\Cmrab@getprkszzz');
+
+
+
 
 Route::post ('/cmrabnon','RAB\Crabnonkhsmaster@store');
 Route::get ('/cmrabnon','RAB\Crabnonkhsmaster@create');
@@ -122,6 +179,11 @@ Route::get ('/rgetmattr','RAB\Cdetilrab@datamatgettr');
 Route::resource ('/Rdetilnon','RAB\Cdetilrabnonkhs');
 Route::get ('/Rdetilfetchnon','RAB\Cdetilrabnonkhs@fetch_data');
 Route::get ('/idmrabnon','RAB\Cdetilrabnonkhs@index');
+
+
+
+Route::get ('/excelpk','Cexcel@indexexcelpk');
+Route::post ('/storeexcelpk','Cexcel@storeexcelpk');
 
 
 Route::get ('/excelrabkhs','Cexcel@index');
@@ -147,6 +209,7 @@ Route::post ('/storevendor','Pengadaan\inputvendor@storevendor');
 Route::get ('/metodelelangs','Pengadaan\metode_lelang@index');
 Route::get ('/getpekerjaan','Pengadaan\metode_lelang@getnamapekerjaan');
 Route::post ('/storemetodelelang','Pengadaan\metode_lelang@storemetodelelang');
+Route::get ('/gettotalbayarszsz','Konstruksi\addendum@gettotalbayarszsz');
 
 
 

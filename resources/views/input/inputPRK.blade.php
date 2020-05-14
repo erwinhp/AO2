@@ -16,11 +16,19 @@ Input PRK
       @csrf
 
       <div class="form-group row">
+        <label class="col-sm-3 form-control-label">Nomor SKK</label>
+        <div class="col-sm-9">
+                <input type="jumlah" class="form-control" id="no_skk" name="no_skk" placeholder="No SKK" value="" required="">
+            </div>
+        </div>
+
+      <div class="form-group row">
         <label class="col-sm-3 form-control-label">Nomor PRK</label>
         <div class="col-sm-9">
                 <input type="jumlah" class="form-control" id="no_prk" name="no_prk" placeholder="No PRK" value="" required="">
             </div>
         </div>
+
 
         <div class="form-group row">
           <label class="col-sm-3 form-control-label">Nama PRK</label>
@@ -37,9 +45,9 @@ Input PRK
         </div>
 
         <div class="form-group row">
-          <label class="col-sm-3 form-control-label">Nilai Investasi</label>
+          <label class="col-sm-3 form-control-label">Nilai Anggaran</label>
           <div class="col-sm-9">
-                <input type="Nilai Investasi" class="form-control" id="nilai_investasi" name="nilai_investasi" placeholder="Nilai Investasi" value="" required="">
+                <input type="Nilai Anggaran" class="form-control" id="nilai_investasi" name="nilai_investasi" placeholder="Nilai Investasi" value="" required="">
             </div>
         </div>
 
@@ -83,6 +91,7 @@ Input PRK
     $('#pagu').val('');
     $('#nama_prk').val('');
     $('#no_prk').val('');
+    $('#no_skk').val('');
     $('#nilai_investasi').val('');
     $('#nilai_disbursement').val('');
     $('#no_prk').focus();
@@ -90,12 +99,14 @@ Input PRK
 
   //INI ADD PRK
   $('.modal-footer').on('click', '#idadd', function() {
+    // console.log($('#fungsi').val());
           $.ajax({
               type: 'POST',
               url: '/storeprk',
               data: {
                 '_token': $('input[name=_token]').val(),
                 'no_prk': $('#no_prk').val(),
+                'no_skk': $('#no_skk').val(),
                 'nama_prk': $('#nama_prk').val(),
                 'pagu' : $('#pagu').val(),
                 'fungsi': $('#fungsi').val(),
@@ -104,10 +115,11 @@ Input PRK
               },
               success:function(data)
               {
-                            $('#id_fungsi').val('');
+                            $('#fungsi').val('');
                             $('#pagu').val('');
                             $('#nama_prk').val('');
                             $('#no_prk').val('');
+                            $('#no_skk').val('');
                             $('#nilai_investasi').val('');
                             $('#nilai_disbursement').val('');
                             $('#no_prk').focus();

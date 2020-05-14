@@ -5,19 +5,6 @@ Chart Pelaksanaan
 @section('content')
 <!-- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<style>
-#rectangle{
-    width:25px;
-    height:15px;
-    background:#dcdcdc;
-}
-
-#rectangle1{
-    width:25px;
-    height:15px;
-    background:#97bbcd;
-}
-</style>
 <br>
 Pilih Kontrak
 <div>
@@ -28,33 +15,9 @@ Pilih Kontrak
 
 
 
-<table>
-<tr>
-  <td>
-<div id="rectangle1"></div>
-  </td>
-
-<td>
-  &nbsp;&nbsp;&nbsp;Chart Pelaksanaan&nbsp;&nbsp;&nbsp;
-</td>
-
-<td>
-<div id="rectangle"></div>
-</td>
-
-<td>
-  &nbsp;&nbsp;&nbsp;Chart Perencanaan
-</td>
-</tr>
-<tr>
-
-
-</tr>
-</table>
-
-
-<div class="box">
-  <canvas id="lineChart" height="50" width="200"></canvas>
+<div class="col-md-10">
+<!--       Chart.js Canvas Tag -->
+  <canvas id="barChart"></canvas>
 </div>
  <!-- SEHARUSNY DIBAWAH -->
   <!-- <input type="hidden" id="kodeuraian" name="kodeuraian" value=""> -->
@@ -101,39 +64,88 @@ $('.DDselect').on("select2:select", function(e) {
 });
 
 function chartszdfjfj(){
+  var canvas = document.getElementById("barChart");
+  var ctx = canvas.getContext('2d');
+
+  // Global Options:
+  Chart.defaults.global.defaultFontColor = 'black';
+  Chart.defaults.global.defaultFontSize = 16;
 
   var data = {
-       labels: dps2,
-       datasets: [
-           {
-               label: "Prime and Fibonacci",
-               fillColor: "rgba(220,220,220,0.2)",
-               strokeColor: "rgba(220,220,220,1)",
-               pointColor: "rgba(220,220,220,1)",
-               pointStrokeColor: "#fff",
-               pointHighlightFill: "#fff",
-               pointHighlightStroke: "rgba(220,220,220,1)",
-               data: dps1
-           },
-           {
-               label: "My Second dataset",
-               fillColor: "rgba(151,187,205,0.2)",
-               strokeColor: "rgba(151,187,205,1)",
-               pointColor: "rgba(151,187,205,1)",
-               pointStrokeColor: "#fff",
-               pointHighlightFill: "#fff",
-               pointHighlightStroke: "rgba(151,187,205,1)",
-               data: dps
-           }
-       ]
-   };
-   var ctx = document.getElementById("lineChart").getContext("2d");
-   var options = {
-     legend:{
-       display:true,
-   }
- };
-   var lineChart = new Chart(ctx).Line(data, options);
+    labels: dps2,
+    datasets: [{
+        label: "Perencanaan",
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "rgba(225,0,0,0.4)",
+        borderColor: "red", // The main line color
+        borderCapStyle: 'square',
+        borderDash: [], // try [5, 15] for instance
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "black",
+        pointBackgroundColor: "white",
+        pointBorderWidth: 1,
+        pointHoverRadius: 8,
+        pointHoverBackgroundColor: "Red",
+        pointHoverBorderColor: "Black",
+        pointHoverBorderWidth: 2,
+        pointRadius: 4,
+        pointHitRadius: 10,
+        // notice the gap in the data and the spanGaps: true
+        data: dps1,
+        spanGaps: true,
+      }, {
+          label: "Pelaksanaan",
+          fill: false,
+          lineTension: 0.1,
+          backgroundColor: "rgba(225,0,0,0.4)",
+          borderColor: "Blue", // The main line color
+          borderCapStyle: 'square',
+          borderDash: [], // try [5, 15] for instance
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "black",
+          pointBackgroundColor: "white",
+          pointBorderWidth: 1,
+          pointHoverRadius: 8,
+          pointHoverBackgroundColor: "Blue",
+          pointHoverBorderColor: "Black",
+          pointHoverBorderWidth: 2,
+          pointRadius: 4,
+          pointHitRadius: 10,
+          // notice the gap in the data and the spanGaps: true
+          data: dps,
+          spanGaps: true,
+        }
+
+    ]
+  };
+
+  // Notice the scaleLabel at the same level as Ticks
+  var options = {
+    scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+
+                  },
+                  scaleLabel: {
+                       display: true,
+                       labelString: 'Prosentase',
+                       fontSize: 20
+                    }
+              }]
+          }
+  };
+
+  // Chart declaration:
+  var myBarChart = new Chart(ctx, {
+    type: 'line',
+    data: data,
+    options: options
+  });
+
 }
 
 
