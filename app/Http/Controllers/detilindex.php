@@ -46,4 +46,22 @@ public function fetch_datapek(Request $request)
   }
 }
 
+public function MAdetilfullfetch(Request $request)
+{
+  if($request->ajax())
+  {
+      $no_prk="";
+      if(isset($_GET['prk'])) {
+      $no_prk=$_GET['prk'];
+      }
+      $data = DB::select('select no_kontrak,no_skk,tanggal_spbj,tanggal_akhir,
+      pekerjaan,material_kontrak,jasa_kontrak,
+      total_kontrak,material_bayar,jasa_bayar,total_bayar FROM kontrak WHERE
+      (no_prk)=:j', ['j' => $no_prk]);
+      echo json_encode($data);
+  }
+}
+
+
+
 }

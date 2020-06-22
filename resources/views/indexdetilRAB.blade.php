@@ -11,6 +11,7 @@ Detil RAB KHS
 
 <?php
 $no_kontrak="";
+$no_spbj="";
 $atributs=[];
 if (isset($_GET['no_kontrak']))
 {
@@ -21,7 +22,10 @@ foreach ($atribut as $key => $value) {
 $atributs=$value;
 }
 
-
+if (isset($_GET['no_spbj']))
+{
+ $no_spbj=$_GET['no_spbj'];
+}
 
 ?>
 
@@ -1967,12 +1971,96 @@ $html = ob_get_clean();
 
 
 <script>
+var madude="<?php echo $no_spbj ?>";
+var rab="<?php echo $rab ?>";
+var ttlpenawaran=0;
+var ttladendum=0;
+var ttlcurrentrab=0;
+var ttlspbj=0;
+var sisa=0;
   $(document).ready( function () {
     fetch_data();
     fetch_datatrasnport();
+    gethargacurrentrab()
+    $.ajax({
+        type: 'GET',
+        url: '/gethargarabpenawaranspbj',
+        data:{'madude': madude},
+        async:false,
+        success:function(data)
+        {
+          if((data[0].totalpenawaran)==null)
+          {
+            ttlpenawaran=0;
+          }
+          else {
+            ttlpenawaran=parseInt(data[0].totalpenawaran);
+          }
+        }
+      });
+
+      $.ajax({
+          type: 'GET',
+          url: '/gethargaadendumspbj',
+          data:{'madude': madude},
+          async:false,
+          success:function(data)
+          {
+            // console.log(data[0].totaladendum);
+            if((data[0].totaladendum)==null)
+            {
+              ttladendum=0;
+            }
+            else {
+              ttladendum=parseInt(data[0].totaladendum);
+            }
+          }
+        });
+
+
+        $.ajax({
+            type: 'GET',
+            url: '/gettotalhargaspbj',
+            data:{'madude': madude},
+            async:false,
+            success:function(data)
+            {
+              // console.log(data[0].totaladendum);
+              if((data[0].nilai)==null)
+              {
+                ttlspbj=0;
+              }
+              else {
+                ttlspbj=parseInt(data[0].nilai);
+                sisa=ttlspbj-(ttladendum+ttlpenawaran+ttlcurrentrab);
+              }
+            }
+          });
+
 
 
 });
+
+function gethargacurrentrab()
+{
+  $.ajax({
+      type: 'GET',
+      url: '/gettotalcurrentrab',
+      data:{'rab': rab},
+      async:false,
+      success:function(data)
+      {
+        // console.log(data[0].totaladendum);
+        if((data[0].totalcurrentrab)==null)
+        {
+          ttlcurrentrab=0;
+        }
+        else {
+          ttlcurrentrab=parseInt(data[0].totalcurrentrab);
+        }
+      }
+    });
+}
 
 
      $('.DDselect').select2({
@@ -2096,6 +2184,13 @@ $html = ob_get_clean();
      var idmat = document.getElementById("harga_satuan").value;
      $("#total_biaya").attr("placeholder", $value*idmat);
      $('#total_biaya').val($value*idmat);
+     if($('#total_biaya').val()>sisa)
+     {
+       $('#total_biaya').val("");
+       $("#total_biaya").attr("placeholder", "");
+       $('#jumlah').val("");
+       alert("harga melebihi nilai spbj");
+     }
      });
 
      $("#jumlah1").keyup(function(e) {
@@ -2103,6 +2198,13 @@ $html = ob_get_clean();
      var idmat1 = document.getElementById("harga_satuan1").value;
      $("#total_biaya1").attr("placeholder", $value1*idmat1);
      $('#total_biaya1').val($value1*idmat1);
+     if($('#total_biaya1').val()>sisa)
+     {
+       $('#total_biaya1').val("");
+       $("#total_biaya1").attr("placeholder", "");
+       $('#jumlah1').val("");
+       alert("harga melebihi nilai spbj");
+     }
      });
 
 
@@ -2198,6 +2300,7 @@ $html = ob_get_clean();
                         },
                         success:function(data)
                         {
+                          gethargacurrentrab()
                        },
                     });
                     // fetch_datatrasnport();
@@ -2252,12 +2355,21 @@ $html = ob_get_clean();
                               success:function(data)
                               {
                                 // console.log(data);
-                               $("#total_biayatr").attr("placeholder", data[0]);
-                               $('#total_biayatr').val(data[0]);
-                               $('#jumlahtr').val(data[2]);
-                               $("#jumlahtr").attr("placeholder", data[2]);
-                               $('#harga_satuantr').val(data[1]);
-                               $("#harga_satuantr").attr("placeholder", data[1]);
+                                if(data[0]>sisa)
+                                {
+                                  $("total_biayatr1").val("");
+                                  $("jumlahtr").val("");
+                                  alert("biaya melebihi nilai SPBJ");
+                                }
+                                else {
+                                  $("#total_biayatr").attr("placeholder", data[0]);
+                                  $('#total_biayatr').val(data[0]);
+                                  $('#jumlahtr').val(data[2]);
+                                  $("#jumlahtr").attr("placeholder", data[2]);
+                                  $('#harga_satuantr').val(data[1]);
+                                  $("#harga_satuantr").attr("placeholder", data[1]);
+                                }
+
 
                               },
                           });
@@ -2325,6 +2437,7 @@ $html = ob_get_clean();
                             },
                             success:function(data)
                             {
+                              gethargacurrentrab()
                            },
                         });
                         fetch_data();
@@ -2358,6 +2471,7 @@ $html = ob_get_clean();
                                                  success:function(data)
                                                  {
                                                    fetch_datatrasnport();
+                                                   gethargacurrentrab()
                                                 },
                                              });
                                          });
@@ -2395,6 +2509,7 @@ $html = ob_get_clean();
                             {
                               fetch_data();
                               fetch_datatrasnport();
+                              gethargacurrentrab()
                            },
                         });
                     });
@@ -2416,6 +2531,7 @@ $html = ob_get_clean();
                                success: function(data) {
                                    toastr.success('Successfully deleted Post!', 'Success Alert', {timeOut: 5000});
                                    $('.item' + data['id']).remove();
+                                   gethargacurrentrab()
                                }
                            });
 

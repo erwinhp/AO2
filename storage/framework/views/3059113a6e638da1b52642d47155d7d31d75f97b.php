@@ -110,7 +110,7 @@ Input Rencana Pembayaran
         <div class="form-group row">
           <label class="col-sm-3 form-control-label">Minggu</label>
           <div class="col-sm-9">
-            <select class="form-control" id="metode">
+            <select class="form-control" id="minggu">
               <option>Pilih Minggu</option>
               <option value="1">Minggu 1</option>
               <option value="2">Minggu 2</option>
@@ -261,45 +261,34 @@ $(document).on('click', '.add-modal', function() {
         // alert('madude');
               $.ajax({
                   type: 'POST',
-                  url: '/storekontrak',
+                  url: '/storerpbyr',
                   data: {
                     '_token': $('input[name=_token]').val(),
-                    'no_kontrak': $('#no_kontrak').val(),
-                    'no_prk': $('#DDprk').val(),
-                    'no_skk' : $('#no_skk').val(),
-                    'pekerjaan': $('#pekerjaan').val(),
-                    'tanggal_akhir': $('#tanggal_akhiredit').val(),
-                    'vendor': $('#vendor').val(),
-                    'total_kontrak': $('#total_kontrak').val(),
-                    'total_bayar': $('#total_bayar').val(),
-                    'no_rab': $('#DDrab').val(),
-
+                    'no_kontrak': no_kontrak,
+                    'no_prk': no_prk,
+                    'no_skk' : no_skk,
+                    'vendor': vendor,
+                    'uraian_pekerjaan': pekerjaan,
+                    'tgl_selesai_kontrak': tanggal_akhir_kontrak,
+                    'nilai_kontrak': total_kontrak,
+                    'no_rab': no_rab,
+                    'nilai_pembayaran': $('#nilai_pembayaran').val(),
+                    'bulan': $('#bulan').val(),
+                    'minggu': $('#minggu').val(),
+                    'no_bastp': $('#no_bastp').val(),
                   },
                   success:function(data)
                   {
-                              $('#DDprk').val(null).trigger('change'),
-                              $('#vendor').val(null).trigger('change'),
-                              $('#DDrab').val(null).trigger('change'),
-                    $('#no_kontrak').val(""),
-                    $('#DDprk').val(""),
+                    $('#rab_select').val(null).trigger('change'),
+                    $('#no_prk').val(""),
                     $('#no_skk').val(""),
-                    $('#pekerjaan').val(""),
-                    $('#tanggal_spbj').val(""),
-                    $('#tanggal_akhir').val(""),
-                    $('#tanggal_spbjedit').val(""),
-                    $('#tanggal_akhiredit').val(""),
-                    $('#akhir_pemeliharaan').val(""),
-                    $('#aktif_spbj').val(""),
                     $('#vendor').val(""),
-                    $('#material_kontrak').val(""),
+                    $('#pekerjaan').val(""),
+                    $('#tanggal_akhir_kontrak').val(""),
                     $('#total_kontrak').val(""),
-                    $('#material_bayar').val(""),
-                    $('#jasa_bayar').val(""),
-                    $('#jasa_kontrak').val(""),
-                    $('#total_bayar').val(""),
-                    $('#aktif_bastp').val(""),
-                    $('#aktif_byr').val(""),
-                    $('#no_kontrak').focus(),
+                    $('#nilai_pembayaran').val(""),
+                    $('#bulan').val(""),
+                    $('#no_bastp').val(""),
                     alert("input sukses");
                  },
               });

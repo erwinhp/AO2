@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Auth;
 use App\spbj;
+use App\pks;
 use DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
@@ -41,10 +42,38 @@ return Response($output);
    }
 }
 
+public function getspbjdata(Request $request)
+{
+  $counts=DB::select('select no_spbj,
+   (select judul from spbj where master_rab.no_spbj=spbj.no_spbj) as judul,
+   (select nilai from spbj where master_rab.no_spbj=spbj.no_spbj) as nilai,
+   (select (select nama_perusahaan from vendor where vendor.id_vendor=spbj.vendor) from spbj where spbj.no_spbj=master_rab.no_spbj)as vendor,
+   (select vendor from spbj where spbj.no_spbj=master_rab.no_spbj)as id_vendor
+   from master_rab where no_rab=:a',
+  ['a'=>$request->getrab]);
+  return response()->json($counts);
+}
+
+
+
 
 public function create()
 {
 return view('input.inputMasterspbj');
+}
+
+
+public function storepks(Request $request)
+{
+  // dd($request->all());
+  $pks = new pks;
+  $pks -> no_pk = $request->no_pk;
+  $pks -> tgl_awal = $request->tgl_awal;
+  $pks -> tgl_akhir = $request->tgl_akhir;
+  $pks -> no_rab = $request->no_rab;
+  $pks -> vendor = $request->vendor;
+  $pks -> save();
+
 }
 
 /**

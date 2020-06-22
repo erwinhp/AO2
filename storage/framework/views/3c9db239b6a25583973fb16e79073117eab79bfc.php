@@ -8,7 +8,9 @@
 <?php
 // dd($prk);
 // ?>
+
 <section class="table table-bordered">
+
   <div class="col-lg-12">
     <div class="articles card">
       <div class="card-close">
@@ -18,6 +20,7 @@
         </div> -->
       </div>
       <div class="card-header d-flex align-items-center">
+          <button type="button" class="btn btn-primary" id="cetakexcel">CETAK EXCEL</button>
         <h4 class="h4">Nomor PRK : <?php echo e($prk); ?></h4>
         <!-- <div class="badge badge-rounded bg-green">      </div> -->
       </div>
@@ -41,6 +44,8 @@
 
 
             <table id="tablez" class="table table-striped table-bordered" style="width:100%">
+            </table>
+            <table id="tablezexport" class="table table-striped table-bordered" style="width:100%">
             </table>
           </div>
         </div>
@@ -161,6 +166,7 @@ var prktake=("<?php echo $prk; ?>");
    }
    // console.log(html);
    $('#tablez').html(html);
+
  }//success
 });//ajax
  });
@@ -216,6 +222,63 @@ var prktake=("<?php echo $prk; ?>");
  }//success
  });//ajax
  });
+
+
+
+
+ $(document).on('click', '#cetakexcel', function() {
+  var prktake=("<?php echo $prk; ?>");
+   $.ajax({
+   type: "GET",
+   data:{'prk':prktake},
+    url:"MAdetilfullfetch",
+    dataType:"json",
+    success:function(data)
+    {
+      html='';
+      html +='<thead>';
+      html +='<tr>';
+      html +='<td> No </td>';
+      html +='<td> No SPBJ </td>';
+      html +='<td> No SKK </td>';
+      html +='<td> Tanggal SPBJ </td>';
+      html +='<td> Tanggal Akhir </td>';
+      html +='<td> Pekerjaan </td>';
+      html +='<td> Material Kontrak </td>';
+      html +='<td> Jasa Kontrak </td>';
+      html +='<td> Total Kontrak </td>';
+      html +='<td> Material Bayar </td>';
+      html +='<td> Jasa Bayar </td>';
+      html +='<td> Total Bayar </td> </tr></thead>';
+
+      for(var count=0; count < data.length; count++)
+      {
+      html +='<tbody>';
+      html +='<tr>';
+      html +='<td>'+(count+1)+'</td>';
+      html +='<td>'+data[count].no_kontrak+'</td>';
+      html += '<td>'+data[count].no_skk+'</td>';
+      html += '<td>'+data[count].tanggal_spbj+'</td>';
+      html += '<td>'+data[count].tanggal_akhir+'</td>';
+      html +='<td>'+data[count].pekerjaan+'</td>';
+      html += '<td>'+addCommas(data[count].material_kontrak)+'</td>';
+      html += '<td>'+addCommas(data[count].jasa_kontrak)+'</td>';
+      html += '<td>'+addCommas(data[count].total_kontrak)+'</td>';
+      html += '<td>'+addCommas(data[count].material_bayar)+'</td>';
+      html += '<td>'+addCommas(data[count].jasa_bayar)+'</td>';
+      html += '<td>'+addCommas(data[count].total_bayar)+'</td></tr></tbody>';
+      }
+      $('#tablezexport').html(html);
+         $('#tablezexport').table2excel({
+           name: "WorksheetName",
+           filename: "Monitoring Anggaran", //do not include extension
+           fileext: ".xls" // file extension
+         });
+         $('#tablezexport').html("");
+    },
+ });
+});
+
 
 </script>
 <?php $__env->stopSection(); ?>

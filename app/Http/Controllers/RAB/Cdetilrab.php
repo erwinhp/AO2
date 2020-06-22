@@ -119,6 +119,52 @@ public function index()
    }
 }
 
+
+
+
+public function gettotalcurrentrab(Request $request)
+{
+
+  if($request->ajax())
+  {
+      $data=DB::select('select sum(total_biaya)as totalcurrentrab from rab_khs_detil where no_rab=:a',['a'=>$request->rab]);
+      return response()->json($data);
+  }
+}
+
+
+public function gethargarabpenawaranspbj(Request $request)
+{
+
+  if($request->ajax())
+  {
+      $data=DB::select('select sum(total_harganego)as totalpenawaran from rab_penawaran where spbj=:a',['a'=>$request->madude]);
+      return response()->json($data);
+  }
+}
+
+
+public function gethargaadendumspbj(Request $request)
+{
+
+  if($request->ajax())
+  {
+      $data=DB::select('select sum(total_harganego)as totaladendum from adendum where spbj=:a',['a'=>$request->madude]);
+      return response()->json($data);
+  }
+}
+
+
+public function gettotalhargaspbj(Request $request)
+{
+
+  if($request->ajax())
+  {
+      $data=DB::select('select nilai from spbj where no_spbj=:a',['a'=>$request->madude]);
+      return response()->json($data);
+  }
+}
+
 public function fetch_datatransport(Request $request)
 {
 

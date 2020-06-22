@@ -111,9 +111,10 @@ Route::get ('/getnokontrakrab','Konstruksi\charts@getnokontrakrab');
 Route::get ('/home','homez@index');
 
 //create spbj
+Route::post ('/storepks','Cspbjpk@storepks');
 Route::get ('/mspbj','SPBJ\Cspbjm@index');
 //create SPBJ PK
-
+Route::get ('/getspbjdata','Cspbjpk@getspbjdata');
 Route::get ('/mspbjpk','Cspbjpk@index');
 Route::get ('/cspbj','Cspbjpk@create');
 Route::post ('/cspbj','Cspbjpk@store');
@@ -146,6 +147,7 @@ Route::resource ('/MA','Cindex');
 Route::resource ('/detilindex','detilindex');
 Route::get ('/MAdetilgenfetch','detilindex@fetch_datagen');
 Route::get ('/MAdetilpekfetch','detilindex@fetch_datapek');
+Route::get ('/MAdetilfullfetch','detilindex@MAdetilfullfetch');
 Route::get ('/inputMA','smentara\inputMA@index');
 Route::get ('/inputPRK','smentara\inputMA@indexprk');
 
@@ -166,6 +168,11 @@ Route::get ('/mrabnonkhs','RAB\Crabnonkhsmaster@index');
 Route::get('/searchnon','RAB\Crabnonkhsmaster@search');
 
 //ROUTE DETIL RAB
+
+Route::get ('/gettotalcurrentrab','RAB\Cdetilrab@gettotalcurrentrab');
+Route::get ('/gettotalhargaspbj','RAB\Cdetilrab@gettotalhargaspbj');
+Route::get ('/gethargaadendumspbj','RAB\Cdetilrab@gethargaadendumspbj');
+Route::get ('/gethargarabpenawaranspbj','RAB\Cdetilrab@gethargarabpenawaranspbj');
 Route::resource ('/Rdetil','RAB\Cdetilrab');
 Route::get ('/Rdetilfetch','RAB\Cdetilrab@fetch_data');
 Route::get ('/Rdetilfetchtransport','RAB\Cdetilrab@fetch_datatransport');
